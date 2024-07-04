@@ -1,0 +1,43 @@
+.organic-section {
+    padding: 40px 0;
+  }
+  
+  .organic-image {
+    width: 100%;
+    height: auto;
+  }
+  
+  .organic-content {
+    padding: 20px;
+  }
+  
+  .organic-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .organic-list li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .icon {
+    color: green;
+    margin-right: 10px;
+  }
+  
+  @media (max-width: 768px) {
+    .organic-content {
+      text-align: center;
+    }
+  
+    .organic-list li {
+      justify-content: center;
+    }
+  
+    .organic-image {
+      margin-bottom: 20px;
+    }
+  }
+  
