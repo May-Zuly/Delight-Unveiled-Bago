@@ -1,0 +1,153 @@
+@import "./_variable.scss";
+
+// logo css
+.logo {
+  text-align: center;
+}
+.content-container {
+  background: #fff;
+  padding: 24px;
+  min-height: 360px;
+  h2.title {
+    margin-bottom: 2vw;
+  }
+}
+// login form
+.login-container {
+  width: 30vw;
+  margin: 0 auto;
+  margin-top: 5%;
+  padding: 2vw;
+  text-align: center;
+  border: 1px solid transparent;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  img {
+    width: 12vw;
+    margin: 0 auto;
+  }
+  h2 {
+    margin: 0;
+  }
+  p {
+  }
+  .ant-form-item-explain-error {
+    text-align: left;
+  }
+  .ant-form-item-control-input-content {
+    display: flex;
+    justify-content: center;
+  }
+
+  :where(.css-dev-only-do-not-override-zl9ks2).ant-checkbox-wrapper {
+    justify-content: start;
+    display: flex;
+  }
+}
+//end login form
+
+// button
+.button-container {
+  display: flex;
+  justify-content: center;
+}
+.signup {
+  text-decoration: underline;
+  color: #1677ff;
+}
+// end button
+
+// // side bar icon design
+// :where(.css-dev-only-do-not-override-zl9ks2).ant-layout
+//   .ant-layout-sider-zero-width-trigger {
+//   top: 8px;
+//   background: transparent;
+//   color: $primary-color;
+//   font-size: 3vw;
+// }
+
+// // sidebar item color
+// :where(.css-dev-only-do-not-override-zl9ks2) a {
+//   color: inherit;
+// }
+// :where(.css-dev-only-do-not-override-zl9ks2).ant-menu-light
+//   .ant-menu-submenu-selected
+//   > .ant-menu-submenu-title,
+// :where(.css-dev-only-do-not-override-zl9ks2).ant-menu-light
+//   > .ant-menu
+//   .ant-menu-submenu-selected
+//   > .ant-menu-submenu-title {
+//   color: $primary-color;
+//   transition: 0.15s padding ease-out, 0.15s margin ease-out,
+//     0.15s border ease-out;
+// }
+// :where(.css-dev-only-do-not-override-zl9ks2).ant-menu-light
+//   .ant-menu-item-selected {
+//   background-color: $secondary-color;
+//   color: $primary-color;
+//   transition: 0.15s padding ease-out, 0.15s margin ease-out,
+//     0.15s border ease-out;
+// }
+// :where(.css-dev-only-do-not-override-zl9ks2).ant-layout
+//   .ant-layout-sider-trigger {
+//   background-color: $secondary-color;
+// }
+// .ant-menu-submenu-title {
+//   color: $white-color !important;
+// }
+// .ant-layout-sider-trigger {
+//   background-color: $primary-color !important;
+//   span {
+//     display: none;
+//   }
+// }
+
+// menu bar icon size
+:where(.css-dev-only-do-not-override-zl9ks2).ant-btn.ant-btn-icon-only
+  .anticon {
+  font-size: 25px;
+}
+
+// order detail list
+div.order-btn-container {
+  display: flex;
+  justify-content: center;
+  .order-btn {
+    padding: 0 30px;
+    margin-top: 10px;
+  }
+}
+.order-price {
+  float: right;
+}
+div.order-list {
+  padding: 20px;
+  max-height: 50vh;
+  overflow: auto;
+  box-shadow: rgba(0, 0, 0, 0.09) 0px 3px 12px;
+}
+h3.total-amt {
+  margin-top: 10px;
+  padding: 5px 10px;
+}
+
+// pagination
+
+.pagination {
+  display: flex;
+  justify-content: end;
+  margin-top: 30px;
+}
+
+// report
+.report-form {
+  padding: 20px;
+  transition: all 0.3s ease;
+}
+
+.show {
+  display: block;
+}
+
+.hide {
+  display: none;
+}
