@@ -3,10 +3,11 @@ import { Card, Col, Row, Statistic } from "antd";
 
 import ColumnChart from "../components/ColumnChart";
 import PieChart from "../components/PieChart";
-import { useSelector } from "react-redux";
+import { useRecoilValue } from "recoil";
+import { userData } from "../store";
 
 export default function Home() {
-  const { loginData } = useSelector((state) => state.item);
+  const user = useRecoilValue(userData);
 
   return (
     <>

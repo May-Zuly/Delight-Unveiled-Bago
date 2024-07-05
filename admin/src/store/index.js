@@ -1,13 +1,10 @@
-import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import { atom } from "recoil";
+import { recoilPersist } from "recoil-persist";
 
-import ReportSlice from "./ReportSlice";
-import loginSlice from "./loginSlice";
+const { persistAtom } = recoilPersist();
 
-const rootReducer = combineReducers({
-  item: loginSlice,
-  report: ReportSlice,
-});
-
-export const store = configureStore({
-  reducer: rootReducer,
+export const userData = atom({
+  key: "userData",
+  default: {},
+  effects_UNSTABLE: [persistAtom],
 });

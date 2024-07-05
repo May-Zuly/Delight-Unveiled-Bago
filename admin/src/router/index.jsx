@@ -6,6 +6,7 @@ import CreateItem from "../pages/Product/Create";
 import CreateUser from "../pages/User/Create";
 import DefaultLayout from "../layout/DefaultLayout";
 import Home from "../pages/Home";
+import Order from "../pages/Order";
 import Product from "../pages/Product/index";
 import Profile from "../pages/Profile";
 import { ProtectedRoute } from "./ProtectedRoute";
@@ -15,6 +16,7 @@ export default function RouterRoute() {
   const routes = [
     { path: "home", name: "Home", element: Home },
     { path: "profile", name: "Profile", element: Profile },
+    { path: "order", name: "Order", element: Order },
     {
       path: "user",
       name: "User",

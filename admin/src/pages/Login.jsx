@@ -1,20 +1,20 @@
 import { Button, Checkbox, Form, Input } from "antd";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 
-import { loginApi } from "../api/login";
+import { api } from "../api/helper";
 import logoImg from "../assets/images/logo.png";
-import { setLoginData } from "../store/loginSlice";
-import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { useSetRecoilState } from "recoil";
+import { userData } from "../store";
 
 export default function Login() {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const setUserData = useSetRecoilState(userData);
 
   const onFinish = async (value) => {
-    const res = await loginApi("apiUrl", value);
+    const res = await api.get("apiUrl");
     if (res.code === 200) {
-      dispatch(setLoginData(value));
+      setUserData(value);
       navigate("/home");
     }
   };

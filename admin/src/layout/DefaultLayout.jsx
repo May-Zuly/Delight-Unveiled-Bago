@@ -30,7 +30,7 @@ export default function DefaultLayout({ children }) {
       <SidebarNav collapsed={collapsed} />
       <Layout className="site-layout">
         <HeaderMenu collapsed={collapsed} setCollapsed={setCollapsed} />
-        <Content style={{ margin: "16px", background: "white" }}>
+        <Content style={{ margin: "16px" }}>
           <Breadcrumb
             items={[
               { title: <Link to="/home">Home</Link> },

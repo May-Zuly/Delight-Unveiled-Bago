@@ -1,5 +1,6 @@
 import {
   AppstoreOutlined,
+  FileDoneOutlined,
   HomeOutlined,
   UserAddOutlined,
 } from "@ant-design/icons";
@@ -23,19 +24,9 @@ export default function Sidebar({ collapsed }) {
       label: <Link to="/home">Home</Link>,
     },
     {
-      key: "/usertag",
-      icon: <UserAddOutlined style={{ fontSize: "20px" }} type="setting" />,
-      label: "User Management",
-      children: [
-        {
-          key: "/user",
-          label: <Link to="/user">Users</Link>,
-        },
-        {
-          key: "/user/create",
-          label: <Link to="/user/create">Create</Link>,
-        },
-      ],
+      key: "/order",
+      icon: <FileDoneOutlined style={{ fontSize: "20px" }} type="setting" />,
+      label: <Link to="/order">Orders</Link>,
     },
     {
       key: "/itemtag",
@@ -49,6 +40,21 @@ export default function Sidebar({ collapsed }) {
         {
           key: "/item/create",
           label: <Link to="/item/create">Create</Link>,
+        },
+      ],
+    },
+    {
+      key: "/usertag",
+      icon: <UserAddOutlined style={{ fontSize: "20px" }} type="setting" />,
+      label: "User Management",
+      children: [
+        {
+          key: "/user",
+          label: <Link to="/user">Users</Link>,
+        },
+        {
+          key: "/user/create",
+          label: <Link to="/user/create">Create</Link>,
         },
       ],
     },
