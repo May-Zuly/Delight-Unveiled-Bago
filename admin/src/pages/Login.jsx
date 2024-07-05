@@ -1,7 +1,7 @@
 import { Button, Checkbox, Form, Input } from "antd";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 
-import { api } from "../api/helper";
+import api from "../api/helper";
 import logoImg from "../assets/images/logo.png";
 import { useNavigate } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
