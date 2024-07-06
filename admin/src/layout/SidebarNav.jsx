@@ -74,7 +74,7 @@ export default function Sidebar({ collapsed }) {
           padding: "20px",
         }}
       >
-        <img src={logoImg} width={collapsed ? "50px" : "100px"} />
+        <img src={logoImg} width={collapsed ? "50px" : "80px"} />
       </div>
       <Menu
         theme="light"

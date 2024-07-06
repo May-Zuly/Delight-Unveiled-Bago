@@ -8,7 +8,11 @@ import {
   UserOutlined,
 } from "@ant-design/icons";
 
+import { useRecoilValue } from "recoil";
+import { userData } from "../store";
+
 export default function HeaderMenu({ collapsed, setCollapsed }) {
+  const user = useRecoilValue(userData);
   const navigate = useNavigate();
   const handleLogout = () => {
     navigate("/login");
@@ -29,7 +33,7 @@ export default function HeaderMenu({ collapsed, setCollapsed }) {
 
   return (
     <>
-      <Row style={{ padding: "16px", background: "white" }}>
+      <Row style={{ padding: "15px", background: "white" }}>
         <Col span={10}>
           <Button
             type="text"
@@ -41,13 +45,10 @@ export default function HeaderMenu({ collapsed, setCollapsed }) {
           />
         </Col>
         <Col span={14} style={{ direction: "rtl" }}>
-          <Row>
-            <Col span={4}>
-              <Dropdown menu={{ items }} placement="bottomRight" arrow>
-                <Avatar icon={<UserOutlined />} style={{ cursor: "pointer" }} />
-              </Dropdown>
-            </Col>
-          </Row>
+          <Dropdown menu={{ items }} placement="bottomRight" arrow>
+            <Avatar icon={<UserOutlined />} style={{ cursor: "pointer" }} />
+          </Dropdown>
+          <span style={{ marginRight: "15px" }}>{user.name}</span>
         </Col>
       </Row>
     </>
