@@ -7,14 +7,15 @@ import {
   TeamOutlined,
   UserOutlined,
 } from "@ant-design/icons";
-
-import { useRecoilValue } from "recoil";
-import { userData } from "../store";
+import { token, userData } from "../store";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 
 export default function HeaderMenu({ collapsed, setCollapsed }) {
   const user = useRecoilValue(userData);
+  const setToken = useSetRecoilState(token);
   const navigate = useNavigate();
   const handleLogout = () => {
+    setToken("");
     navigate("/login");
   };
 
@@ -48,7 +49,7 @@ export default function HeaderMenu({ collapsed, setCollapsed }) {
           <Dropdown menu={{ items }} placement="bottomRight" arrow>
             <Avatar icon={<UserOutlined />} style={{ cursor: "pointer" }} />
           </Dropdown>
-          <span style={{ marginRight: "15px" }}>{user.name}</span>
+          <span style={{ marginRight: "15px" }}>{user.username}</span>
         </Col>
       </Row>
     </>

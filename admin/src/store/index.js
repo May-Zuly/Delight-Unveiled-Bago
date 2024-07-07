@@ -5,8 +5,12 @@ const { persistAtom } = recoilPersist();
 
 export const userData = atom({
   key: "userData",
-  default: {
-    name: "May Zuly Moe",
-  },
+  default: {},
+  effects_UNSTABLE: [persistAtom],
+});
+
+export const token = atom({
+  key: "token",
+  default: "",
   effects_UNSTABLE: [persistAtom],
 });

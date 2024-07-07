@@ -1,8 +1,8 @@
-import { Button, Modal, Space, Table, Tag } from "antd";
+import { Button, Modal, Space, Table, Tag, message } from "antd";
 import { useEffect, useState } from "react";
 
 import UserForm from "../../components/UserForm";
-import dataObj from "../../api/setupData.json";
+import api from "../../api/helper";
 import { dateFormat } from "../../utils/constant";
 import dayjs from "dayjs";
 
@@ -10,12 +10,13 @@ export default function App() {
   const [visible, setVisible] = useState(false);
   const [updateData, setUpdateData] = useState({});
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState("");
 
   const columns = [
     {
       title: "Name",
-      dataIndex: "name",
-      key: "name",
+      dataIndex: "username",
+      key: "username",
       render: (text) => <a>{text}</a>,
     },
     {
@@ -24,30 +25,40 @@ export default function App() {
       key: "email",
     },
     {
-      title: "Date",
-      dataIndex: "date",
-      key: "date",
-      render: (date) => <span>{dayjs(date).format(dateFormat)}</span>,
+      title: "Address",
+      dataIndex: "address",
+      key: "address",
     },
     {
-      title: "Role",
-      key: "role",
-      dataIndex: "role",
-      render: (role) => (
+      title: "Phone Number",
+      dataIndex: "phoneNumber",
+      key: "phoneNumber",
+    },
+    {
+      title: "Type",
+      key: "type",
+      dataIndex: "type",
+      render: (type) => (
         <>
-          <Tag color="geekblue" key={role}>
-            {role.toUpperCase()}
+          <Tag color="geekblue" key={type}>
+            {type}
           </Tag>
         </>
       ),
+    },
+    {
+      title: "Created Date",
+      dataIndex: "createdAt",
+      key: "createdAt",
+      render: (createdAt) => <span>{dayjs(createdAt).format(dateFormat)}</span>,
     },
     {
       title: "Action",
       key: "action",
       render: (record) => (
         <Space size="middle">
-          <Button onClick={() => onEditFun(record.key)}>Edit</Button>
-          <Button danger onClick={() => confirm(record.key)}>
+          <Button onClick={() => onEditFun(record.id)}>Edit</Button>
+          <Button danger onClick={() => confirm(record.id)}>
             Delete
           </Button>
         </Space>
@@ -55,8 +66,8 @@ export default function App() {
     },
   ];
 
-  const onEditFun = (key) => {
-    const editValue = data.find((item) => item.key === key);
+  const onEditFun = (id) => {
+    const editValue = data.find((item) => item.id === id);
     if (editValue) {
       setUpdateData({ ...editValue, date: dayjs(editValue.date, dateFormat) });
       setVisible(true);
@@ -64,15 +75,23 @@ export default function App() {
   };
 
   useEffect(() => {
-    const newData = dataObj.data.map((item) => ({
-      ...item,
-      remember: true,
-      date: dayjs(item.date, dateFormat),
-    }));
-    setData(newData);
+    fetchUsers();
   }, []);
 
-  const confirm = (key) => {
+  const fetchUsers = async () => {
+    try {
+      const res = await api.get("users", {
+        headers: { requireToken: true },
+      });
+      if (res.data) {
+        setData(res.data);
+      }
+    } catch (error) {
+      setLoading(false);
+    }
+  };
+
+  const confirm = (id) => {
     Modal.confirm({
       title: "Delete Confirmation",
       content: "Are you sure want to delete!!",
@@ -85,20 +104,35 @@ export default function App() {
         danger: true,
       },
       onOk: () => {
-        const updatedData = data.filter((item) => item.key !== key);
-        setData(updatedData);
+        onDeleteFunc(id);
       },
     });
   };
 
-  const onFinish = (value) => {
-    const copyData = [...data];
-    const findIndex = copyData.findIndex((item) => item.key === updateData.key);
-    if (findIndex > -1) {
-      copyData[findIndex] = value;
-      copyData[findIndex].key = updateData.key;
+  const onDeleteFunc = async (id) => {
+    try {
+      const res = await api.delete(`users/${id}`, {
+        headers: { requireToken: true },
+      });
+      if (res.data) {
+        fetchUsers();
+      }
+    } catch (error) {
+      setLoading(false);
     }
-    setData(copyData);
+  };
+
+  const onFinish = async (data) => {
+    try {
+      const res = await api.put(`users/${data.id}`, data, {
+        headers: { requireToken: true },
+      });
+      if (res.data) {
+        fetchUsers();
+      }
+    } catch (error) {
+      setLoading(false);
+    }
     onCloseFunc();
   };
 

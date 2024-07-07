@@ -8,11 +8,12 @@ export default function UserForm({
   onFinish,
   btnText = "create",
   intitalData,
+  isCreate = false,
 }) {
-  const datalist = [
-    { name: "Software Engineer", key: "sf" },
-    { name: "Programmer", key: "pm" },
-    { name: "Developer", key: "de" },
+  const optionList = [
+    { label: "Admin", value: "admin" },
+    { label: "Producer", value: "producer" },
+    { label: "Customer", value: "customer" },
   ];
   const [form] = Form.useForm();
   useEffect(() => {
@@ -27,9 +28,12 @@ export default function UserForm({
       layout="horizontal"
       onFinish={onFinish}
     >
+      <Form.Item name="id" hidden>
+        <Input />
+      </Form.Item>
       <Form.Item
         label="User Name"
-        name="name"
+        name="username"
         rules={[{ required: true, message: "Please input your Username!" }]}
       >
         <Input placeholder="Username" />
@@ -41,26 +45,50 @@ export default function UserForm({
       >
         <Input placeholder="Email" />
       </Form.Item>
-      <Form.Item label="DatePicker" name="date">
-        <DatePicker />
+      <Form.Item
+        label="Address"
+        name="address"
+        rules={[{ required: true, message: "Please input your address!" }]}
+      >
+        <Input placeholder="Address" />
       </Form.Item>
       <Form.Item
-        name="role"
+        label="Phone Number"
+        name="phoneNumber"
+        rules={[{ required: true, message: "Please input your Phone Number!" }]}
+      >
+        <Input placeholder="Phone Number" />
+      </Form.Item>
+      <Form.Item
+        name="type"
         label="Select"
         rules={[{ required: true, message: "Please Select ..." }]}
       >
-        <Select placeholder="Please Select ...">
-          {datalist.map((data, idx) => {
-            return (
-              data.name && (
-                <Select.Option key={idx} value={data.name}>
-                  {data.name}
-                </Select.Option>
-              )
-            );
-          })}
-        </Select>
+        <Select placeholder="Please Select ..." options={optionList} />
       </Form.Item>
+      {isCreate && (
+        <>
+          <Form.Item
+            label="Password"
+            name="password"
+            rules={[{ required: true, message: "Please input your Password!" }]}
+          >
+            <Input placeholder="Password" />
+          </Form.Item>
+          <Form.Item
+            label="Confirm Password"
+            name="confirmPassword"
+            rules={[
+              {
+                required: true,
+                message: "Please input your Confirm Password!",
+              },
+            ]}
+          >
+            <Input placeholder="Confirm Passwordx" />
+          </Form.Item>
+        </>
+      )}
       <Form.Item wrapperCol={{ offset: labelCol }}>
         <Button htmlType="submit" type="primary">
           {btnText}

@@ -1,10 +1,13 @@
 import { Navigate, useLocation } from "react-router-dom";
 
+import { token } from "../store";
+import { useRecoilValue } from "recoil";
+
 export const ProtectedRoute = ({ children }) => {
   const pathname = useLocation().pathname;
-  const isLogin = true;
+  const loginToken = useRecoilValue(token);
 
-  if (!isLogin) return <Navigate to="/login" />;
+  if (!loginToken) return <Navigate to="/login" />;
   if (pathname === "/") return <Navigate to="/home" />;
 
   return children;

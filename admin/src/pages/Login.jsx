@@ -1,21 +1,33 @@
-import { Button, Checkbox, Form, Input } from "antd";
+import { Button, Form, Input, message } from "antd";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
+import { token, userData } from "../store";
 
 import api from "../api/helper";
 import logoImg from "../assets/images/logo.png";
 import { useNavigate } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
-import { userData } from "../store";
+import { useState } from "react";
 
 export default function Login() {
   const navigate = useNavigate();
   const setUserData = useSetRecoilState(userData);
+  const setToken = useSetRecoilState(token);
+  const [loading, setLoading] = useState("");
 
   const onFinish = async (value) => {
-    const res = await api.get("apiUrl");
-    if (res.code === 200) {
-      setUserData(value);
-      navigate("/home");
+    setLoading(true);
+    try {
+      const res = await api.post("auth/local", value, {
+        headers: { requireToken: false },
+      });
+      if (res.data) {
+        setToken(res.data.jwt);
+        setUserData(res.data.user);
+        navigate("/home");
+        setLoading(false);
+      }
+    } catch (error) {
+      setLoading(false);
     }
   };
   return (
@@ -32,11 +44,11 @@ export default function Login() {
         onFinish={onFinish}
       >
         <Form.Item
-          name="name"
-          rules={[{ required: true, message: "Please input your Username!" }]}
+          name="identifier"
+          rules={[{ required: true, message: "Please input your Email!" }]}
         >
           <Input
-            placeholder="Username"
+            placeholder="Email"
             prefix={<UserOutlined className="site-form-item-icon" />}
           />
         </Form.Item>
@@ -49,11 +61,13 @@ export default function Login() {
             prefix={<LockOutlined className="site-form-item-icon" />}
           />
         </Form.Item>
-        <Form.Item name="remember" valuePropName="checked">
-          <Checkbox>Remember me?</Checkbox>
-        </Form.Item>
         <Form.Item>
-          <Button htmlType="submit" className="button-container" type="primary">
+          <Button
+            htmlType="submit"
+            className="button-container"
+            type="primary"
+            disabled={loading}
+          >
             Login
           </Button>
         </Form.Item>
