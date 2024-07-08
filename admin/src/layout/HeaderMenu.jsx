@@ -1,10 +1,11 @@
-import { Avatar, Button, Col, Dropdown, Row } from "antd";
+import { Avatar, Button, Col, Dropdown, Modal, Row } from "antd";
 import { Link, useNavigate } from "react-router-dom";
 import {
   LogoutOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
   TeamOutlined,
+  UnlockOutlined,
   UserOutlined,
 } from "@ant-design/icons";
 import { token, userData } from "../store";
@@ -27,6 +28,11 @@ export default function HeaderMenu({ collapsed, setCollapsed }) {
     },
     {
       key: "2",
+      icon: <UnlockOutlined />,
+      label: <Link to="/change_password">Change Password</Link>,
+    },
+    {
+      key: "3",
       icon: <LogoutOutlined />,
       label: <span onClick={handleLogout}>Logout</span>,
     },

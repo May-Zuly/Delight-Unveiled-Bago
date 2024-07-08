@@ -2,6 +2,7 @@ import "../style/_common.scss";
 
 import { Outlet, Route, Routes } from "react-router-dom";
 
+import ChangePassword from "../pages/ChangePassword";
 import CreateItem from "../pages/Product/Create";
 import CreateUser from "../pages/User/Create";
 import DefaultLayout from "../layout/DefaultLayout";
@@ -16,6 +17,11 @@ export default function RouterRoute() {
   const routes = [
     { path: "home", name: "Home", element: Home },
     { path: "profile", name: "Profile", element: Profile },
+    {
+      path: "change_password",
+      name: "ChangePassword",
+      element: ChangePassword,
+    },
     { path: "order", name: "Order", element: Order },
     {
       path: "user",

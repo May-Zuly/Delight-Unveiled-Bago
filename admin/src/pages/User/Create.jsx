@@ -1,11 +1,8 @@
-import { Card } from "antd";
 import UserForm from "../../components/UserForm";
 import api from "../../api/helper";
-import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 export default function CreateUser() {
-  const navigate = useNavigate();
   const [loading, setLoading] = useState("");
   const onFinish = async (data) => {
     try {
@@ -15,7 +12,7 @@ export default function CreateUser() {
         headers: { requireToken: true },
       });
       if (res.data) {
-        navigate("/user");
+        window.location.href = "/user";
       }
     } catch (error) {
       setLoading(false);
@@ -26,7 +23,7 @@ export default function CreateUser() {
     <>
       <h2 className="title">Create User</h2>
       <UserForm
-        labelCol={2}
+        labelCol={4}
         wrapperCol={10}
         onFinish={onFinish}
         isCreate={true}

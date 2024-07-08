@@ -1,12 +1,15 @@
-import { Button, Modal, Space, Table, Tag, message } from "antd";
+import { Button, Modal, Space, Table, Tag } from "antd";
 import { useEffect, useState } from "react";
 
 import UserForm from "../../components/UserForm";
 import api from "../../api/helper";
 import { dateFormat } from "../../utils/constant";
 import dayjs from "dayjs";
+import { useRecoilValue } from "recoil";
+import { userData } from "../../store";
 
 export default function App() {
+  const user = useRecoilValue(userData);
   const [visible, setVisible] = useState(false);
   const [updateData, setUpdateData] = useState({});
   const [data, setData] = useState([]);
@@ -58,9 +61,11 @@ export default function App() {
       render: (record) => (
         <Space size="middle">
           <Button onClick={() => onEditFun(record.id)}>Edit</Button>
-          <Button danger onClick={() => confirm(record.id)}>
-            Delete
-          </Button>
+          {user.id !== record.id && (
+            <Button danger onClick={() => confirm(record.id)}>
+              Delete
+            </Button>
+          )}
         </Space>
       ),
     },
@@ -79,12 +84,14 @@ export default function App() {
   }, []);
 
   const fetchUsers = async () => {
+    setLoading(true);
     try {
       const res = await api.get("users", {
         headers: { requireToken: true },
       });
       if (res.data) {
         setData(res.data);
+        setLoading(false);
       }
     } catch (error) {
       setLoading(false);
@@ -110,12 +117,14 @@ export default function App() {
   };
 
   const onDeleteFunc = async (id) => {
+    setLoading(true);
     try {
       const res = await api.delete(`users/${id}`, {
         headers: { requireToken: true },
       });
       if (res.data) {
         fetchUsers();
+        setLoading(false);
       }
     } catch (error) {
       setLoading(false);
@@ -123,12 +132,14 @@ export default function App() {
   };
 
   const onFinish = async (data) => {
+    setLoading(true);
     try {
       const res = await api.put(`users/${data.id}`, data, {
         headers: { requireToken: true },
       });
       if (res.data) {
         fetchUsers();
+        setLoading(false);
       }
     } catch (error) {
       setLoading(false);

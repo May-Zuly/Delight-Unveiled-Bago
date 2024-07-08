@@ -1,4 +1,4 @@
-import { Button, DatePicker, Form, Input, Select } from "antd";
+import { Button, Form, Input, Select } from "antd";
 
 import { useEffect } from "react";
 
@@ -34,14 +34,29 @@ export default function UserForm({
       <Form.Item
         label="User Name"
         name="username"
-        rules={[{ required: true, message: "Please input your Username!" }]}
+        rules={[
+          {
+            required: true,
+            message: "Please input your username!",
+          },
+          {
+            pattern: /^.{4,}$/,
+            message: "Password must be at least 3 characters long!",
+          },
+        ]}
       >
         <Input placeholder="Username" />
       </Form.Item>
       <Form.Item
         label="Email"
         name="email"
-        rules={[{ required: true, message: "Please input your Email!" }]}
+        rules={[
+          {
+            type: "email",
+            message: "The input is not valid E-mail!",
+          },
+          { required: true, message: "Please input your Email!" },
+        ]}
       >
         <Input placeholder="Email" />
       </Form.Item>
@@ -71,18 +86,39 @@ export default function UserForm({
           <Form.Item
             label="Password"
             name="password"
-            rules={[{ required: true, message: "Please input your Password!" }]}
+            rules={[
+              {
+                required: true,
+                message: "Please input your password!",
+              },
+              {
+                pattern: /^.{6,}$/,
+                message: "Password must be at least 6 characters long!",
+              },
+            ]}
           >
             <Input placeholder="Password" />
           </Form.Item>
           <Form.Item
             label="Confirm Password"
             name="confirmPassword"
+            dependencies={["password"]}
+            hasFeedback
             rules={[
               {
                 required: true,
-                message: "Please input your Confirm Password!",
+                message: "Please confirm your password!",
               },
+              ({ getFieldValue }) => ({
+                validator(_, value) {
+                  if (!value || getFieldValue("password") === value) {
+                    return Promise.resolve();
+                  }
+                  return Promise.reject(
+                    new Error("The new password that you entered do not match!")
+                  );
+                },
+              }),
             ]}
           >
             <Input placeholder="Confirm Passwordx" />
