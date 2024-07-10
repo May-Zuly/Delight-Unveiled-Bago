@@ -7,7 +7,7 @@ import ContactUsPage from "./pages/ContactUsPage";
 import DefaultLayout from "./Layout/defaultLayout";
 import HomePage from "./pages/HomePage";
 import ProductPage from "./pages/ProductPage";
-
+import LoginPage  from "./pages/LoginPage";
 const App = () => {
   return (
     <Router>
@@ -17,6 +17,7 @@ const App = () => {
           <Route path="/products" element={<ProductPage />} />
           <Route path="/about-us" element={<AboutUsPage />} />
           <Route path="/contact-us" element={<ContactUsPage />} />
+          <Route path="/login" element={<LoginPage />} />
         </Routes>
       </DefaultLayout>
     </Router>
