@@ -1,57 +1,29 @@
-import React from 'react';
-import { Form, Input, Button, Card } from 'antd';
-import {  LockOutlined, MailOutlined } from '@ant-design/icons';
-import './LoginPage.css';
-
- import api from "../api/helper";
-
+import { Form, Input, Button, Card } from "antd";
+import { LockOutlined, MailOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
-//import { useSetRecoilState } from "recoil";
-import { useState } from "react";
 
-
-
-//const setUserData = useSetRecoilState(userData);
-//const setToken = useSetRecoilState(token);
-
+import api from "../api/helper";
+import "./LoginPage.css";
 
 const LoginPage = () => {
   const navigate = useNavigate();
-  const [loading, setLoading] = useState("");
 
   const onFinish = async (values) => {
-    setLoading(true);
     try {
       const res = await api.post("auth/local", values, {
         headers: { requireToken: false },
       });
       if (res.data) {
-        console.log(res.data);
-        // navigate("/home");
-        // setLoading(false);
+        console.log("Login data : ", res.data);
+        localStorage.setItem("loginUser", JSON.stringify(res.data));
+        navigate("/");
       }
     } catch (error) {
-      setLoading(false);
+      console.error("Login error : ", error);
+      alert(error.response.data.error.message);
     }
   };
 
-
-  // const onFinish = async (value) => {
-  //   setLoading(true);
-  //   try {
-  //     const res = await api.post("auth/local", value, {
-  //       headers: { requireToken: false },
-  //     });
-  //     if (res.data) {
-  //       setToken(res.data.jwt);
-  //       setUserData(res.data.user);
-  //       navigate("/home");
-  //       setLoading(false);
-  //     }
-  //   } catch (error) {
-  //     setLoading(false);
-  //   }
-  // };
   return (
     <div className="login-page">
       <div className="login-container">
@@ -63,7 +35,6 @@ const LoginPage = () => {
           </div>
         </div>
         <div className="login-form-container">
-         
           <Form
             name="login_form"
             className="login-form"
@@ -71,34 +42,43 @@ const LoginPage = () => {
             onFinish={onFinish}
           >
             <Card>
-             <h2>Keep Connected</h2>
-             <p>Login with your credential to access your account</p>
-            
-            <Form.Item
-              name="email"
-              rules={[{ required: true, message: 'Please input your Email!' }]}
-            >
-              <Input prefix={<MailOutlined className="site-form-item-icon" />} placeholder="Email" />
-            </Form.Item>
-            <Form.Item
-              name="password"
-              rules={[{ required: true, message: 'Please input your Password!' }]}
-            >
-              <Input
-                prefix={<LockOutlined className="site-form-item-icon" />}
-                type="password"
-                placeholder="Password"
-              />
-            </Form.Item>
-           
-            <Form.Item>
-              <a className="login-form-forgot" href="">
-                Forgot password?
-              </a>
-            </Form.Item>
+              <h2>Keep Connected</h2>
+              <p>Login with your credential to access your account</p>
+              <Form.Item
+                name="identifier"
+                rules={[
+                  { required: true, message: "Please input your Email!" },
+                ]}
+              >
+                <Input
+                  prefix={<MailOutlined className="site-form-item-icon" />}
+                  placeholder="Email"
+                />
+              </Form.Item>
+              <Form.Item
+                name="password"
+                rules={[
+                  { required: true, message: "Please input your Password!" },
+                ]}
+              >
+                <Input
+                  prefix={<LockOutlined className="site-form-item-icon" />}
+                  type="password"
+                  placeholder="Password"
+                />
+              </Form.Item>
+              <Form.Item>
+                <a className="login-form-forgot" href="">
+                  Forgot password?
+                </a>
+              </Form.Item>
             </Card>
             <Form.Item>
-              <Button type="primary" htmlType="submit" className="login-form-button">
+              <Button
+                type="primary"
+                htmlType="submit"
+                className="login-form-button"
+              >
                 Log in
               </Button>
             </Form.Item>

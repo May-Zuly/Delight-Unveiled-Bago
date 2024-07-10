@@ -8,10 +8,9 @@ const api = axios.create({
 
 api.interceptors.request.use((config) => {
   if (config.headers.requireToken) {
-    const {jwt } = JSON.parse(localStorage.getItem("user"));
-    
-    if (jwt) {
-      config.headers.Authorization = `Bearer ${jwt}`;
+    const userData = JSON.parse(localStorage.getItem("loginUser"));
+    if (userData.jwt) {
+      config.headers.Authorization = `Bearer ${userData.jwt}`;
     }
   }
   return config;
