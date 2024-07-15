@@ -35,59 +35,61 @@ const LoginPage = () => {
           </div>
         </div>
         <div className="login-form-container">
-          <Form
-            name="login_form"
-            className="login-form"
-            initialValues={{ remember: true }}
-            onFinish={onFinish}
-          >
-            <Card>
-              <h2>Keep Connected</h2>
-              <p>Login with your credential to access your account</p>
-              <Form.Item
-                name="identifier"
-                rules={[
-                  { required: true, message: "Please input your Email!" },
-                ]}
-              >
-                <Input
-                  prefix={<MailOutlined className="site-form-item-icon" />}
-                  placeholder="Email"
-                />
-              </Form.Item>
-              <Form.Item
-                name="password"
-                rules={[
-                  { required: true, message: "Please input your Password!" },
-                ]}
-              >
-                <Input
-                  prefix={<LockOutlined className="site-form-item-icon" />}
-                  type="password"
-                  placeholder="Password"
-                />
+          <Card className="outer-card">
+            <Form
+              name="login_form"
+              className="login-form"
+              initialValues={{ remember: true }}
+              onFinish={onFinish}
+            >
+              <Card className="inner-card">
+                <h2>Keep Connected</h2>
+                <p>Login with your credential to access your account</p>
+                <Form.Item
+                  name="identifier"
+                  rules={[
+                    { required: true, message: "Please input your Email!" },
+                  ]}
+                >
+                  <Input
+                    prefix={<MailOutlined className="site-form-item-icon" />}
+                    placeholder="Email"
+                  />
+                </Form.Item>
+                <Form.Item
+                  name="password"
+                  rules={[
+                    { required: true, message: "Please input your Password!" },
+                  ]}
+                >
+                  <Input.Password
+                    prefix={<LockOutlined className="site-form-item-icon" />}
+                    type="password"
+                    placeholder="Password"
+                  />
+                </Form.Item>
+                <Form.Item>
+                  <a className="login-form-forgot" href="">
+                    Forgot password?
+                  </a>
+                </Form.Item>
+              </Card>
+              <Form.Item>
+                <Button
+                  type="default"
+                  htmlType="submit"
+                  className="login-form-button"
+                >
+                  Log in
+                </Button>
               </Form.Item>
               <Form.Item>
-                <a className="login-form-forgot" href="">
-                  Forgot password?
-                </a>
+                <Button type="default" className="create-account-button">
+                  Create Account
+                </Button>
               </Form.Item>
-            </Card>
-            <Form.Item>
-              <Button
-                type="primary"
-                htmlType="submit"
-                className="login-form-button"
-              >
-                Log in
-              </Button>
-            </Form.Item>
-            <Form.Item>
-              <Button type="default" className="create-account-button">
-                Create Account
-              </Button>
-            </Form.Item>
-          </Form>
+            </Form>
+          </Card>
         </div>
       </div>
     </div>

@@ -1,0 +1,51 @@
+/* Feature.css */
+
+.feature-section {
+    background-color: #f4f4f4;
+    padding: 50px 20px;
+  }
+  
+  .section-header {
+    margin-bottom: 50px;
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: center;
+    justify-content: center;
+  }
+  
+  .feature-title{
+    margin-bottom: 30px;
+  }
+
+  .feature-card {
+    background-color: #ffffff;
+    text-align: center;
+    padding: 40px 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .feature-img {
+    width: 100px;
+    height: auto;
+    border-radius: 10px;
+    /* margin-bottom: 40px; */
+  }
+  .img-title{
+    margin-bottom:40px;
+  }
+  .img-description{
+    margin-bottom: 40px;
+  }
+  .feature-button {
+    border: 2px solid #aa620f;
+    background-color: transparent;
+    color: #aa620f;
+    transition: all 0.3s;
+  }
+  
+  .feature-button:hover {
+    background-color: #aa620f;
+    color: #ffffff;
+  }
+  

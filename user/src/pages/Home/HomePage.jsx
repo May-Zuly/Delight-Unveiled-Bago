@@ -1,7 +1,9 @@
 import { useEffect } from "react";
-import CarouselSection from "../components/Carousel/CarouselSection";
-import GroceriesSection from "../components/Groceries/GroceriesSection";
-import api from "../api/helper";
+import CarouselSection from "../../components/Carousel/CarouselSection";
+import GroceriesSection from "../../components/Groceries/GroceriesSection";
+import api from "../../api/helper";
+import FeatureSection from "../../components/Features/Feature";
+import ProductSection from "../../components/Product/ProductSection";
 
 const HomePage = () => {
   /**
@@ -37,6 +39,8 @@ const HomePage = () => {
     <>
       <CarouselSection />
       <GroceriesSection />
+      <FeatureSection/>
+      <ProductSection/>
     </>
   );
 };

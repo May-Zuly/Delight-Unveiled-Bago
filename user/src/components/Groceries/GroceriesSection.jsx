@@ -19,7 +19,7 @@ const GroceriesSection = () => {
         </Col>
         <Col xs={24} md={12}>
           <div className="organic-content">
-            <Title level={1}>Best Organic Fruits And Vegetables</Title>
+            <Title level={1}>Best Local Artifacts And Groceries</Title>
             <Paragraph>
               Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet.
             </Paragraph>

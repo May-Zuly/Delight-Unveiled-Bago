@@ -1,7 +1,7 @@
 import React from "react";
 import { Carousel, Button } from "antd";
-import slider1 from "../../assets/images/slider1.jpg";
-import slider2 from "../../assets/images/slider2.jpg";
+import slider1 from "../../assets/images/artifactslider.jpg";
+import slider2 from "../../assets/images/bambooslider.jpg";
 // Import other images as needed
 import "./CarouselSection.css";
 

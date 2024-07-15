@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Layout, Menu, Button, Drawer } from "antd";
+import { Layout, Menu, Button, Drawer, Dropdown } from "antd";
 import {
   SearchOutlined,
   UserOutlined,
   ShoppingOutlined,
   MenuOutlined,
+  ProfileOutlined,
+  LoginOutlined,
+  LogoutOutlined,
 } from "@ant-design/icons";
 import "./Navbar.css";
 
@@ -13,7 +16,6 @@ const { Header } = Layout;
 
 const Navbar = () => {
   const [drawerVisible, setDrawerVisible] = useState(false);
-
   const showDrawer = () => {
     setDrawerVisible(true);
   };
@@ -22,13 +24,26 @@ const Navbar = () => {
     setDrawerVisible(false);
   };
 
+  const userMenu = (
+    <Menu>
+      <Menu.Item key="profile" icon={<ProfileOutlined />}>
+        <Link to="/profile">Profile</Link>
+      </Menu.Item>
+      <Menu.Item key="login" icon={<LoginOutlined />}>
+        <Link to="/login">Login</Link>
+      </Menu.Item>
+      <Menu.Item key="logout" icon={<LogoutOutlined />}>
+        <Link to="/logout">Logout</Link>
+      </Menu.Item>
+    </Menu>
+  );
+
   return (
     <Header className="container">
       <div className="navbar">
         <a href="index.html" className="brand">
-          <h1>
-            F<span>oo</span>dy
-          </h1>
+          <img src="/src/assets/images/logo1.png" alt="" />
+          <span className="brand-name">Delight Unveiled of Bago</span>
         </a>
         <div className="menu-container">
           <Menu mode="horizontal" className="menu">
@@ -47,7 +62,9 @@ const Navbar = () => {
           </Menu>
           <div className="icons">
             <Button shape="circle" icon={<SearchOutlined />} />
-            <Button shape="circle" icon={<UserOutlined />} />
+            <Dropdown overlay={userMenu} trigger={["click"]}>
+              <Button shape="circle" icon={<UserOutlined />} />
+            </Dropdown>
             <Button shape="circle" icon={<ShoppingOutlined />} />
           </div>
           <Button

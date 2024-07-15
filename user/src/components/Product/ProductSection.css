@@ -1,0 +1,234 @@
+/* General styles for the product section */
+/* .product-section {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+  
+  .section-header {
+    margin-bottom: 5rem;
+    text-align: left;
+  }
+  
+  .section-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .section-header p {
+    font-size: 1rem;
+    color: #555;
+  }
+  .position-absolute {
+    position: absolute;
+  } */
+  /* Styles for the Ant Design Tabs */
+  /* .ant-tabs-nav .ant-tabs-tab {
+    padding: 0.5rem 1rem;
+    border: 2px solid #1890ff;
+    border-radius: 2rem;
+    color: #1890ff;
+  }
+  
+  .ant-tabs-nav .ant-tabs-tab-active {
+    background-color: #1890ff;
+    color: #fff;
+  } */
+  
+  /* Styles for the product cards */
+  /* .product-item {
+    position: relative;
+    background-color: #fff;
+    border: 1px solid #f0f0f0;
+    border-radius: 0.5rem;
+    overflow: hidden;
+  }
+  
+  .product-item img {
+    width: 100%;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  
+  .product-item .position-absolute {
+    background-color: #6c757d;
+    color: #fff;
+    padding: 0.25rem 0.75rem;
+    border-radius: 0.25rem;
+  }
+  
+  .product-item .price {
+    margin-top: 0.5rem;
+  }
+  
+  .product-item .price .text-primary {
+    color: #1890ff;
+    font-size: 1.25rem;
+  }
+  
+  .product-item .price .text-body {
+    color: #999;
+    text-decoration: line-through;
+  }
+  
+  .product-item .actions {
+    border-top: 1px solid #f0f0f0;
+    padding-top: 0.5rem;
+  }
+  
+  .product-item .actions button {
+    width: 50%;
+    text-align: center;
+    border: none;
+    background: none;
+    color: #1890ff;
+    cursor: pointer;
+  }
+  
+  .product-item .actions button:hover {
+    color: #40a9ff;
+  }
+  
+  .text-center {
+    text-align: center;
+  }
+  
+  .mt-2 {
+    margin-top: 0.5rem;
+  }
+  
+  .mt-3 {
+    margin-top: 1rem;
+  }
+  
+  .mt-4 {
+    margin-top: 1.5rem;
+  } */
+  
+  /* General styles for the product section */
+.product-section {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+  
+  .section-header {
+    margin-bottom: 5rem;
+    text-align: left;
+  }
+  
+  .section-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .section-header p {
+    font-size: 1rem;
+    color: #555;
+  }
+  .position-absolute {
+    position: absolute;
+  }
+  
+  /* Styles for the Ant Design Tabs */
+  .ant-tabs-nav .ant-tabs-tab {
+    padding: 0.5rem 1rem;
+    border: 2px solid #1890ff;
+    border-radius: 2rem;
+    color: #1890ff;
+    transition: background-color 0.3s, color 0.3s;
+    text-decoration:none;
+  }
+  
+  .ant-tabs-nav .ant-tabs-tab-active {
+    background-color: #1890ff;
+    color: #fff;
+  }
+  
+  .ant-tabs-nav .ant-tabs-tab:hover {
+    background-color: #40a9ff;
+    color: #fff;
+  }
+  
+  /* Styles for the product cards */
+  .product-item {
+    position: relative;
+    background-color: #fff;
+    border: 1px solid #f0f0f0;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  
+  .product-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .product-item img {
+    width: 100%;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  
+  .product-item .position-absolute {
+    background-color: #ff5722;
+    color: #fff;
+    padding: 0.25rem 0.75rem;
+    border-radius: 0.25rem;
+    top: 1rem;
+    left: 1rem;
+  }
+  
+  .product-item .text-center {
+    padding: 1rem;
+    text-align: center;
+  }
+  
+  .product-item .price {
+    margin-top: 0.5rem;
+  }
+  
+  .product-item .price .text-primary {
+    color: #1890ff;
+    font-size: 1.25rem;
+  }
+  
+  .product-item .price .text-body {
+    color: #999;
+    text-decoration: line-through;
+  }
+  
+  .product-item .actions {
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid #f0f0f0;
+    padding-top: 0.5rem;
+  }
+  
+  .product-item .actions button {
+    width: 50%;
+    text-align: center;
+    border: none;
+    background: none;
+    color: #1890ff;
+    cursor: pointer;
+    transition: color 0.3s;
+  }
+  
+  .product-item .actions button:hover {
+    color: #40a9ff;
+  }
+  
+  .text-center {
+    text-align: center;
+  }
+  
+  .mt-2 {
+    margin-top: 0.5rem;
+  }
+  
+  .mt-3 {
+    margin-top: 1rem;
+  }
+  
+  .mt-4 {
+    margin-top: 1.5rem;
+  }
+  

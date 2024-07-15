@@ -1,0 +1,40 @@
+.registerBg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  /* height: 80vh; */
+  /* height: 100vh; */
+  background: url("../../assets/images/loginbg.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.registerForm {
+  background-color: rgba(255, 255, 255, 0.33);
+  box-shadow: 0px 8px 32px 0 rgba(0, 0, 255, 0.33);
+  backdrop-filter: blur(3px);
+  padding: 0px 16px 16px 16px;
+  border-radius: 16px;
+  margin: 10px;
+  width: 400px;
+}
+.registerForm a {
+  color: white;
+}
+.registerForm a:hover {
+  color: aqua;
+}
+.registerForm .ant-input,
+.registerForm .ant-input-password,
+.registerForm .ant-select-selector {
+  border-radius: 40px !important;
+}
+
+.registerForm .ant-btn {
+  border-radius: 40px !important;
+}
+
+.registerForm .ant-typography-title {
+  text-align: center;
+}

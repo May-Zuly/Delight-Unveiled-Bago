@@ -1,0 +1,36 @@
+.formBg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  /* height: 80vh; */
+  /* height: 100vh; */
+  background: url("../../assets/images/loginbg.jpg");
+  background-size: cover;
+  background-position: center;
+}
+.loginForm {
+  background-color: rgba(255, 255, 255, 0.33);
+  box-shadow: 0px 8px 32px 0 rgba(0, 0, 255, 0.33);
+  backdrop-filter: blur(3px);
+  padding: 0px 20px 16px 20px;
+  border-radius: 16px;
+  margin: 10px;
+  width: 450px;
+}
+.loginForm a {
+  color: white;
+}
+.loginForm a:hover {
+  color: aqua;
+}
+.socialLogin {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  color: white;
+  font-size: 24px;
+}
+.socialIcon {
+  cursor: pointer;
+}

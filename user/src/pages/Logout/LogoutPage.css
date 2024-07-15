@@ -1,0 +1,22 @@
+/* LogoutPage.css */
+
+.logout-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 400px;
+    /* background-color: #f0f2f5; */
+    background-color: rgba(255, 255, 255, 0.33);
+    box-shadow: 0px 8px 32px 0 rgba(0, 0, 255, 0.33);
+    backdrop-filter: blur(3px);
+    padding: 0px 20px 16px 20px;
+    border-radius: 16px;
+    width: 350px;
+    margin: 0 auto;
+  }
+  
+  .logout-container .ant-btn {
+    width: 200px;
+  }
+  
