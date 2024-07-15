@@ -934,6 +934,7 @@ export interface ApiProductProduct extends Schema.CollectionType {
       'oneToMany',
       'api::purchase.purchase'
     >;
+    image: Attribute.Media<'images'> & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<

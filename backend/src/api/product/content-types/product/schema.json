@@ -52,6 +52,14 @@
       "relation": "oneToMany",
       "target": "api::purchase.purchase",
       "mappedBy": "product"
+    },
+    "image": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
     }
   }
 }
