@@ -1,169 +1,176 @@
 .product-section {
-    padding-top: 5rem;
-    padding-bottom: 5rem;
-    padding: 20px;
-    background-color: #f9f9f9;
-  }
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+  padding: 20px;
+  background-color: #f9f9f9;
+}
+.product-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-header {
+  margin-bottom: 5rem;
+  /* text-align: left; */
+  text-align: center;
+}
+
+.section-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.section-header p {
+  font-size: 1rem;
+  color: #555;
+}
+
+.tabs-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.tab-content {
+  margin-top: 20px;
+}
+.ant-tabs-nav .ant-tabs-tab {
+  padding: 0.5rem 1rem;
+  border: 2px solid #854f12;
+  margin: 0;
+  border-radius: 4px;
+}
+
+.ant-tabs-nav .ant-tabs-tab-active .ant-tabs-tab-btn,
+.ant-tabs-nav .ant-tabs-tab-btn:hover {
+  color: #3e2607 !important;
+  /* border-radius: 4px; */
+}
+.ant-tabs-nav .ant-tabs-tab-active {
+  background-color: #eac99f;
+  /* color: #fff; */
+}
+
+.ant-tabs-ink-bar {
+  display: none !important; /* Hide the underline */
+}
+
+.position-absolute {
+  position: absolute;
+}
+
+.card-cover img {
+  width: 100%;
+  height: 150px; /* Adjust the height to compress the image */
+  object-fit: cover;
+  /* padding: 20px; */
+}
+.text-title {
+  text-align: center;
+}
+
+.price {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.price .text-primary {
+  color: #1890ff;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.price .text-body {
+  text-decoration: line-through;
+  color: #888;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.position-absolute {
+  position: absolute;
+  /* padding: 0.25rem 0.75rem; */
+  border-radius: 0.25rem;
+  top: 1rem;
+  left: 1rem;
+  background-color: #9a5e0f;
+  color: #fff;
+}
+
+.mt-2 {
+  margin-top: 0.5rem;
+}
+
+.mt-3 {
+  margin-top: 1rem;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.mt-4 {
+  margin-top: 1.5rem;
+}
+
+.me-1 {
+  margin-right: 0.25rem;
+}
+
+@media (max-width: 768px) {
   .product-container {
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-  
-  .section-header {
-    margin-bottom: 5rem;
-    /* text-align: left; */
     text-align: center;
   }
 
-  .section-header h1 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-  }
-  
-  .section-header p {
-    font-size: 1rem;
-    color: #555;
+  .section-header {
+    margin: 0 auto 20px;
   }
 
   .tabs-container {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
   }
 
-  .tab-content {
-    margin-top: 20px;
-  }
-  .ant-tabs-nav .ant-tabs-tab {
-    padding: 0.5rem 1rem;
-    border: 2px solid #854f12;
-    margin: 0;
-    border-radius: 4px;
-  }
-
-  .ant-tabs-nav .ant-tabs-tab-active .ant-tabs-tab-btn,
-  .ant-tabs-nav .ant-tabs-tab-btn:hover{
-    color: #3e2607 !important; 
-    /* border-radius: 4px; */
-  }
-  .ant-tabs-nav .ant-tabs-tab-active {
-    background-color: #eac99f;
-    /* color: #fff; */
-  } 
-  
-  .ant-tabs-ink-bar {
-    display: none !important; /* Hide the underline */
-  }
-
-  .position-absolute {
-    position: absolute;
-  }
-  
   .card-cover img {
-    width: 100%;
-    height: 150px; /* Adjust the height to compress the image */
-    object-fit:cover;
-    /* padding: 20px; */
+    height: 120px; /* Adjust the height to compress the image */
   }
- .text-title{
-  text-align: center;
- } 
 
-  .price {
+  /* .ant-col-md-12 {
+      flex: 0 0 100%;
+      max-width: 100%;
+      display: flex;
+      justify-content: center;
+    } */
+
+  .ant-col-md-12 {
+    flex: 0 0 50%;
+    max-width: 50%;
     display: flex;
     justify-content: center;
-    align-items: center;
   }
 
-  .price .text-primary {
-    color: #1890ff;
-    font-weight: bold;
-    margin-right: 10px;
+  .ant-card {
+    width: 90%; /* Adjust the card width to compress it */
+    margin: 0 auto;
   }
-  
-  .price .text-body {
-    text-decoration: line-through;
-    color: #888;
-  }
+}
 
-  .actions {
+@media (max-width: 480px) {
+  .ant-col-md-12 {
+    flex: 0 0 100%;
+    max-width: 100%;
     display: flex;
-    justify-content: space-between;
-  }
-  
-  .position-absolute {
-    position: absolute;
-    /* padding: 0.25rem 0.75rem; */
-    border-radius: 0.25rem;
-    top: 1rem;
-    left: 1rem;
-    background-color: #9a5e0f;
-    color: #fff;
-  }
-  
-  .mt-2 {
-    margin-top: 0.5rem;
-  }
-  
-  .mt-3 {
-    margin-top: 1rem;
-  }
-  
-  .text-center {
-    text-align: center;
-  }
-  
-  .mt-4 {
-    margin-top: 1.5rem;
-  }
-  
-  .me-1 {
-    margin-right: 0.25rem;
-  }
-  
-
-
-  @media (max-width: 768px) {
-    .product-container {
-      text-align: center;
-    }
-  
-    .section-header {
-      margin: 0 auto 20px;
-    }
-  
-    .tabs-container {
-      justify-content: center;
-      margin-top: 10px;
-    }
-  
-    .card-cover img {
-      height: 120px; /* Adjust the height to compress the image */
-    }
-  
-    .ant-col-md-12 {
-      flex: 0 0 100%;
-      max-width: 100%;
-      display: flex;
-      justify-content: center;
-    }
+    justify-content: center;
   }
 
-  @media (max-width: 480px) {
-    .ant-col-md-12 {
-      flex: 0 0 100%;
-      max-width: 100%;
-      display: flex;
-      justify-content: center;
-    }
-  
-    .tabs-container {
-      justify-content: center;
-      margin-top: 10px;
-    }
+  .tabs-container {
+    justify-content: center;
+    margin-top: 10px;
   }
+}
 
-  /* Styles for the Ant Design Tabs */
-
-  
-  
+/* Styles for the Ant Design Tabs */
