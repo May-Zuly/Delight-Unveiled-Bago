@@ -27,7 +27,7 @@ const features = [
 
 const FeatureSection = () => {
   return (
-    <div className="feature-section">
+    <div className="feature-section" id='feature'>
       <div className="mainfeature">
         <div className="section-header">
           <Title level={1} className="feature-title">Our Features</Title>

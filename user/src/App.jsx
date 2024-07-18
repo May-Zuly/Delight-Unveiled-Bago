@@ -2,7 +2,7 @@ import "./App.css";
 
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 
-import AboutUsPage from "./pages/AboutUsPage";
+//import AboutUsPage from "./pages/AboutUsPage";
 import ContactUsPage from "./pages/ContactUsPage";
 import DefaultLayout from "./Layout/defaultLayout";
 import HomePage from "./pages/Home/HomePage";
@@ -18,7 +18,6 @@ const App = () => {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/products" element={<ProductPage />} />
-          <Route path="/about-us" element={<AboutUsPage />} />
           <Route path="/contact-us" element={<ContactUsPage />} />
           <Route path="/login" element={<LoginFormApp />} />
           <Route path="/register" element={<Register />} />

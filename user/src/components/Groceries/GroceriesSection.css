@@ -4,12 +4,14 @@
     /* background-color: #f4f4f4; */
     background-color: #f0dbc7;
   }
-  
+  .img-box {
+    text-align: center;
+  }
+
   .organic-image {
     width: 100%;
     height: auto;
-    margin: 0 auto;
-    margin-left: 50px;
+    /* margin: 0 auto; */
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   }
@@ -21,7 +23,9 @@
   .organic-content .ant-typography {
     margin-bottom: 20px;
   }
-  
+  .organic-content .content-title{
+    font-size: 36px;
+  }
   .organic-list {
     list-style: none;
     padding: 0;
@@ -39,7 +43,8 @@
   } */
   .organic-list .icon {
     color: #aa620f;
-    margin-right: 10px;
+    /* margin-right: 10px; */
+    padding: 0 10px 10px 10px;
   }
 
   .ant-btn-primary {
@@ -51,17 +56,81 @@
     background-color: #389e0d;
     border-color: #389e0d;
   }
-  
-  @media (max-width: 768px) {
+
+  @media (max-width: 1024px) {
     .organic-section {
-      padding: 20px;
+      padding: 40px 20px;
+    }
+  
+    .organic-content {
+      padding: 15px;
+    }
+  
+    .organic-content .ant-typography {
+      margin-bottom: 15px;
+    }
+  
+    .organic-image {
+      margin: 0 auto;
+      width: 80%;
+    }
+  }
+  
+
+   @media (max-width: 768px) {
+    .organic-section {
+      padding: 30px 15px;
     }
   
     .organic-content {
       padding: 10px;
-    }
-    .organic-content {
       text-align: center;
+    }
+  
+    .organic-content .ant-typography {
+      margin-bottom: 10px;
+      font-size: 30px;
+    }
+    .organic-content .content-description{
+      font-size: 16px;
+    }
+
+    .organic-list .list-text{
+      font-size: 16px;
+    }
+
+    .organic-list li {
+      justify-content: center;
+    }
+  
+    .organic-image {
+      margin: 0 auto 20px auto;
+      width: 60%;
+      /* height: 50%; */
+      /* margin: 0 auto; */
+    }
+  }
+
+  @media (max-width: 480px) {
+    .organic-section {
+      padding: 20px 10px;
+    }
+  
+    .organic-content {
+      padding: 5px;
+      text-align: center;
+    }
+  
+    .organic-content .ant-typography {
+      margin-bottom: 5px;
+      font-size: 25px;
+    }
+    .organic-content .content-description{
+      font-size: 14px;
+    }
+
+    .organic-list .list-text{
+      font-size: 14px;
     }
   
     .organic-list li {
@@ -69,8 +138,8 @@
     }
   
     .organic-image {
-      margin-bottom: 20px;
-      align-items: center;
+      margin: 0 auto 10px auto;
+      width: 100%;
+      /* margin-left: 35%; */
     }
   }
-  

@@ -48,16 +48,19 @@ const Navbar = () => {
         <div className="menu-container">
           <Menu mode="horizontal" className="menu">
             <Menu.Item key="home">
-              <Link to="/">Home</Link>
+              <a href="#home">Home</a>
+            </Menu.Item>
+            <Menu.Item key="feature">
+              <a href="#feature">Features</a>
             </Menu.Item>
             <Menu.Item key="about">
-              <Link to="/about-us">About Us</Link>
+              <a href="#about-us">About Us</a>
             </Menu.Item>
             <Menu.Item key="product">
-              <Link to="/products">Products</Link>
+              <a href="#product">Products</a>
             </Menu.Item>
             <Menu.Item key="contact">
-              <Link to="/contact-us">Contact Us</Link>
+              <a href="#contact-us">Contact Us</a>
             </Menu.Item>
           </Menu>
           <div className="icons">
@@ -82,16 +85,19 @@ const Navbar = () => {
         >
           <Menu mode="vertical">
             <Menu.Item key="home">
-              <Link to="/">Home</Link>
+              <a href="#home">Home</a>
+            </Menu.Item>
+            <Menu.Item key="feature">
+              <a href="#feature">Features</a>
             </Menu.Item>
             <Menu.Item key="about">
-              <Link to="/about-us">About Us</Link>
+              <a href="#about-us">About Us</a>
             </Menu.Item>
             <Menu.Item key="product">
-              <Link to="/products">Products</Link>
+              <a href="#product">Products</a>
             </Menu.Item>
             <Menu.Item key="contact">
-              <Link to="/contact-us">Contact Us</Link>
+              <a href="#contact-us">Contact Us</a>
             </Menu.Item>
           </Menu>
         </Drawer>

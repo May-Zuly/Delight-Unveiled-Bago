@@ -1,119 +1,20 @@
-/* General styles for the product section */
-/* .product-section {
-    padding-top: 5rem;
-    padding-bottom: 5rem;
-  }
-  
-  .section-header {
-    margin-bottom: 5rem;
-    text-align: left;
-  }
-  
-  .section-header h1 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-  }
-  
-  .section-header p {
-    font-size: 1rem;
-    color: #555;
-  }
-  .position-absolute {
-    position: absolute;
-  } */
-  /* Styles for the Ant Design Tabs */
-  /* .ant-tabs-nav .ant-tabs-tab {
-    padding: 0.5rem 1rem;
-    border: 2px solid #1890ff;
-    border-radius: 2rem;
-    color: #1890ff;
-  }
-  
-  .ant-tabs-nav .ant-tabs-tab-active {
-    background-color: #1890ff;
-    color: #fff;
-  } */
-  
-  /* Styles for the product cards */
-  /* .product-item {
-    position: relative;
-    background-color: #fff;
-    border: 1px solid #f0f0f0;
-    border-radius: 0.5rem;
-    overflow: hidden;
-  }
-  
-  .product-item img {
-    width: 100%;
-    border-bottom: 1px solid #f0f0f0;
-  }
-  
-  .product-item .position-absolute {
-    background-color: #6c757d;
-    color: #fff;
-    padding: 0.25rem 0.75rem;
-    border-radius: 0.25rem;
-  }
-  
-  .product-item .price {
-    margin-top: 0.5rem;
-  }
-  
-  .product-item .price .text-primary {
-    color: #1890ff;
-    font-size: 1.25rem;
-  }
-  
-  .product-item .price .text-body {
-    color: #999;
-    text-decoration: line-through;
-  }
-  
-  .product-item .actions {
-    border-top: 1px solid #f0f0f0;
-    padding-top: 0.5rem;
-  }
-  
-  .product-item .actions button {
-    width: 50%;
-    text-align: center;
-    border: none;
-    background: none;
-    color: #1890ff;
-    cursor: pointer;
-  }
-  
-  .product-item .actions button:hover {
-    color: #40a9ff;
-  }
-  
-  .text-center {
-    text-align: center;
-  }
-  
-  .mt-2 {
-    margin-top: 0.5rem;
-  }
-  
-  .mt-3 {
-    margin-top: 1rem;
-  }
-  
-  .mt-4 {
-    margin-top: 1.5rem;
-  } */
-  
-  /* General styles for the product section */
 .product-section {
     padding-top: 5rem;
     padding-bottom: 5rem;
+    padding: 20px;
+    background-color: #f9f9f9;
+  }
+  .product-container {
+    max-width: 1200px;
+    margin: 0 auto;
   }
   
   .section-header {
     margin-bottom: 5rem;
-    text-align: left;
+    /* text-align: left; */
+    text-align: center;
   }
-  
+
   .section-header h1 {
     font-size: 2.5rem;
     margin-bottom: 1rem;
@@ -123,101 +24,81 @@
     font-size: 1rem;
     color: #555;
   }
+
+  .tabs-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  .tab-content {
+    margin-top: 20px;
+  }
+  .ant-tabs-nav .ant-tabs-tab {
+    padding: 0.5rem 1rem;
+    border: 2px solid #854f12;
+    margin: 0;
+    border-radius: 4px;
+  }
+
+  .ant-tabs-nav .ant-tabs-tab-active .ant-tabs-tab-btn,
+  .ant-tabs-nav .ant-tabs-tab-btn:hover{
+    color: #3e2607 !important; 
+    /* border-radius: 4px; */
+  }
+  .ant-tabs-nav .ant-tabs-tab-active {
+    background-color: #eac99f;
+    /* color: #fff; */
+  } 
+  
+  .ant-tabs-ink-bar {
+    display: none !important; /* Hide the underline */
+  }
+
   .position-absolute {
     position: absolute;
   }
   
-  /* Styles for the Ant Design Tabs */
-  .ant-tabs-nav .ant-tabs-tab {
-    padding: 0.5rem 1rem;
-    border: 2px solid #1890ff;
-    border-radius: 2rem;
-    color: #1890ff;
-    transition: background-color 0.3s, color 0.3s;
-    text-decoration:none;
-  }
-  
-  .ant-tabs-nav .ant-tabs-tab-active {
-    background-color: #1890ff;
-    color: #fff;
-  }
-  
-  .ant-tabs-nav .ant-tabs-tab:hover {
-    background-color: #40a9ff;
-    color: #fff;
-  }
-  
-  /* Styles for the product cards */
-  .product-item {
-    position: relative;
-    background-color: #fff;
-    border: 1px solid #f0f0f0;
-    border-radius: 0.5rem;
-    overflow: hidden;
-    transition: transform 0.3s, box-shadow 0.3s;
-  }
-  
-  .product-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .product-item img {
+  .card-cover img {
     width: 100%;
-    border-bottom: 1px solid #f0f0f0;
+    height: 150px; /* Adjust the height to compress the image */
+    object-fit:cover;
+    /* padding: 20px; */
+  }
+ .text-title{
+  text-align: center;
+ } 
+
+  .price {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .price .text-primary {
+    color: #1890ff;
+    font-weight: bold;
+    margin-right: 10px;
   }
   
-  .product-item .position-absolute {
-    background-color: #ff5722;
-    color: #fff;
-    padding: 0.25rem 0.75rem;
+  .price .text-body {
+    text-decoration: line-through;
+    color: #888;
+  }
+
+  .actions {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .position-absolute {
+    position: absolute;
+    /* padding: 0.25rem 0.75rem; */
     border-radius: 0.25rem;
     top: 1rem;
     left: 1rem;
-  }
-  
-  .product-item .text-center {
-    padding: 1rem;
-    text-align: center;
-  }
-  
-  .product-item .price {
-    margin-top: 0.5rem;
-  }
-  
-  .product-item .price .text-primary {
-    color: #1890ff;
-    font-size: 1.25rem;
-  }
-  
-  .product-item .price .text-body {
-    color: #999;
-    text-decoration: line-through;
-  }
-  
-  .product-item .actions {
-    display: flex;
-    justify-content: space-between;
-    border-top: 1px solid #f0f0f0;
-    padding-top: 0.5rem;
-  }
-  
-  .product-item .actions button {
-    width: 50%;
-    text-align: center;
-    border: none;
-    background: none;
-    color: #1890ff;
-    cursor: pointer;
-    transition: color 0.3s;
-  }
-  
-  .product-item .actions button:hover {
-    color: #40a9ff;
-  }
-  
-  .text-center {
-    text-align: center;
+    background-color: #9a5e0f;
+    color: #fff;
   }
   
   .mt-2 {
@@ -228,7 +109,61 @@
     margin-top: 1rem;
   }
   
+  .text-center {
+    text-align: center;
+  }
+  
   .mt-4 {
     margin-top: 1.5rem;
   }
+  
+  .me-1 {
+    margin-right: 0.25rem;
+  }
+  
+
+
+  @media (max-width: 768px) {
+    .product-container {
+      text-align: center;
+    }
+  
+    .section-header {
+      margin: 0 auto 20px;
+    }
+  
+    .tabs-container {
+      justify-content: center;
+      margin-top: 10px;
+    }
+  
+    .card-cover img {
+      height: 120px; /* Adjust the height to compress the image */
+    }
+  
+    .ant-col-md-12 {
+      flex: 0 0 100%;
+      max-width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .ant-col-md-12 {
+      flex: 0 0 100%;
+      max-width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+  
+    .tabs-container {
+      justify-content: center;
+      margin-top: 10px;
+    }
+  }
+
+  /* Styles for the Ant Design Tabs */
+
+  
   

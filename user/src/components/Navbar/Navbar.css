@@ -1,116 +1,3 @@
-/* .container {
-  position: fixed;
-  width: 100%;
-  z-index: 1000;
-  align-items: center;
-  justify-content: space-between;
-  background: #f0f2f5;
-  top: 0;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 0 20px;
-}
-
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 20px;
-  text-decoration: none;
-}
-
-.brand img {
-  height: 50px;
-  margin-right: 10px;
-}
-.menu-container {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  justify-content: space-between;
-}
-
-.menu {
-  display: flex;
-  flex-grow: 1;
-  align-items: center;
-  justify-content: flex-end;
-  font-size: 16px;
-  font-weight: 500;
-  background: #f0f2f5;
-}
-
-.menu .ant-menu-item a {
-  color: #333;
-  transition: color 0.3s;
-  text-decoration: none;
-}
-
-.menu .ant-menu-item a:hover {
-  color: #ab7e15;
-  text-decoration: none;
-}
-
-.icons {
-  display: flex;
-  align-items: center;
-  margin-left: 20px;
-}
-
-.icons .ant-btn {
-  margin-right: 10px;
-  border: none;
-  background: none;
-  color: #333;
-  transition: color 0.3s;
-}
-
-.icons .ant-btn:hover {
-  color: #1890ff;
-}
-.menu-toggle {
-  display: none;
-}
-
-@media (max-width: 768px) {
-  .menu {
-    display: none;
-  }
-
-  .menu-toggle {
-    display: block;
-    margin-left: auto;
-  }
-
-  .ant-drawer-header {
-    background-color: #f0f2f5;
-  }
-
-  .ant-drawer-title {
-    font-size: 18px;
-    font-weight: 500;
-  }
-
-  .ant-drawer-close {
-    color: #333;
-  }
-
-  .ant-drawer-body .ant-menu-item a {
-    color: #333;
-    font-size: 16px;
-    font-weight: 500;
-  }
-
-  .ant-drawer-body .ant-menu-item a:hover {
-    color: #1890ff;
-  }
-  .icons {
-    display: none;
-  }
-} */
-
-
-/* Navbar.css */
-
 .container {
   position: fixed;
   width: 100%;
@@ -119,7 +6,7 @@
   background: #ffff;
   top: 0;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 0 20px;
+  padding: 0 10px;
   height: 65px; /* Adjust height to fit larger logo */
   display: flex;
   align-items: center; /* Align items vertically */
@@ -130,24 +17,22 @@
   justify-content: space-between;
   align-items: center;
   width: 100%; /* Adjust to use full width */
-  padding: 0 20px;
+  padding: 0 10px;
 }
 
 .brand img {
   height: 50px; /* Increased the logo height */
   margin-right: 10px;
   border-image: round;
-  margin-top: 20px;
+  /* margin-top: 20px; */
 }
 
 .brand .brand-name {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: bold;
   color: #333;
 }
-.brand h1{
-  font-size: small;
-}
+
 .menu-container {
   display: flex;
   align-items: center;
@@ -160,7 +45,7 @@
   display: flex;
   flex-grow: 1;
   justify-content: flex-end;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 500;
   background: #ffff;
   align-items: center; /* Ensure menu items are vertically centered */
@@ -211,22 +96,37 @@
 .menu-toggle {
   display: none;
 }
+@media (max-width:1024px){
+  .brand .brand-name{
+    font-size: 16px;
+  }
+
+  .menu {
+    font-size: 12px;
+  }
+
+  .brand img{
+    display: none;
+  }
+}
 
 @media (max-width: 768px) {
   .menu {
     display: none;
   }
 
-  .menu-toggle {
+  .menu-toggle{
     display: block;
     margin-left: auto;
   }
+
   .brand {
     flex-grow: 1;
     justify-content: center;
   }
 
   .brand .brand-name {
+    font-size: 16px;
     display: inline; /* Ensure the brand name is visible in mobile view */
     
   }
@@ -236,7 +136,7 @@
   }
 
   .ant-drawer-title {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 500;
   }
 
@@ -246,15 +146,30 @@
 
   .ant-drawer-body .ant-menu-item a {
     color: #333;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 500;
   }
 
   .ant-drawer-body .ant-menu-item a:hover {
-    color: #1890ff;
+    color: #c48c1b;
+    text-decoration: underline;
   }
 
   .icons {
     display: none;
+  }
+}
+@media (max-width:320px) {
+  .brand .brand-name{
+    font-size: 14px;
+  }
+  .ant-drawer-title {
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .ant-drawer-body .ant-menu-item a {
+    color: #333;
+    font-size: 12px;
+    font-weight: 500;
   }
 }

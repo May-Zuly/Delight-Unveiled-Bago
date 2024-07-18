@@ -4,7 +4,7 @@ import GroceriesSection from "../../components/Groceries/GroceriesSection";
 import api from "../../api/helper";
 import FeatureSection from "../../components/Features/Feature";
 import ProductSection from "../../components/Product/ProductSection";
-
+import AboutUsSection from "../../components/AboutUs/AboutUsSection";
 const HomePage = () => {
   /**
    * Fetch Products (public API)
@@ -40,6 +40,7 @@ const HomePage = () => {
       <CarouselSection />
       <GroceriesSection />
       <FeatureSection/>
+      <AboutUsSection/>
       <ProductSection/>
     </>
   );
