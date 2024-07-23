@@ -1,16 +1,158 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  line-height: 30px;
+  font-weight: normal;
+}
+
 .footer {
-    text-align: center;
-    background: #001529;
-    color: white;
-    padding: 24px 0;
-  }
-  
-  .footer-content {
-    max-width: 1000px;
-    margin: 0 auto;
-  }
-  
-  .footer-content p {
-    margin: 0;
-  }
-  
+  padding: 40px 0;
+  text-align: center;
+  background: #d8c28e !important;
+  color: white;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-text {
+  margin-bottom: 1.5rem !important;
+}
+
+.footer .footer-heading {
+  color: #2c396b;
+  margin-bottom: 20px;
+  font-size: 20px;
+  font-weight: 400;
+  padding-bottom: 30px;
+}
+
+.footer .footer-paragraph {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.footer-icons {
+  display: flex;
+  justify-content: center; /* Center icons horizontally */
+  padding-top: 0.5rem;
+}
+.text{
+ padding: 0;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem; /* Increase padding */
+  border: none;
+  background-color: transparent;
+  color: #fff;
+  cursor: pointer;
+
+}
+
+.btn:hover {
+  color: #007bff;
+}
+
+.btn-square {
+  width: 5rem; /* Increase width */
+  height: 5rem; /* Increase height */
+  border-radius: 50%;
+}
+
+.btn-outline-light {
+  border: 1px solid #fff;
+}
+
+.footer .mt-3 {
+  margin-top: 24px; /* Ant Design default margin for mt-3 */
+}
+.ant-btn.ant-btn-circle.ant-btn{
+  min-width: 40px;
+}
+.ant-btn.ant-btn-icon-only {
+  width: 40px;
+}
+.footer .ant-typography {
+  color: #212529; /* default text color */
+}
+
+.footer .ant-typography a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.footer .ant-typography a:hover {
+  text-decoration: underline;
+}
+
+.footer .ant-typography .anticon {
+  font-size: 24px;
+  margin-right: 10px;
+}
+
+.footer .ant-typography .anticon:last-child {
+  margin-right: 0;
+}
+
+.footer .ant-list-item {
+  padding-left: 0;
+}
+.footer .ant-list .ant-list-item {
+  justify-content:unset;
+
+}
+.text{
+  padding:0 10px;
+}
+.footer .ant-list-item a {
+  color: #212529; /* default link color */
+  text-decoration: none;
+}
+
+.footer .ant-list-item a:hover {
+  text-decoration: underline;
+}
+
+.footer .ant-row {
+  margin-bottom: 16px;
+}
+
+.footer .ant-row:last-child {
+  margin-bottom: 0;
+}
+
+.footer .ant-col {
+  padding: 8px;
+}
+
+.footer .ant-col h2 {
+  color: #343a40; /* heading color */
+  text-align: center; /* Center the headings */
+}
+
+.footer .ant-col .anticon {
+  vertical-align: middle;
+  color: #6c757d; /* icon color */
+}
+
+.footer .ant-typography .anticon-heart {
+  color: rgb(32, 66, 15);
+}
+
+.footer .ant-col .ant-typography .anticon-phone,
+.footer .ant-col .ant-typography .anticon-envelope,
+.footer .ant-col .ant-typography .anticon-map-marker {
+  color: #6c757d; /* specific icon colors */
+}
+
+.footer .ant-row .ant-col .ant-typography {
+  margin-bottom: 0;
+}
+
+

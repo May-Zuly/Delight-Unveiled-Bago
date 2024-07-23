@@ -6,7 +6,7 @@ const { Title, Paragraph } = Typography;
 
 const AboutUsSection = () => {
   return (
-    <div className="about_section layout_padding long_section">
+    <div className="about_section layout_padding long_section" id='about-us'>
         <Row gutter={[16, 16]} align="middle">
           <Col xs={24} md={12}>
             <div className="img-box">

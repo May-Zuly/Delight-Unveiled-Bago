@@ -6,7 +6,7 @@ import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import ContactUsPage from "./pages/ContactUsPage";
 import DefaultLayout from "./Layout/defaultLayout";
 import HomePage from "./pages/Home/HomePage";
-import ProductPage from "./pages/ProductPage";
+import ProductPage from "./pages/Product/ProductPage";
 //import LoginPage  from "./pages/LoginPage";
 import LoginFormApp from "./pages/Login/LoginForm";
 import Register from "./pages/Register/RegisterPage";
