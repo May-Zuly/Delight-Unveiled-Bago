@@ -14,18 +14,55 @@ import {
 import "./ProductPage.css";
 import api from "../../api/helper";
 import qs from "qs";
+import ProductSearch from "./ProductSearch";
 
 export default function ProductPage() {
+  const [searchData, setSearchData] = useState({
+    minPrice: "",
+    maxPrice: "",
+    category: null,
+    itemName: "",
+  });
   const [items, setItems] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalItems, setTotalItems] = useState(0);
   const pageSize = 8;
 
+  const createSearchQuery = (search) => {
+    const payload = {};
+    if (search.category) {
+      payload.type = {
+        $eq: search.category,
+      };
+    }
+    if (search.itemName) {
+      payload.name = {
+        $containsi: search.itemName,
+      };
+    }
+    if (search.minPrice && search.maxPrice) {
+      payload.price = {
+        $between: [Number(search.minPrice), Number(search.maxPrice)],
+      };
+    } else if (search.minPrice) {
+      payload.price = {
+        $gte: Number(search.minPrice),
+      };
+    } else if (search.maxPrice) {
+      payload.price = {
+        $lte: Number(search.maxPrice),
+      };
+    }
+    return payload;
+  };
+
   // Function to fetch products
-  const fetchProducts = async (page) => {
+  const fetchProducts = async (page, search = null) => {
     try {
+      const filters = search ? createSearchQuery(search) : {};
       const query = qs.stringify(
         {
+          filters,
           // sorting
           sort: ["createdAt:desc"],
           // Get data from relation
@@ -54,7 +91,7 @@ export default function ProductPage() {
 
   useEffect(() => {
     // Fetch products when component mounts and when currentPage changes
-    fetchProducts(currentPage).then((res) => {
+    fetchProducts(currentPage, searchData).then((res) => {
       if (res) {
         setItems(res.data);
         setTotalItems(res.meta.pagination.total); // Ensure correct total items
@@ -66,9 +103,28 @@ export default function ProductPage() {
     setCurrentPage(page);
   };
 
+  const searchProduct = async (search) => {
+    setCurrentPage(1);
+    setSearchData(search);
+    try {
+      const res = await fetchProducts(currentPage, search);
+      if (res) {
+        setItems(res.data);
+        setTotalItems(res.meta.pagination.total); // Ensure correct total items
+      }
+    } catch (error) {
+      console.error("Error in search : ", error);
+    }
+  };
+
   return (
     <div style={{ width: "95%", margin: "100px auto" }}>
-      <Row gutter={[16, 16]}>
+      <ProductSearch
+        searchProduct={searchProduct}
+        searchData={searchData}
+        setSearchData={setSearchData}
+      />
+      <Row gutter={[16, 16]} style={{ marginTop: "30px" }}>
         {items.map((product) => (
           <Col
             className="product-card"
@@ -78,42 +134,48 @@ export default function ProductPage() {
             md={8}
             lg={6} // Mobile (1 column), Tablet (2 columns), Desktop (4 columns)
           >
-            <Badge.Ribbon
-              className="itemCardBadge"
-              text={"new"}
-              color="#aa620f"
+            {currentPage === 1 && (
+              <Badge.Ribbon
+                className="itemCardBadge"
+                text={"new"}
+                color="#aa620f"
+              ></Badge.Ribbon>
+            )}
+            <Card
+              className="itemCard"
+              title={product.attributes.title}
+              cover={
+                <Image
+                  className="itemCardImage"
+                  src={`http://localhost:1337${product.attributes.image.data.attributes.url}`}
+                  alt={product.attributes.title}
+                />
+              }
+              actions={[
+                <Rate key={product.id} value={product.attributes.rating} />,
+                <AddToCartButton key={product.id} item={product} />,
+              ]}
             >
-              <Card
-                className="itemCard"
-                title={product.attributes.title}
-                cover={
-                  <Image
-                    className="itemCardImage"
-                    src={`http://localhost:1337${product.attributes.image.data.attributes.url}`}
-                    alt={product.attributes.title}
-                  />
-                }
-                actions={[
-                  <Rate key={product.id} value={product.attributes.rating} />,
-                  <AddToCartButton key={product.id} item={product} />,
-                ]}
-              >
-                <Card.Meta
-                  title={
+              <Card.Meta
+                title={
+                  <>
+                    <Typography.Paragraph>
+                      Name: {product.attributes.name}
+                    </Typography.Paragraph>
                     <Typography.Paragraph>
                       Price: ${product.attributes.price}
                     </Typography.Paragraph>
-                  }
-                  description={
-                    <Typography.Paragraph
-                      ellipsis={{ rows: 2, expandable: true, symbol: "more" }}
-                    >
-                      {product.attributes.description}
-                    </Typography.Paragraph>
-                  }
-                />
-              </Card>
-            </Badge.Ribbon>
+                  </>
+                }
+                description={
+                  <Typography.Paragraph
+                    ellipsis={{ rows: 2, expandable: true, symbol: "more" }}
+                  >
+                    {product.attributes.description}
+                  </Typography.Paragraph>
+                }
+              />
+            </Card>
           </Col>
         ))}
       </Row>

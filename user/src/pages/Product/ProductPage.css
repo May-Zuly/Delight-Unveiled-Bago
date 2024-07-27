@@ -23,3 +23,13 @@
     height: 250px !important;
     object-fit: cover !important;
 }
+.itemCardBadge {
+    z-index: 999;
+}
+
+
+.product-card .ant-card-meta-description {
+    height: 100px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+}
