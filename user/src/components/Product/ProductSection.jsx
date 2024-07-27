@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { Tabs, Button, Row, Col, Card, Tag } from "antd";
 import { EyeOutlined, ShoppingCartOutlined } from "@ant-design/icons";
+import qs from "qs";
+import { useNavigate } from "react-router-dom";
+
 import api from "../../api/helper";
 import "antd/dist/reset.css"; // Optional: reset Ant Design styles to remove any conflicts
 import "./ProductSection.css";
@@ -9,13 +12,26 @@ const { TabPane } = Tabs;
 
 const fetchProducts = async () => {
   try {
-    const res = await api.get("products", {
-      headers: { requireToken: false },
-      params: {
+    const query = qs.stringify(
+      {
+        // sorting
+        sort: ["createdAt:desc"],
+        // Get data from relation
         populate: {
           image: true,
         },
+        // pagination
+        pagination: {
+          page: 1,
+          pageSize: 8,
+        },
       },
+      {
+        encodeValuesOnly: true, // prettify URL
+      }
+    );
+    const res = await api.get(`products?${query}`, {
+      headers: { requireToken: false },
     });
     return res.data;
   } catch (error) {
@@ -25,13 +41,13 @@ const fetchProducts = async () => {
 };
 
 const ProductSection = () => {
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState("1");
   const [products, setProducts] = useState(null);
 
   useEffect(() => {
     const getProducts = async () => {
       let products = await fetchProducts();
-      products.data = products.data.slice(0, 8);
       setProducts(products.data ? products.data : null);
     };
     getProducts();
@@ -76,6 +92,7 @@ const ProductSection = () => {
                               `http://localhost:1337` +
                               product.attributes.image.data.attributes.url
                             }
+                            className="card-img"
                           />
                         }
                       >
@@ -112,7 +129,12 @@ const ProductSection = () => {
               )}
             </Row>
             <div className="text-center mt-4">
-              <Button type="primary" shape="round" size="large">
+              <Button
+                type="primary"
+                shape="round"
+                size="large"
+                onClick={() => navigate("/products")}
+              >
                 Browse More Products
               </Button>
             </div>

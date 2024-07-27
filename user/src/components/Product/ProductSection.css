@@ -188,3 +188,25 @@
     margin: 0 auto;
   }
 }
+
+.ant-card-cover {
+  position: relative;
+}
+
+.card-img {
+  width: 100%;
+  height: 250px; /* Set your desired height */
+  object-fit: cover; /* Ensures the image covers the area */
+  border-top-left-radius: 8px; /* Match the card's border radius */
+  border-top-right-radius: 8px; /* Match the card's border radius */
+}
+
+.card-body {
+  padding: 16px;
+}
+
+.card-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 16px;
+}
