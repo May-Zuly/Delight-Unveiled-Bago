@@ -9,8 +9,8 @@
     margin-bottom: 50px;
     max-width: 500px;
     margin: 0 auto;
-    text-align: center;
-    justify-content: center;
+    /* text-align: center; */
+    /* justify-content: center; */
   }
   
   .feature-title{
