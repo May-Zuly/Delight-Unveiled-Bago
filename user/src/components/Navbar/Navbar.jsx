@@ -46,7 +46,7 @@ const Navbar = () => {
           <span className="brand-name">Delight Unveiled of Bago</span>
         </a>
         <div className="menu-container">
-          <Menu mode="horizontal" className="menu">
+          <Menu mode="horizontal " className="menu">
             <Menu.Item key="home">
               <a href="#home">Home</a>
             </Menu.Item>
