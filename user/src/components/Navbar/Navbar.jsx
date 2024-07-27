@@ -46,21 +46,15 @@ const Navbar = () => {
           <span className="brand-name">Delight Unveiled of Bago</span>
         </a>
         <div className="menu-container">
-          <Menu mode="horizontal" className="menu">
+          <Menu mode="horizontal " className="menu">
             <Menu.Item key="home">
-              <a href="#home">Home</a>
-            </Menu.Item>
-            <Menu.Item key="feature">
-              <a href="#feature">Features</a>
-            </Menu.Item>
-            <Menu.Item key="about">
-              <a href="#about-us">About Us</a>
+              <Link to="/">Home</Link>
             </Menu.Item>
             <Menu.Item key="product">
-              <a href="#product">Products</a>
+              <Link to="/products">Products</Link>
             </Menu.Item>
             <Menu.Item key="contact">
-              <a href="#contact-us">Contact Us</a>
+              <Link to="/contact-us">Contact us</Link>
             </Menu.Item>
           </Menu>
           <div className="icons">

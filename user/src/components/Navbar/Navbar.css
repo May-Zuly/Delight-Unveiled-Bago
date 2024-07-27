@@ -50,6 +50,7 @@
   background: #ffff;
   align-items: center; /* Ensure menu items are vertically centered */
   height: 100%; /* Ensure it matches the menu-container height */
+  border: none;
 }
 
 .menu .ant-menu-item {
