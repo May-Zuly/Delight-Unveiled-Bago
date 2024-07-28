@@ -1,32 +1,23 @@
-import {
-  Button,
-  Form,
-  Input,
-  Typography,
-  Divider,
-  message,
-  Checkbox,
-} from "antd";
 import "./LoginForm.css";
-import {
-  FacebookOutlined,
-  GoogleOutlined,
-  MailOutlined,
-  TwitterOutlined,
-  LockOutlined,
-  LoginOutlined,
-} from "@ant-design/icons";
-import { useNavigate } from "react-router-dom";
+
+import { Button, Form, Input, Typography, message } from "antd";
+import { LockOutlined, LoginOutlined, MailOutlined } from "@ant-design/icons";
 
 import api from "../../api/helper";
+import { useNavigate } from "react-router-dom";
 
 function LoginFormApp() {
   const navigate = useNavigate();
+  const [messageApi, contextHolder] = message.useMessage();
 
   const onFinish = async (values) => {
     try {
       const res = await api.post("auth/local", values, {
         headers: { requireToken: false },
+      });
+      messageApi.open({
+        type: "success",
+        content: "Login Successful!",
       });
       if (res.data) {
         console.log("Login data : ", res.data);
@@ -35,17 +26,20 @@ function LoginFormApp() {
       }
     } catch (error) {
       console.error("Login error : ", error);
-      alert(error.response.data.error.message);
+      messageApi.open({
+        type: "error",
+        content: "Invalid email or password!",
+      });
     }
   };
 
   return (
     <div className="formBg">
+      <>{contextHolder}</>
       <Form className="loginForm" onFinish={onFinish}>
         <Typography.Title style={{ textAlign: "center" }}>
           Sign In
         </Typography.Title>
-        {/* <Typography.Text>Login with your credential to access your account</Typography.Text> */}
         <Form.Item
           name="identifier"
           rules={[
@@ -55,8 +49,6 @@ function LoginFormApp() {
               message: "Please enter valid email",
             },
           ]}
-          // label="Email"
-          // name={"myEmail"}
         >
           <Input
             prefix={<MailOutlined />}
@@ -72,18 +64,12 @@ function LoginFormApp() {
               message: "Please enter your password",
             },
           ]}
-          // label="Password"
-          // name={"myPassword"}
         >
           <Input.Password
             prefix={<LockOutlined className="site-form-item-icon" />}
             placeholder="Password"
             style={{ borderRadius: "40px" }}
           />
-        </Form.Item>
-        <Form.Item>
-          <Checkbox>Remember me</Checkbox>
-          <a href="#">Forgot password?</a>
         </Form.Item>
         <Form.Item>
           <Button
@@ -97,16 +83,10 @@ function LoginFormApp() {
           </Button>
           <p>
             {" "}
-            Don't have an account?
+            {"Don't have an account? "}
             <a onClick={() => navigate("/register")}>Sign Up</a>
           </p>
         </Form.Item>
-        <Divider style={{ borderColor: "black" }}>or SignIn with</Divider>
-        <div className="socialLogin">
-          <GoogleOutlined className="socialIcon" style={{ color: "red" }} />
-          <FacebookOutlined className="socialIcon" style={{ color: "blue" }} />
-          <TwitterOutlined className="socialIcon" style={{ color: "cyan" }} />
-        </div>
       </Form>
     </div>
   );

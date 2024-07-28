@@ -4,5 +4,5 @@ body {
 }
 
 #root {
-  margin-top: 60px; /* Adjust based on navbar height */
+  padding-top: 60px; /* Adjust based on navbar height */
 }

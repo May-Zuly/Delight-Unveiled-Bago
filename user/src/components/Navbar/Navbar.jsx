@@ -1,21 +1,26 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { Layout, Menu, Button, Drawer, Dropdown } from "antd";
+import "./Navbar.css";
+
+import { Button, Drawer, Dropdown, Layout, Menu, Typography } from "antd";
 import {
-  SearchOutlined,
-  UserOutlined,
-  ShoppingOutlined,
-  MenuOutlined,
-  ProfileOutlined,
   LoginOutlined,
   LogoutOutlined,
+  MenuOutlined,
+  ProfileOutlined,
+  SearchOutlined,
+  ShoppingOutlined,
+  UserOutlined,
 } from "@ant-design/icons";
-import "./Navbar.css";
+
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 const { Header } = Layout;
 
 const Navbar = () => {
+  const navigate = useNavigate();
   const [drawerVisible, setDrawerVisible] = useState(false);
+  const isLogin = localStorage.getItem("loginUser");
   const showDrawer = () => {
     setDrawerVisible(true);
   };
@@ -24,17 +29,28 @@ const Navbar = () => {
     setDrawerVisible(false);
   };
 
+  const handleLogout = () => {
+    localStorage.clear();
+    navigate("/login");
+  };
+
   const userMenu = (
     <Menu>
-      <Menu.Item key="profile" icon={<ProfileOutlined />}>
-        <Link to="/profile">Profile</Link>
-      </Menu.Item>
-      <Menu.Item key="login" icon={<LoginOutlined />}>
-        <Link to="/login">Login</Link>
-      </Menu.Item>
-      <Menu.Item key="logout" icon={<LogoutOutlined />}>
-        <Link to="/logout">Logout</Link>
-      </Menu.Item>
+      {isLogin && (
+        <Menu.Item key="profile" icon={<ProfileOutlined />}>
+          <Link to="/profile">Profile</Link>
+        </Menu.Item>
+      )}
+      {!isLogin && (
+        <Menu.Item key="login" icon={<LoginOutlined />}>
+          <Link to="/login">Login</Link>
+        </Menu.Item>
+      )}
+      {isLogin && (
+        <Menu.Item key="logout" icon={<LogoutOutlined />}>
+          <Typography onClick={handleLogout}>Logout</Typography>
+        </Menu.Item>
+      )}
     </Menu>
   );
 
