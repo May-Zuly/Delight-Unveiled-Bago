@@ -11,10 +11,15 @@ import {
   LogoutOutlined,
 } from "@ant-design/icons";
 import "./Navbar.css";
+import { useNavigate } from "react-router-dom";
+import { cart } from "../../store";
+import { useRecoilValue } from "recoil";
 
 const { Header } = Layout;
 
 const Navbar = () => {
+  const cartData = useRecoilValue(cart);
+  const navigate = useNavigate();
   const [drawerVisible, setDrawerVisible] = useState(false);
   const showDrawer = () => {
     setDrawerVisible(true);
@@ -62,7 +67,16 @@ const Navbar = () => {
             <Dropdown overlay={userMenu} trigger={["click"]}>
               <Button shape="circle" icon={<UserOutlined />} />
             </Dropdown>
-            <Button shape="circle" icon={<ShoppingOutlined />} />
+            <div className="quantityButton">
+              <Button
+                shape="circle"
+                onClick={() => navigate("/cart")}
+                icon={<ShoppingOutlined />}
+              />
+              {cartData.length > 0 && (
+                <div className="quantityIndicator">{cartData.length}</div>
+              )}
+            </div>
           </div>
           <Button
             className="menu-toggle"

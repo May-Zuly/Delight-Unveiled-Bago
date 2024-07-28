@@ -3,6 +3,8 @@ import { Tabs, Button, Row, Col, Card, Tag } from "antd";
 import { EyeOutlined, ShoppingCartOutlined } from "@ant-design/icons";
 import qs from "qs";
 import { useNavigate } from "react-router-dom";
+import { cart } from "../../store";
+import { useSetRecoilState } from "recoil";
 
 import api from "../../api/helper";
 import "antd/dist/reset.css"; // Optional: reset Ant Design styles to remove any conflicts
@@ -41,6 +43,7 @@ const fetchProducts = async () => {
 };
 
 const ProductSection = () => {
+  const setCartData = useSetRecoilState(cart);
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState("1");
   const [products, setProducts] = useState(null);
@@ -52,6 +55,25 @@ const ProductSection = () => {
     };
     getProducts();
   }, []);
+
+  const addProductToCart = (product) => {
+    setCartData((prevCartData) => {
+      let cartList = prevCartData.map((item) => ({ ...item }));
+      const productIndex = cartList.findIndex((d) => d.id === product.id);
+
+      if (productIndex > -1) {
+        cartList[productIndex] = {
+          ...cartList[productIndex],
+          quantity: cartList[productIndex].quantity + 1,
+        };
+      } else {
+        const newProduct = { ...product, quantity: 1 };
+        cartList.push(newProduct);
+      }
+
+      return cartList;
+    });
+  };
 
   return (
     <div className="product-section" id="product">
@@ -118,7 +140,11 @@ const ProductSection = () => {
                           <Button type="link" icon={<EyeOutlined />}>
                             View detail
                           </Button>
-                          <Button type="link" icon={<ShoppingCartOutlined />}>
+                          <Button
+                            type="link"
+                            icon={<ShoppingCartOutlined />}
+                            onClick={() => addProductToCart(product)}
+                          >
                             Add to cart
                           </Button>
                         </div>

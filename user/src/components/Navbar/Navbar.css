@@ -86,7 +86,8 @@
   background: none;
   color: #333;
   transition: color 0.3s;
-  background-color: darkgray;
+  border: 1px solid darkgray;
+  /* background-color: darkgray; */
 }
 
 .icons .ant-btn:hover {
@@ -129,7 +130,6 @@
   .brand .brand-name {
     font-size: 16px;
     display: inline; /* Ensure the brand name is visible in mobile view */
-    
   }
 
   .ant-drawer-header {
@@ -173,4 +173,26 @@
     font-size: 12px;
     font-weight: 500;
   }
+}
+
+.quantityButton {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.quantityIndicator {
+  position: absolute;
+  bottom: -5px; /* Position the indicator at the bottom */
+  right: 5px; /* Adjust as needed to center */
+  background-color: rgb(170, 98, 15);
+  color: white;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
 }

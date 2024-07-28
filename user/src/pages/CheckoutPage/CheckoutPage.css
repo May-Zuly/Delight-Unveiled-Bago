@@ -1,0 +1,19 @@
+.checkout-container {
+  width: 80%;
+  margin: 50px auto;
+}
+
+.checkout-form {
+  max-width: 600px;
+  margin: auto;
+}
+
+.summary-card {
+  margin-top: 20px;
+}
+
+.total-amount {
+  font-weight: bold;
+  font-size: 18px;
+  margin-top: 20px;
+}

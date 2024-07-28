@@ -6,7 +6,6 @@ import {
   Badge,
   Rate,
   Button,
-  message,
   Row,
   Col,
   Pagination,
@@ -15,8 +14,11 @@ import "./ProductPage.css";
 import api from "../../api/helper";
 import qs from "qs";
 import ProductSearch from "./ProductSearch";
+import { cart } from "../../store";
+import { useRecoilState } from "recoil";
 
 export default function ProductPage() {
+  const [cartData, setCartData] = useRecoilState(cart);
   const [searchData, setSearchData] = useState({
     minPrice: "",
     maxPrice: "",
@@ -90,7 +92,6 @@ export default function ProductPage() {
   };
 
   useEffect(() => {
-    // Fetch products when component mounts and when currentPage changes
     fetchProducts(currentPage, searchData).then((res) => {
       if (res) {
         setItems(res.data);
@@ -117,6 +118,34 @@ export default function ProductPage() {
     }
   };
 
+  const addProductToCart = (product) => {
+    setCartData((prevCartData) => {
+      let cartList = prevCartData.map((item) => ({ ...item }));
+      const productIndex = cartList.findIndex((d) => d.id === product.id);
+
+      if (productIndex > -1) {
+        cartList[productIndex] = {
+          ...cartList[productIndex],
+          quantity: cartList[productIndex].quantity + 1,
+        };
+      } else {
+        const newProduct = { ...product, quantity: 1 };
+        cartList.push(newProduct);
+      }
+
+      return cartList;
+    });
+  };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  const getQuantity = (id) => {
+    const data = cartData.find((d) => d.id === id);
+    return data?.quantity || "";
+  };
+
   return (
     <div style={{ width: "95%", margin: "100px auto" }}>
       <ProductSearch
@@ -141,41 +170,70 @@ export default function ProductPage() {
                 color="#aa620f"
               ></Badge.Ribbon>
             )}
-            <Card
-              className="itemCard"
-              title={product.attributes.title}
-              cover={
-                <Image
-                  className="itemCardImage"
-                  src={`http://localhost:1337${product.attributes.image.data.attributes.url}`}
-                  alt={product.attributes.title}
-                />
-              }
-              actions={[
-                <Rate key={product.id} value={product.attributes.rating} />,
-                <AddToCartButton key={product.id} item={product} />,
-              ]}
-            >
-              <Card.Meta
-                title={
-                  <>
-                    <Typography.Paragraph>
-                      Name: {product.attributes.name}
-                    </Typography.Paragraph>
-                    <Typography.Paragraph>
-                      Price: ${product.attributes.price}
-                    </Typography.Paragraph>
-                  </>
+            <div className="itemCardWrapper">
+              {product.attributes.stock === 0 && (
+                <div className="itemCardOverlay">Out of Stock</div>
+              )}
+              <Card
+                className="itemCard"
+                title={product.attributes.title}
+                cover={
+                  <Image
+                    className="itemCardImage"
+                    src={`http://localhost:1337${product.attributes.image.data.attributes.url}`}
+                    alt={product.attributes.title}
+                  />
                 }
-                description={
-                  <Typography.Paragraph
-                    ellipsis={{ rows: 2, expandable: true, symbol: "more" }}
+                actions={[
+                  <Rate key={product.id} value={product.attributes.rating} />,
+                  <Button
+                    key={product.id}
+                    type="link"
+                    onClick={() => addProductToCart(product)}
+                    disabled={product.attributes.stock === 0} // Disable button if out of stock
                   >
-                    {product.attributes.description}
-                  </Typography.Paragraph>
-                }
-              />
-            </Card>
+                    Add to Cart{" "}
+                    {getQuantity(product.id) && (
+                      <div
+                        style={{
+                          width: "30px",
+                          height: "30px",
+                          borderRadius: "50%",
+                          background: "rgb(170, 98, 15)",
+                          color: "white",
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          marginLeft: "8px",
+                        }}
+                      >
+                        {getQuantity(product.id)}
+                      </div>
+                    )}
+                  </Button>,
+                ]}
+              >
+                <Card.Meta
+                  title={
+                    <>
+                      <Typography.Paragraph>
+                        Name: {product.attributes.name}
+                      </Typography.Paragraph>
+                      <Typography.Paragraph>
+                        Price: ${product.attributes.price}
+                      </Typography.Paragraph>
+                    </>
+                  }
+                  description={
+                    <Typography.Paragraph
+                      ellipsis={{ rows: 2, expandable: true, symbol: "more" }}
+                    >
+                      {product.attributes.description}
+                    </Typography.Paragraph>
+                  }
+                />
+              </Card>
+            </div>
           </Col>
         ))}
       </Row>
@@ -190,27 +248,4 @@ export default function ProductPage() {
       </div>
     </div>
   );
-
-  function AddToCartButton({ item }) {
-    const [loading, setLoading] = useState(false);
-
-    const addProductToCart = () => {
-      setLoading(true);
-      addToCart(item.id)
-        .then(() => {
-          message.success(`${item.attributes.title} has been added to cart`);
-          setLoading(false);
-        })
-        .catch(() => {
-          message.error("Failed to add item to cart");
-          setLoading(false);
-        });
-    };
-
-    return (
-      <Button type="link" onClick={addProductToCart} loading={loading}>
-        Add to Cart
-      </Button>
-    );
-  }
 }

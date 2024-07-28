@@ -210,3 +210,24 @@
   justify-content: space-between;
   margin-top: 16px;
 }
+
+
+.itemCardOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6); /* Black background with 0.6 opacity */
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  z-index: 1;
+  pointer-events: none; /* Allows clicks to pass through to the underlying elements */
+}
+
+.itemCardWrapper {
+  position: relative;
+}
