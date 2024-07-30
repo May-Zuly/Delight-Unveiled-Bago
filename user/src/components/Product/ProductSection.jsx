@@ -4,7 +4,7 @@ import { EyeOutlined, ShoppingCartOutlined } from "@ant-design/icons";
 import qs from "qs";
 import { useNavigate } from "react-router-dom";
 import { cart } from "../../store";
-import { useSetRecoilState } from "recoil";
+import { useRecoilState } from "recoil";
 
 import api from "../../api/helper";
 import "antd/dist/reset.css"; // Optional: reset Ant Design styles to remove any conflicts
@@ -43,7 +43,7 @@ const fetchProducts = async () => {
 };
 
 const ProductSection = () => {
-  const setCartData = useSetRecoilState(cart);
+  const [cartData, setCartData] = useRecoilState(cart);
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState("1");
   const [products, setProducts] = useState(null);
@@ -73,6 +73,11 @@ const ProductSection = () => {
 
       return cartList;
     });
+  };
+
+  const getQuantity = (id) => {
+    const data = cartData.find((d) => d.id === id);
+    return data?.quantity || "";
   };
 
   return (
@@ -142,10 +147,35 @@ const ProductSection = () => {
                           </Button>
                           <Button
                             type="link"
-                            icon={<ShoppingCartOutlined />}
+                            icon={
+                              <div className="cartButton">
+                                {getQuantity(product.id) ? (
+                                  <div
+                                    style={{
+                                      width: "30px",
+                                      height: "30px",
+                                      borderRadius: "50%",
+                                      background: "rgb(170, 98, 15)",
+                                      color: "white",
+                                      display: "flex",
+                                      justifyContent: "center",
+                                      alignItems: "center",
+                                      marginLeft: "8px",
+                                    }}
+                                  >
+                                    {getQuantity(product.id)}
+                                  </div>
+                                ) : (
+                                  <Button
+                                    style={{ border: "none" }}
+                                    icon={<ShoppingCartOutlined />}
+                                  />
+                                )}
+                              </div>
+                            }
                             onClick={() => addProductToCart(product)}
                           >
-                            Add to cart
+                            Add to Cart
                           </Button>
                         </div>
                       </Card>

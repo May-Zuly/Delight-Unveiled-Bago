@@ -89,7 +89,7 @@ const Navbar = () => {
           title="Menu"
           placement="right"
           onClose={closeDrawer}
-          visible={drawerVisible}
+          open={drawerVisible}
         >
           <Menu mode="vertical">
             <Menu.Item key="home">

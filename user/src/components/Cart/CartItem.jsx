@@ -9,11 +9,18 @@ const CartItem = ({ item, onQuantityChange, onRemove }) => {
   return (
     <List.Item>
       <Row style={{ width: "100%" }} align="middle">
-        <Col xs={8} sm={8} md={8} lg={12}>
-          <List.Item.Meta
-            title={item.attributes.name}
-            description={`Price: ${item.attributes.price} MMK`}
+        <Col xs={2} sm={2} md={2} lg={3}>
+          <img
+            src={`http://localhost:1337${item.attributes.image.data.attributes.url}`}
+            alt={item.attributes.name}
+            style={{ marginRight: "10px", width: "100px" }}
           />
+        </Col>
+        <Col xs={4} sm={4} md={4} lg={7}>
+          {item.attributes.name}
+        </Col>
+        <Col xs={2} sm={2} md={2} lg={2}>
+          {item.attributes.price} MMK
         </Col>
         <Col xs={10} sm={10} md={10} lg={4}>
           <Button onClick={decrementQuantity} disabled={item.quantity <= 1}>

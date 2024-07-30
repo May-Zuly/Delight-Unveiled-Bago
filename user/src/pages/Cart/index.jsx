@@ -48,8 +48,12 @@ const CartPage = () => {
     <Card style={{ width: "90%", margin: "0 auto" }}>
       <Title level={2}>Shopping Cart</Title>
       <Row gutter={16} style={{ padding: "10px 0", fontWeight: "bold" }}>
-        <Col xs={8} sm={8} md={8} lg={12}>
+        <Col xs={2} sm={2} md={2} lg={3}></Col>
+        <Col xs={4} sm={4} md={4} lg={7}>
           Item Name
+        </Col>
+        <Col xs={2} sm={2} md={2} lg={2}>
+          Item Price
         </Col>
         <Col xs={10} sm={10} md={10} lg={4}>
           Quantity
