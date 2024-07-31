@@ -1,22 +1,26 @@
 import ProductForm from "../../components/ProductForm";
-import UserForm from "../../components/UserForm";
 import api from "../../api/helper";
-import { useState } from "react";
+import { message } from "antd";
 
 export default function CreateUser() {
-  const [loading, setLoading] = useState("");
-  const onFinish = async (data) => {
+  const onFinish = async (sendData) => {
+    // Submit to API
     try {
-      const userData = { ...data };
-      userData.role = 1;
-      const res = await api.post(`products/`, userData, {
-        headers: { requireToken: true },
+      const response = await api.post("products", sendData, {
+        headers: {
+          requireToken: true,
+          "Content-Type": "multipart/form-data",
+        },
       });
-      if (res.data) {
+
+      if (response.status === 200) {
+        message.success("Product created successfully!");
         window.location.href = "/product";
+      } else {
+        message.error("Failed to create product!");
       }
     } catch (error) {
-      setLoading(false);
+      message.error("Failed to create product!");
     }
   };
 

@@ -1,9 +1,8 @@
-import { Button, Form, Input, Select } from "antd";
-import React, { useState } from "react";
+import { Button, Form, Input, Select, Upload, message } from "antd";
+import React, { useEffect, useState } from "react";
 
 import ImgCrop from "antd-img-crop";
-import { Upload } from "antd";
-import { useEffect } from "react";
+import { PlusOutlined } from "@ant-design/icons";
 
 export default function ProductForm({
   labelCol,
@@ -16,15 +15,32 @@ export default function ProductForm({
     { label: "Furniture", value: "furniture" },
     { label: "Food", value: "food" },
   ];
+
   const [form] = Form.useForm();
+  const [fileList, setFileList] = useState([]);
+
   useEffect(() => {
     form.setFieldsValue(intitalData);
   }, [form, intitalData]);
 
-  const [fileList, setFileList] = useState([]);
-
   const onChange = ({ fileList: newFileList }) => {
     setFileList(newFileList);
+  };
+
+  const handleSubmit = async (values) => {
+    const data = {
+      name: values.name,
+      price: values.price,
+      description: values.description,
+      type: values.type,
+      stock: values.stock,
+    };
+    const formData = new FormData();
+    if (fileList.length > 0) {
+      formData.append("files.image", fileList[0].originFileObj, data.name);
+    }
+    formData.append("data", JSON.stringify(data));
+    onFinish(formData);
   };
 
   return (
@@ -34,27 +50,31 @@ export default function ProductForm({
       labelCol={{ span: labelCol }}
       wrapperCol={{ span: wrapperCol }}
       layout="horizontal"
-      onFinish={onFinish}
+      onFinish={handleSubmit}
     >
       <Form.Item name="id" hidden>
         <Input />
       </Form.Item>
-      <Form.Item label="Image" name="image">
+      <Form.Item label="Image" name="image" valuePropName="fileList">
         <ImgCrop rotationSlider>
           <Upload
-            action="https://660d2bd96ddfa2943b33731c.mockapi.io/api/upload"
             listType="picture-card"
             fileList={fileList}
             onChange={onChange}
             maxCount={1} // Set maxCount to 1 to allow only one upload
           >
-            {fileList.length < 1 && "+ Upload"}
+            {fileList.length < 1 && (
+              <button style={{ border: 0, background: "none" }} type="button">
+                <PlusOutlined />
+                <div style={{ marginTop: 8 }}>Upload</div>
+              </button>
+            )}
           </Upload>
         </ImgCrop>
       </Form.Item>
       <Form.Item
         label="Name"
-        name="username"
+        name="name"
         rules={[
           {
             required: true,
@@ -62,7 +82,7 @@ export default function ProductForm({
           },
         ]}
       >
-        <Input placeholder="Username" />
+        <Input placeholder="name" />
       </Form.Item>
       <Form.Item
         name="type"
@@ -76,14 +96,14 @@ export default function ProductForm({
         name="price"
         rules={[{ required: true, message: "Please input price!" }]}
       >
-        <Input placeholder="Price" />
+        <Input type="number" placeholder="Price" />
       </Form.Item>
       <Form.Item
         label="Stock"
         name="stock"
         rules={[{ required: true, message: "Please input stock!" }]}
       >
-        <Input placeholder="Stock" />
+        <Input type="number" placeholder="Stock" />
       </Form.Item>
       <Form.Item
         label="Description"
