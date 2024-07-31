@@ -1,131 +1,246 @@
-import * as XLSX from "xlsx";
+import { Button, Modal, Pagination, Space, Table } from "antd";
+import { useEffect, useState } from "react";
 
-import { Button, Table } from "antd";
+import ProductForm from "../../components/ProductForm";
+import api from "../../api/helper";
+import { dateFormat } from "../../utils/constant";
+import dayjs from "dayjs";
+import qs from "qs";
 
-import React from "react";
-import { useState } from "react";
+export default function App() {
+  const [visible, setVisible] = useState(false);
+  const [updateData, setUpdateData] = useState({});
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState("");
+  const [searchData, setSearchData] = useState({
+    minPrice: "",
+    maxPrice: "",
+    category: null,
+    itemName: "",
+  });
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalItems, setTotalItems] = useState(0);
+  const pageSize = 10;
 
-export default function Item() {
-  const [file, setFile] = useState();
-  const [array, setArray] = useState([]);
-  const [header, setHeader] = useState([]);
+  const createSearchQuery = (search) => {
+    const payload = {};
+    if (search.category) {
+      payload.type = {
+        $eq: search.category,
+      };
+    }
+    if (search.itemName) {
+      payload.name = {
+        $containsi: search.itemName,
+      };
+    }
+    if (search.minPrice && search.maxPrice) {
+      payload.price = {
+        $between: [Number(search.minPrice), Number(search.maxPrice)],
+      };
+    } else if (search.minPrice) {
+      payload.price = {
+        $gte: Number(search.minPrice),
+      };
+    } else if (search.maxPrice) {
+      payload.price = {
+        $lte: Number(search.maxPrice),
+      };
+    }
+    return payload;
+  };
 
-  const fileReader = new FileReader();
+  const columns = [
+    {
+      title: "",
+      dataIndex: "image",
+      key: "image",
+    },
+    {
+      title: "Name",
+      dataIndex: "name",
+      key: "name",
+    },
+    {
+      title: "Type",
+      dataIndex: "type",
+      key: "type",
+    },
+    {
+      title: "Descrption",
+      dataIndex: "description",
+      key: "description",
+    },
+    {
+      title: "Price",
+      dataIndex: "price",
+      key: "price",
+    },
+    {
+      title: "Stock",
+      dataIndex: "stock",
+      key: "stock",
+    },
+    {
+      title: "Created Date",
+      dataIndex: "createdAt",
+      key: "createdAt",
+      render: (createdAt) => <span>{dayjs(createdAt).format(dateFormat)}</span>,
+    },
+    {
+      title: "Action",
+      key: "action",
+      render: (record) => (
+        <Space size="middle">
+          <Button onClick={() => onEditFun(record.id)}>Edit</Button>
+          <Button danger onClick={() => confirm(record.id)}>
+            Delete
+          </Button>
+        </Space>
+      ),
+    },
+  ];
 
-  const handleOnChange = (e) => {
-    if (e.target.files && e.target.files.length > 0) {
-      setFile(e.target.files[0]);
+  const onEditFun = (id) => {
+    const editValue = data.find((item) => item.id === id);
+    if (editValue) {
+      setUpdateData({ ...editValue, date: dayjs(editValue.date, dateFormat) });
+      setVisible(true);
     }
   };
 
-  const readExcel = (file) => {
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      const binaryString = e.target.result;
-      const workbook = XLSX.read(binaryString, { type: "binary" });
-      const sheetName = workbook.SheetNames[0];
-      const sheet = workbook.Sheets[sheetName];
-      const excelData = XLSX.utils.sheet_to_json(sheet, { header: 1 });
-      const header = excelData[0] || [];
-      const data = excelData.slice(1).map((row, index) => {
-        const obj = {};
-        const arrlist = row;
-        arrlist.forEach((cell, i) => {
-          obj[header[i] || `Column${i + 1}`] = cell;
-        });
-        obj.key = index.toString();
-        return obj;
+  useEffect(() => {
+    fetchProducts();
+  }, [currentPage]);
+
+  const fetchProducts = async () => {
+    setLoading(true);
+    try {
+      const filters = createSearchQuery(searchData);
+      const query = qs.stringify(
+        {
+          filters,
+          sort: ["createdAt:desc"],
+          populate: {
+            image: true,
+          },
+          pagination: {
+            page: currentPage,
+            pageSize: pageSize,
+          },
+        },
+        {
+          encodeValuesOnly: true,
+        }
+      );
+      const res = await api.get(`products?${query}`, {
+        headers: { requireToken: false },
       });
-
-      setHeader(header);
-      setArray(data);
-    };
-
-    reader.readAsBinaryString(file);
+      const transformedArray = res.data.data.map((item, index) => ({
+        key: index,
+        id: item.id,
+        image: (
+          <img
+            width="100px"
+            src={`http://localhost:1337${item.attributes.image.data.attributes.url}`}
+          />
+        ),
+        name: item.attributes.name,
+        type: item.attributes.type,
+        description: item.attributes.description,
+        price: item.attributes.price,
+        stock: item.attributes.stock,
+        createdAt: item.attributes.createdAt,
+        updatedAt: item.attributes.updatedAt,
+      }));
+      console.log(transformedArray, "tarad");
+      let newData = { ...res.data, data: transformedArray };
+      setData(newData);
+      setTotalItems(res.meta.pagination.total);
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+    }
   };
 
-  const csvFileToArray = () => {
-    const csvHeader = string.slice(0, string.indexOf("\n")).split(",");
-    setHeader(csvHeader);
-    const csvRows = string.slice(string.indexOf("\n") + 1).split("\n");
-    const newArray = csvRows.map((i, index) => {
-      const values = i.split(",");
-      const obj = csvHeader.reduce((object, header, index) => {
-        object[header] = values[index];
-        return object;
-      });
-      obj.key = index.toString();
-      return obj;
+  const confirm = (id) => {
+    Modal.confirm({
+      title: "Delete Confirmation",
+      content: "Are you sure want to delete!!",
+      okText: "Yes",
+      cancelText: "Cancel",
+      okButtonProps: {
+        danger: true,
+      },
+      cancelButtonProps: {
+        danger: true,
+      },
+      onOk: () => {
+        onDeleteFunc(id);
+      },
     });
-
-    setArray(newArray);
   };
 
-  const handleOnSubmit = (e) => {
-    e.preventDefault();
-
-    if (file) {
-      const extension = file.name.split(".").pop()?.toLowerCase();
-      if (extension === "csv") {
-        fileReader.onload = function (event) {
-          if (event.target && event.target.result) {
-            const text = event.target.result.toString();
-            csvFileToArray(text);
-          }
-        };
-
-        fileReader.readAsText(file);
-      } else if (extension === "xls" || extension === "xlsx") {
-        readExcel(file);
-      } else {
-        console.error("Unsupported file format");
+  const onDeleteFunc = async (id) => {
+    setLoading(true);
+    try {
+      const res = await api.delete(`products/${id}`, {
+        headers: { requireToken: true },
+      });
+      if (res.data) {
+        fetchProducts();
+        setLoading(false);
       }
+    } catch (error) {
+      setLoading(false);
     }
   };
 
-  const columns = header.map((key) => ({
-    title: key,
-    dataIndex: key,
-    key: key,
-  }));
+  const onFinish = async (data) => {
+    setLoading(true);
+    try {
+      const res = await api.put(`products/${data.id}`, data, {
+        headers: { requireToken: true },
+      });
+      if (res.data) {
+        fetchProducts();
+        setLoading(false);
+      }
+    } catch (error) {
+      setLoading(false);
+    }
+    onCloseFunc();
+  };
 
-  const handleDownload = (type) => {
-    const workbook = XLSX.utils.book_new();
-    const worksheet = XLSX.utils.json_to_sheet(array);
-    XLSX.utils.book_append_sheet(workbook, worksheet);
-    XLSX.writeFile(workbook, `movie.${type}`, { compression: true });
+  const onCloseFunc = () => {
+    setUpdateData({});
+    setVisible(false);
   };
 
   return (
-    <div style={{ textAlign: "center" }}>
-      <h1>REACTJS CSV/XLS IMPORT EXAMPLE</h1>
-      <Button
-        onClick={() => {
-          handleDownload("xlsx");
-        }}
+    <>
+      <Table columns={columns} dataSource={data.data} pagination={false} />
+      <Pagination
+        showSizeChanger={false}
+        current={currentPage}
+        pageSize={pageSize}
+        total={totalItems}
+        onChange={(page) => setCurrentPage(page)}
+      />
+      <Modal
+        title="Edit Product"
+        open={visible}
+        onCancel={() => onCloseFunc()}
+        footer={null}
       >
-        Excel Download
-      </Button>
-      <Button
-        onClick={() => {
-          handleDownload("csv");
-        }}
-      >
-        Csv Download
-      </Button>
-      <form>
-        <input type={"file"} id={"fileInput"} onChange={handleOnChange} />
-
-        <Button
-          onClick={(e) => {
-            handleOnSubmit(e);
-          }}
-        >
-          IMPORT FILE
-        </Button>
-      </form>
-      <br />
-      <Table dataSource={array} columns={columns} />
-    </div>
+        <ProductForm
+          labelCol={6}
+          wrapperCol={18}
+          onFinish={onFinish}
+          btnText="Edit"
+          intitalData={updateData}
+        />
+      </Modal>
+    </>
   );
 }

@@ -29,17 +29,17 @@ export default function Sidebar({ collapsed }) {
       label: <Link to="/order">Orders</Link>,
     },
     {
-      key: "/itemtag",
+      key: "/producttag",
       icon: <AppstoreOutlined style={{ fontSize: "20px" }} type="setting" />,
       label: "Product Management",
       children: [
         {
-          key: "/item",
-          label: <Link to="/item">Products</Link>,
+          key: "/product",
+          label: <Link to="/product">Products</Link>,
         },
         {
-          key: "/item/create",
-          label: <Link to="/item/create">Create</Link>,
+          key: "/product/create",
+          label: <Link to="/product/create">Create</Link>,
         },
       ],
     },
