@@ -1,10 +1,21 @@
-import { Card, Form, Input, Button, Row, Col, List } from "antd";
-import { useRecoilValue } from "recoil";
+import { Card, Form, Input, Button, Row, Col, List, message } from "antd";
+import { useNavigate } from "react-router-dom";
+import { useRecoilState } from "recoil";
 import { cart } from "../../store";
 import "./CheckoutPage.css";
+import { Radio } from "antd";
+import { useState } from "react";
+import api from "../../api/helper";
 
 const CheckoutPage = () => {
-  const cartData = useRecoilValue(cart);
+  const navigate = useNavigate();
+  const [value, setValue] = useState(1);
+
+  const onChange = (e) => {
+    console.log("radio checked", e.target.value);
+    setValue(e.target.value);
+  };
+  const [cartData, setCartData] = useRecoilState(cart);
 
   const onFinish = (values) => {
     console.log("Payment Details: ", values);
@@ -23,56 +34,104 @@ const CheckoutPage = () => {
     0
   );
 
+  const checkoutWithCart = async () => {
+    const loginUser = JSON.parse(localStorage.getItem("loginUser"));
+    if (loginUser) {
+      const checkoutData = {
+        products: cartData,
+        user_id: loginUser.user.id,
+        total: 2000,
+      };
+      try {
+        const res = await api.post(`order/apply`, checkoutData, {
+          headers: { requireToken: true },
+        });
+        if (res.data) {
+          setCartData([]);
+          message.success("Payment Successfully");
+          navigate("/products");
+        }
+      } catch (error) {
+        message.error("Error");
+      }
+    } else {
+      message.error("Please login in");
+    }
+  };
+
   return (
     <div className="checkout-container">
       <Row>
         <Col xs={24} sm={24} md={14}>
           <Card title="Payment Details" className="checkout-form">
-            <Form name="payment" layout="vertical" onFinish={onFinish}>
-              <Form.Item
-                name="name"
-                label="Name on Card"
-                rules={[
-                  { required: true, message: "Please enter the name on card" },
-                ]}
-              >
-                <Input />
-              </Form.Item>
+            <Radio.Group onChange={onChange} value={value}>
+              <Radio value={1}>Bank</Radio>
+              <Radio value={2}>Cash</Radio>
+            </Radio.Group>
+            {value === 1 && (
+              <Form name="payment" layout="vertical" onFinish={onFinish}>
+                <Form.Item
+                  name="name"
+                  label="Name on Card"
+                  rules={[
+                    {
+                      required: true,
+                      message: "Please enter the name on card",
+                    },
+                  ]}
+                >
+                  <Input />
+                </Form.Item>
 
-              <Form.Item
-                name="cardNumber"
-                label="Card Number"
-                rules={[
-                  { required: true, message: "Please enter your card number" },
-                ]}
-              >
-                <Input />
-              </Form.Item>
+                <Form.Item
+                  name="cardNumber"
+                  label="Card Number"
+                  rules={[
+                    {
+                      required: true,
+                      message: "Please enter your card number",
+                    },
+                  ]}
+                >
+                  <Input />
+                </Form.Item>
 
-              <Form.Item
-                name="expiry"
-                label="Expiry Date"
-                rules={[
-                  { required: true, message: "Please enter the expiry date" },
-                ]}
-              >
-                <Input placeholder="MM/YY" />
-              </Form.Item>
+                <Form.Item
+                  name="expiry"
+                  label="Expiry Date"
+                  rules={[
+                    { required: true, message: "Please enter the expiry date" },
+                  ]}
+                >
+                  <Input placeholder="MM/YY" />
+                </Form.Item>
 
-              <Form.Item
-                name="cvv"
-                label="CVV"
-                rules={[{ required: true, message: "Please enter the CVV" }]}
-              >
-                <Input />
-              </Form.Item>
+                <Form.Item
+                  name="cvv"
+                  label="CVV"
+                  rules={[{ required: true, message: "Please enter the CVV" }]}
+                >
+                  <Input />
+                </Form.Item>
 
-              <Form.Item>
-                <Button type="primary" htmlType="submit" block>
-                  Pay {getTotalAmount().toFixed(2)} MMK
-                </Button>
-              </Form.Item>
-            </Form>
+                <Form.Item>
+                  <Button type="primary" htmlType="submit" block>
+                    Pay {getTotalAmount().toFixed(2)} MMK
+                  </Button>
+                </Form.Item>
+              </Form>
+            )}
+            {value === 2 && (
+              <Button
+                type="primary"
+                htmlType="submit"
+                block
+                style={{ marginTop: "50px" }}
+                onClick={checkoutWithCart}
+              >
+                Pay {getTotalAmount().toFixed(2)} MMK
+              </Button>
+            )}
           </Card>
         </Col>
         <Col xs={24} sm={24} md={8}>
