@@ -102,7 +102,7 @@ export default function App() {
   ];
 
   const onEditFun = (id) => {
-    const editValue = data.find((item) => item.id === id);
+    const editValue = data.data.find((item) => item.id === id);
     if (editValue) {
       setUpdateData({ ...editValue, date: dayjs(editValue.date, dateFormat) });
       setVisible(true);
@@ -139,11 +139,13 @@ export default function App() {
       const transformedArray = res.data.data.map((item, index) => ({
         key: index,
         id: item.id,
-        image: (
+        image: item.attributes.image.data ? (
           <img
             width="100px"
             src={`http://localhost:1337${item.attributes.image.data.attributes.url}`}
           />
+        ) : (
+          ""
         ),
         name: item.attributes.name,
         type: item.attributes.type,
@@ -196,10 +198,10 @@ export default function App() {
     }
   };
 
-  const onFinish = async (data) => {
+  const onFinish = async (data, id) => {
     setLoading(true);
     try {
-      const res = await api.put(`products/${data.id}`, data, {
+      const res = await api.put(`products/${id}`, data, {
         headers: { requireToken: true },
       });
       if (res.data) {

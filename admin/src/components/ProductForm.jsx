@@ -40,7 +40,7 @@ export default function ProductForm({
       formData.append("files.image", fileList[0].originFileObj, data.name);
     }
     formData.append("data", JSON.stringify(data));
-    onFinish(formData);
+    onFinish(formData, values.id);
   };
 
   return (
@@ -55,6 +55,9 @@ export default function ProductForm({
       <Form.Item name="id" hidden>
         <Input />
       </Form.Item>
+      {intitalData.image && (
+        <Form.Item label="Old Image">{intitalData.image}</Form.Item>
+      )}
       <Form.Item label="Image" name="image" valuePropName="fileList">
         <ImgCrop rotationSlider>
           <Upload
