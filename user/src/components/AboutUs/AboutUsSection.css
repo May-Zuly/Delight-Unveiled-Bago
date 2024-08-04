@@ -21,6 +21,14 @@
   .heading_container {
     margin-bottom: 20px;
   }
+ .about-us-title{
+    font-family: "Lato", sans-serif;
+    font-size: 36px;
+  }
+  .about-us-paragraph{
+    font-family:"Lato", sans-serif;
+    text-align: justify;
+  }
   .about-us-list {
     list-style: none;
     padding: 0;
@@ -31,7 +39,7 @@
     align-items: center;
     margin-bottom: 10px;
   }
-  
+
   .about-us-list .icon {
     color: #aa620f;
     margin-right: 10px;
@@ -48,6 +56,7 @@
   
     .heading_container {
       margin-bottom: 15px;
+      text-align: center;
     }
   
     .about-us-image {
@@ -68,13 +77,16 @@
   
     .heading_container {
       margin-bottom: 10px;
-      font-size: 24px;
+      /* font-size: 24px; */
     }
   
-    .about-us-image {
+    .heading_container .about-us-title{
+      font-size: 30px;
+    }
+    /* .about-us-image {
       width: 60%;
       margin: 0 auto 20px auto;
-    }
+    } */
   }
   
   @media (max-width: 480px) {
@@ -88,9 +100,12 @@
     }
   
     .heading_container {
-      margin-bottom: 5px;
+      margin-bottom: 10px;
     }
   
+    .heading_container .about-us-title{
+      font-size: 30px;
+    }
     .about-us-image {
       width: 100%;
       margin: 0 auto 10px auto;

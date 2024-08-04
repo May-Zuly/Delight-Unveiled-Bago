@@ -43,7 +43,7 @@ const Navbar = () => {
       <div className="navbar">
         <a href="index.html" className="brand">
           <img src="/src/assets/images/logo1.png" alt="" />
-          <span className="brand-name">Delight Unveiled of Bago</span>
+          <span className="brand-name">Delight Unveiled Bago Region</span>
         </a>
         <div className="menu-container">
           <Menu mode="horizontal " className="menu">
@@ -53,8 +53,14 @@ const Navbar = () => {
             <Menu.Item key="product">
               <Link to="/products">Products</Link>
             </Menu.Item>
+            <Menu.Item key="aboutus">
+              <Link to="/about-us-page">About Us</Link>
+            </Menu.Item>
+            <Menu.Item key="blog">
+              <Link to="/blog">Blog</Link>
+            </Menu.Item>
             <Menu.Item key="contact">
-              <Link to="/contact-us">Contact us</Link>
+              <Link to="/contact-us">Contact Us</Link>
             </Menu.Item>
           </Menu>
           <div className="icons">
@@ -79,19 +85,19 @@ const Navbar = () => {
         >
           <Menu mode="vertical">
             <Menu.Item key="home">
-              <a href="#home">Home</a>
-            </Menu.Item>
-            <Menu.Item key="feature">
-              <a href="#feature">Features</a>
-            </Menu.Item>
-            <Menu.Item key="about">
-              <a href="#about-us">About Us</a>
+              <Link to="/">Home</Link>
             </Menu.Item>
             <Menu.Item key="product">
-              <a href="#product">Products</a>
+              <Link to="/products">Products</Link>
+            </Menu.Item>
+            <Menu.Item key="aboutus">
+              <Link to="/about-us-page">About Us</Link>
+            </Menu.Item>
+            <Menu.Item key="blog">
+              <Link to="/blog">Blog</Link>
             </Menu.Item>
             <Menu.Item key="contact">
-              <a href="#contact-us">Contact Us</a>
+              <Link to="/contact-us">Contact Us</Link>
             </Menu.Item>
           </Menu>
         </Drawer>

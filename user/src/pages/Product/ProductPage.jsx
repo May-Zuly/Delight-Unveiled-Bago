@@ -142,6 +142,7 @@ export default function ProductPage() {
               ></Badge.Ribbon>
             )}
             <Card
+              hoverable
               className="itemCard"
               title={product.attributes.title}
               cover={
@@ -163,7 +164,7 @@ export default function ProductPage() {
                       Name: {product.attributes.name}
                     </Typography.Paragraph>
                     <Typography.Paragraph>
-                      Price: ${product.attributes.price}
+                      Price: Ks {product.attributes.price}
                     </Typography.Paragraph>
                   </>
                 }
