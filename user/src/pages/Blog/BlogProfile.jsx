@@ -48,48 +48,52 @@ const BlogProfile = () => {
             <p className='entry-summary'>{blogData[id]?.description}</p>
           </div>
         </article>
-        <article className='entry'>
-          <a
-            href={`/blog/${parseInt(id) + 1}`}
-            style={{ textDecoration: 'none', color: 'var(--text)' }}
-          >
-            <img
-              className='entry-img'
-              src='https://assets.codepen.io/467/horse03.jpg'
-              alt='The profile view of three majestic brown horses'
-              style={{ width: '30vw' }}
-            />
-            <h1 className='entry-headline primary-headline'>
-              {blogData[parseInt(id) + 1]?.title}
-            </h1>
-            <time className='entry-date meta'>January 24, 2021</time>
-            <span className='entry-byline meta'>by Alex Trost</span>
-            <p className='entry-summary'>
-              {blogData[parseInt(id) + 1]?.description}
-            </p>
-          </a>
-        </article>
-        <article className='entry'>
-          <a
-            href={`/blog/${parseInt(id) + 2}`}
-            style={{ textDecoration: 'none', color: 'var(--text)' }}
-          >
-            <img
-              className='entry-img'
-              src='https://assets.codepen.io/467/horse01.jpg'
-              alt='The profile view of three majestic brown horses'
-              style={{ width: '30vw' }}
-            />
-            <h1 className='entry-headline primary-headline'>
-              {blogData[parseInt(id) + 2]?.title}
-            </h1>
-            <time className='entry-date meta'>January 24, 2021</time>
-            <span className='entry-byline meta'>by Alex Trost</span>
-            <p className='entry-summary'>
-              {blogData[parseInt(id) + 2]?.description}
-            </p>
-          </a>
-        </article>
+        {blogData.length > parseInt(id) + 1 && (
+          <article className='entry'>
+            <a
+              href={`/blog/${parseInt(id) + 1}`}
+              style={{ textDecoration: 'none', color: 'var(--text)' }}
+            >
+              <img
+                className='entry-img'
+                src='https://assets.codepen.io/467/horse03.jpg'
+                alt='The profile view of three majestic brown horses'
+                style={{ width: '30vw' }}
+              />
+              <h1 className='entry-headline primary-headline'>
+                {blogData[parseInt(id) + 1]?.title}
+              </h1>
+              <time className='entry-date meta'>January 24, 2021</time>
+              <span className='entry-byline meta'>by Alex Trost</span>
+              <p className='entry-summary'>
+                {blogData[parseInt(id) + 1]?.description}
+              </p>
+            </a>
+          </article>
+        )}
+        {blogData.length > parseInt(id) + 2 && (
+          <article className='entry'>
+            <a
+              href={`/blog/${parseInt(id) + 2}`}
+              style={{ textDecoration: 'none', color: 'var(--text)' }}
+            >
+              <img
+                className='entry-img'
+                src='https://assets.codepen.io/467/horse01.jpg'
+                alt='The profile view of three majestic brown horses'
+                style={{ width: '30vw' }}
+              />
+              <h1 className='entry-headline primary-headline'>
+                {blogData[parseInt(id) + 2]?.title}
+              </h1>
+              <time className='entry-date meta'>January 24, 2021</time>
+              <span className='entry-byline meta'>by Alex Trost</span>
+              <p className='entry-summary'>
+                {blogData[parseInt(id) + 2]?.description}
+              </p>
+            </a>
+          </article>
+        )}
         <section className='trending'>
           <h1 className='entry-headline primary-headline'>Tips blah blah</h1>
           <p>
