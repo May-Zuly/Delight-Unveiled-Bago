@@ -54,12 +54,17 @@
       "mappedBy": "product"
     },
     "image": {
-      "allowedTypes": [
-        "images"
-      ],
       "type": "media",
       "multiple": false,
-      "required": true
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "canDelivery": {
+      "type": "boolean",
+      "default": false,
+      "required": false
     }
   }
 }
