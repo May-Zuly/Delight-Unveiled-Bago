@@ -1,43 +1,61 @@
-import React from "react";
+import "./RegisterPage.css";
+
+import { Button, Form, Input, Typography, message } from "antd";
 import {
-  Button,
-  Form,
-  Input,
-  Typography,
-  Select,
-  Divider,
-  message,
-} from "antd";
-import {
-  FacebookOutlined,
-  GoogleOutlined,
-  MailOutlined,
-  TwitterOutlined,
-  LockOutlined,
-  UserAddOutlined,
-  UserOutlined,
-  AntDesignOutlined,
-  PhoneOutlined,
-  PhoneFilled,
-  UserSwitchOutlined,
   FormOutlined,
+  LockOutlined,
   LoginOutlined,
+  MailOutlined,
+  PhoneOutlined,
+  UserOutlined,
 } from "@ant-design/icons";
-import "./RegisterPage.css"; // Assuming you have a CSS file for styling
+
+import api from "../../api/helper";
 import { useNavigate } from "react-router-dom";
-const { Option } = Select;
 
 function Register() {
   const navigate = useNavigate();
-  const onFinish = (values) => {
-    console.log("Received values of form: ", values);
-    // Handle registration logic here
+  const [messageApi, contextHolder] = message.useMessage();
+
+  const onFinish = async (values) => {
+    const formData = new FormData();
+    const data = {
+      username: values.name,
+      email: values.email,
+      password: values.password,
+      confirm: true,
+      block: false,
+      role: 1,
+      address: values.address,
+      phoneNumber: values.phone,
+      type: "customer",
+    };
+    formData.append("data", JSON.stringify(data));
+    console.log("Form data : ", formData);
+    try {
+      const res = await api.post("auth/local/register", data, {
+        headers: { requireToken: false },
+      });
+      if (res.data) {
+        console.log("Login data : ", res.data);
+        localStorage.setItem("loginUser", JSON.stringify(res.data));
+        navigate("/");
+      }
+    } catch (error) {
+      console.error(
+        "Error in register user : ",
+        error?.response?.data?.error?.message
+      );
+      messageApi.open({
+        type: "error",
+        content: error?.response?.data?.error?.message,
+      });
+    }
   };
-  const login = () => {
-    message.success("Login Successful!");
-  };
+
   return (
     <div className="registerBg">
+      <>{contextHolder}</>
       <Form className="registerForm" onFinish={onFinish}>
         <Typography.Title style={{ textAlign: "center" }}>
           Sign Up
@@ -118,24 +136,6 @@ function Register() {
             style={{ borderRadius: "40px" }}
           />
         </Form.Item>
-        <Form.Item
-          name="userType"
-          rules={[
-            {
-              required: true,
-              message: "Please select your user type",
-            },
-          ]}
-        >
-          <Select
-            suffixIcon={<UserSwitchOutlined />}
-            placeholder="Select User Type"
-            style={{ borderRadius: "40px" }}
-          >
-            <Option value="customer">Customer</Option>
-            <Option value="producer">Producer</Option>
-          </Select>
-        </Form.Item>
         <Form.Item>
           <Button
             type="primary"
@@ -148,28 +148,10 @@ function Register() {
           </Button>
           <p>
             {" "}
-            Already have an account?
+            {"Already have an account? "}
             <a onClick={() => navigate("/login")}>Sign In</a>
           </p>
         </Form.Item>
-        <Divider style={{ borderColor: "black" }}>or SignUp with</Divider>
-        <div className="socialLogin">
-          <GoogleOutlined
-            className="socialIcon"
-            onClick={login}
-            style={{ color: "red" }}
-          />
-          <FacebookOutlined
-            className="socialIcon"
-            onClick={login}
-            style={{ color: "blue" }}
-          />
-          <TwitterOutlined
-            className="socialIcon"
-            onClick={login}
-            style={{ color: "cyan" }}
-          />
-        </div>
       </Form>
     </div>
   );
