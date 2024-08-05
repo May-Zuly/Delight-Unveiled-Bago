@@ -15,7 +15,6 @@ import { cart } from "../../store";
 import { useRecoilValue } from "recoil";
 
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 const { Header } = Layout;
