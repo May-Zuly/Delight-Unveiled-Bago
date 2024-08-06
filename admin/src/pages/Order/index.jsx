@@ -1,128 +1,217 @@
-import { Button, Modal, Space, Table, Tag } from "antd";
+import { Button, Modal, Pagination, Radio, Space, Table } from "antd";
 import { useEffect, useState } from "react";
 
-import UserForm from "../../components/UserForm";
-import dataObj from "../../api/setupData.json";
+import ProductForm from "../../components/ProductForm";
+import api from "../../api/helper";
 import { dateFormat } from "../../utils/constant";
 import dayjs from "dayjs";
+import qs from "qs";
 
-export default function App() {
+export default function Order() {
   const [visible, setVisible] = useState(false);
-  const [updateData, setUpdateData] = useState({});
+  const [statusModal, setStatusModal] = useState(false);
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState("");
+  const [orderDetail, setOrderDetail] = useState({});
+  const [searchData, setSearchData] = useState({
+    minPrice: "",
+    maxPrice: "",
+    category: null,
+    itemName: "",
+  });
 
   const columns = [
     {
-      title: "Name",
-      dataIndex: "name",
-      key: "name",
-      render: (text) => <a>{text}</a>,
+      title: "Customer Name",
+      dataIndex: "customer",
+      key: "customer",
     },
     {
-      title: "Email",
-      dataIndex: "email",
-      key: "email",
+      title: "Customer Phone Number",
+      dataIndex: "phoneNumber",
+      key: "phoneNumber",
     },
     {
-      title: "Date",
-      dataIndex: "date",
-      key: "date",
-      render: (date) => <span>{dayjs(date).format(dateFormat)}</span>,
+      title: "Item Count",
+      dataIndex: "item",
+      render: (_, record) => <span>{record.purchases.length}</span>,
     },
     {
-      title: "Role",
-      key: "role",
-      dataIndex: "role",
-      render: (role) => (
-        <>
-          <Tag color="geekblue" key={role}>
-            {role.toUpperCase()}
-          </Tag>
-        </>
-      ),
+      title: "Total Amount",
+      dataIndex: "total",
+      key: "total",
+    },
+    {
+      title: "Payment Type",
+      dataIndex: "payment",
+      key: "payment",
+    },
+    {
+      title: "Created Date",
+      dataIndex: "createdAt",
+      key: "createdAt",
+      render: (createdAt) => <span>{dayjs(createdAt).format(dateFormat)}</span>,
+    },
+    {
+      title: "Order Status",
+      dataIndex: "status",
+      key: "status",
     },
     {
       title: "Action",
       key: "action",
       render: (record) => (
         <Space size="middle">
-          <Button onClick={() => onEditFun(record.key)}>Edit</Button>
-          <Button danger onClick={() => confirm(record.key)}>
-            Delete
+          <Button
+            onClick={() => {
+              onChangeStatus(record.id);
+            }}
+          >
+            Change Status
           </Button>
+          <Button onClick={() => onDetailFunc(record.id)}>Detail</Button>
         </Space>
       ),
     },
   ];
 
-  const onEditFun = (key) => {
-    const editValue = data.find((item) => item.key === key);
-    if (editValue) {
-      setUpdateData({ ...editValue, date: dayjs(editValue.date, dateFormat) });
+  const onDetailFunc = async (id) => {
+    setLoading(true);
+    try {
+      const res = await api.get(`order/detail/${id}`, {
+        headers: { requireToken: true },
+      });
+      setOrderDetail(res.data);
       setVisible(true);
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
     }
   };
 
   useEffect(() => {
-    const newData = dataObj.data.map((item) => ({
-      ...item,
-      remember: true,
-      date: dayjs(item.date, dateFormat),
-    }));
-    setData(newData);
+    fetchOrders();
   }, []);
 
-  const confirm = (key) => {
-    Modal.confirm({
-      title: "Delete Confirmation",
-      content: "Are you sure want to delete!!",
-      okText: "Yes",
-      cancelText: "Cancel",
-      okButtonProps: {
-        danger: true,
-      },
-      cancelButtonProps: {
-        danger: true,
-      },
-      onOk: () => {
-        const updatedData = data.filter((item) => item.key !== key);
-        setData(updatedData);
-      },
-    });
-  };
-
-  const onFinish = (value) => {
-    const copyData = [...data];
-    const findIndex = copyData.findIndex((item) => item.key === updateData.key);
-    if (findIndex > -1) {
-      copyData[findIndex] = value;
-      copyData[findIndex].key = updateData.key;
+  const fetchOrders = async () => {
+    setLoading(true);
+    try {
+      const res = await api.get(`order/list`, {
+        headers: { requireToken: true },
+      });
+      setData(res.data);
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
     }
-    setData(copyData);
-    onCloseFunc();
   };
 
-  const onCloseFunc = () => {
-    setUpdateData({});
-    setVisible(false);
+  const detailColumn = [
+    {
+      title: "Product Image",
+      dataIndex: "product_image",
+      render: (product_image) => (
+        <img src={`http://localhost:1337${product_image}`} width="100" />
+      ),
+    },
+    {
+      title: "Product Name",
+      dataIndex: "product_name",
+      key: "product_name",
+    },
+    {
+      title: "Descriptionr",
+      dataIndex: "product_description",
+      key: "product_description",
+    },
+    {
+      title: "Price",
+      dataIndex: "product_price",
+      key: "product_price",
+    },
+    {
+      title: "Quantity",
+      dataIndex: "quantity",
+      key: "quantity",
+    },
+    {
+      title: "Sub Total",
+      dataIndex: "sub_total",
+      render: (_, record) => (
+        <span>{record.product_price * record.quantity}</span>
+      ),
+    },
+  ];
+
+  const onChangeStatus = async (id) => {
+    setLoading(true);
+    try {
+      const res = await api.get(`order/detail/${id}`, {
+        headers: { requireToken: true },
+      });
+      setValue(res.data.status);
+      setOrderDetail(res.data);
+      setStatusModal(true);
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+    }
+  };
+
+  const [value, setValue] = useState(1);
+
+  const onChange = (e) => {
+    setValue(e.target.value);
+  };
+
+  const onStatusChangeFunc = async () => {
+    setLoading(true);
+    try {
+      await api.put(
+        `orders/${orderDetail.id}`,
+        { data: { status: value } },
+        {
+          headers: { requireToken: true },
+        }
+      );
+      setStatusModal(false);
+      setLoading(false);
+      fetchOrders();
+    } catch (error) {
+      setLoading(false);
+    }
   };
 
   return (
     <>
-      <Table columns={columns} dataSource={data} />
+      <Table columns={columns} dataSource={data} pagination={false} />
       <Modal
-        title="Edit User"
+        width={1000}
+        title="Order Detail"
         open={visible}
-        onCancel={() => onCloseFunc()}
-        footer={null}
+        onCancel={() => setVisible(false)}
       >
-        <UserForm
-          labelCol={6}
-          wrapperCol={18}
-          onFinish={onFinish}
-          btnText="Edit"
-          intitalData={updateData}
+        <Table
+          columns={detailColumn}
+          dataSource={orderDetail.purchases}
+          pagination={false}
+          scroll={{ x: 800, y: 450 }}
         />
+      </Modal>
+      <Modal
+        title="Change Status"
+        open={statusModal}
+        onCancel={() => setStatusModal(false)}
+        onOk={() => onStatusChangeFunc()}
+      >
+        <Radio.Group onChange={onChange} value={value}>
+          <Space direction="vertical">
+            <Radio value="order">Order</Radio>
+            <Radio value="delivering">Delivering</Radio>
+            <Radio value="delivered">Completed</Radio>
+            <Radio value="cancelled">Cancelled</Radio>
+          </Space>
+        </Radio.Group>
       </Modal>
     </>
   );
