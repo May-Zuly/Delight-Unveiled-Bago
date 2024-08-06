@@ -1,13 +1,17 @@
-import React from "react";
-import { Carousel, Typography, Button, Row, Col, Card } from "antd";
+import "./AboutUsPage.css";
+
 import {
+  AimOutlined,
+  BulbOutlined,
+  HeartOutlined,
   LeftOutlined,
   RightOutlined,
-  AimOutlined,
-  HeartOutlined,
-  BulbOutlined,
 } from "@ant-design/icons";
-import "./AboutUsPage.css";
+import { Button, Card, Carousel, Col, Row, Typography } from "antd";
+
+import React from "react";
+import { useEffect } from "react";
+
 //import AboutUsSection from '../../components/AboutUs/AboutUsSection';
 
 const { Title, Paragraph } = Typography;
@@ -31,6 +35,9 @@ const testimonies = [
 ];
 
 const AboutUsPage = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const carouselRef = React.useRef(null);
 
   const next = () => {
@@ -96,15 +103,15 @@ const AboutUsPage = () => {
                 <h4>Mission</h4>
               </div>
               <div className="value-card-title-divider" />
-                <p>
-                  Our mission is to connect local producers with a global
-                  audience, ensuring the highest quality of products through
-                  rigorous standards and fair practices. We aim to foster
-                  sustainable growth and development within local communities,
-                  supporting their economic well-being while educating and
-                  inspiring customers about the cultural significance and
-                  origins of our products.
-                </p>      
+              <p>
+                Our mission is to connect local producers with a global
+                audience, ensuring the highest quality of products through
+                rigorous standards and fair practices. We aim to foster
+                sustainable growth and development within local communities,
+                supporting their economic well-being while educating and
+                inspiring customers about the cultural significance and origins
+                of our products.
+              </p>
             </Card>
           </Col>
           <Col xs={24} md={8}>

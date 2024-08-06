@@ -1,33 +1,38 @@
-import React from 'react';
-import { Card, Col, Row ,Image} from 'antd';
-import './BlogPage.css';
+import "./BlogPage.css";
+
+import { Card, Col, Image, Row } from "antd";
+
+import { useEffect } from "react";
 
 // Example videos stored in the public folder
 const blogData = [
   {
-    title: 'A glimpse of the jam industry in Pyay',
+    title: "A glimpse of the jam industry in Pyay",
     description:
-      'Various fruit jams and food products industry is a traditional business that uses the best natural fruits to produce and sell food products that provide health and full taste.',
-    imageUrl : '/src/assets/images/jam1.jpg',
+      "Various fruit jams and food products industry is a traditional business that uses the best natural fruits to produce and sell food products that provide health and full taste.",
+    imageUrl: "/src/assets/images/jam1.jpg",
   },
   {
-    title: 'Traditional Burmese wooden carvings from Minhla ',
+    title: "Traditional Burmese wooden carvings from Minhla ",
     description:
-      'The Burmese traditional wood carving industry is crucial to cultural and artistic heritage, showcasing exceptional sculpting skills and time-intensive processes to create beautiful, natural sculptures.',
-      imageUrl: '/src/assets/images/panpu1.jpg',
+      "The Burmese traditional wood carving industry is crucial to cultural and artistic heritage, showcasing exceptional sculpting skills and time-intensive processes to create beautiful, natural sculptures.",
+    imageUrl: "/src/assets/images/panpu1.jpg",
   },
   {
-    title: 'A profitable corn market in PaungDe',
+    title: "A profitable corn market in PaungDe",
     description:
-      'The local farmers in PaungDe Township have been working on maize cultivation all year round in order to export it to various areas and for the corn stall market that is developing along the Yangon-Pyay highway',
-      imageUrl: '/src/assets/images/corn.jpg',
+      "The local farmers in PaungDe Township have been working on maize cultivation all year round in order to export it to various areas and for the corn stall market that is developing along the Yangon-Pyay highway",
+    imageUrl: "/src/assets/images/corn.jpg",
   },
 ];
 
 const BlogPage = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
-    <div className='blog-page'>
-      <h1 className='blog-title'>Our Blogs</h1>
+    <div className="blog-page">
+      <h1 className="blog-title">Our Blogs</h1>
       <Row gutter={[16, 16]}>
         {blogData.map((blog, index) => (
           <Col xs={24} sm={24} md={12} lg={8} key={index}>
@@ -38,7 +43,7 @@ const BlogPage = () => {
                   <Image
                     alt={blog.title}
                     src={blog.imageUrl}
-                    className='blog-image' // Updated to image element
+                    className="blog-image" // Updated to image element
                   />
                 }
               >
