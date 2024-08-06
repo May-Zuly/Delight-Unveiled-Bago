@@ -1,33 +1,33 @@
 import React from 'react';
-import { Card, Col, Row } from 'antd';
+import { Card, Col, Row ,Image} from 'antd';
 import './BlogPage.css';
 
 // Example videos stored in the public folder
 const blogData = [
   {
-    title: 'Exploring the Bago Region - Part 1',
+    title: 'A glimpse of the jam industry in Pyay',
     description:
-      'Join us as we explore the scenic beauty of the Bago Region. In this video, we cover the breathtaking landscapes and cultural heritage sites.',
-    videoUrl: '/videos/blog1.mp4',
+      'Various fruit jams and food products industry is a traditional business that uses the best natural fruits to produce and sell food products that provide health and full taste.',
+    imageUrl : '/src/assets/images/jam1.jpg',
   },
   {
-    title: 'Bago Region Cuisine',
+    title: 'Traditional Burmese wooden carvings from Minhla ',
     description:
-      'Discover the unique and delicious cuisine of the Bago Region. This video showcases some of the best local dishes you must try.',
-    videoUrl: '/videos/blog1.mp4',
+      'The Burmese traditional wood carving industry is crucial to cultural and artistic heritage, showcasing exceptional sculpting skills and time-intensive processes to create beautiful, natural sculptures.',
+      imageUrl: '/src/assets/images/panpu1.jpg',
   },
   {
-    title: 'Adventure Activities in Bago',
+    title: 'A profitable corn market in PaungDe',
     description:
-      'Get ready for some adrenaline-pumping adventure activities in the Bago Region. This video highlights the top activities for thrill-seekers.',
-    videoUrl: '/videos/blog1.mp4',
+      'The local farmers in PaungDe Township have been working on maize cultivation all year round in order to export it to various areas and for the corn stall market that is developing along the Yangon-Pyay highway',
+      imageUrl: '/src/assets/images/corn.jpg',
   },
 ];
 
 const BlogPage = () => {
   return (
     <div className='blog-page'>
-      <h1 className='blog-title'>Delight Unveiled: Bago Region</h1>
+      <h1 className='blog-title'>Our Blogs</h1>
       <Row gutter={[16, 16]}>
         {blogData.map((blog, index) => (
           <Col xs={24} sm={24} md={12} lg={8} key={index}>
@@ -35,10 +35,11 @@ const BlogPage = () => {
               <Card
                 hoverable
                 cover={
-                  <video className='blog-video' controls>
-                    <source src={blog.videoUrl} type='video/mp4' />
-                    Your browser does not support the video tag.
-                  </video>
+                  <Image
+                    alt={blog.title}
+                    src={blog.imageUrl}
+                    className='blog-image' // Updated to image element
+                  />
                 }
               >
                 <Card.Meta title={blog.title} description={blog.description} />
