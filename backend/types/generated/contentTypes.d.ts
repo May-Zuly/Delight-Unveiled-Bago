@@ -833,7 +833,9 @@ export interface ApiOrderOrder extends Schema.CollectionType {
         },
         string
       >;
-    status: Attribute.Enumeration<['order', 'delivering', 'delivered']> &
+    status: Attribute.Enumeration<
+      ['order', 'delivering', 'delivered', 'cancelled']
+    > &
       Attribute.Required &
       Attribute.DefaultTo<'order'>;
     customer: Attribute.Relation<
@@ -851,6 +853,7 @@ export interface ApiOrderOrder extends Schema.CollectionType {
       'oneToOne',
       'api::payment.payment'
     >;
+    image: Attribute.Media<'images'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -874,6 +877,7 @@ export interface ApiPaymentPayment extends Schema.CollectionType {
     singularName: 'payment';
     pluralName: 'payments';
     displayName: 'Payment';
+    description: '';
   };
   options: {
     draftAndPublish: false;
@@ -885,6 +889,7 @@ export interface ApiPaymentPayment extends Schema.CollectionType {
       'oneToOne',
       'api::order.order'
     >;
+    image: Attribute.Media<'images'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -935,6 +940,7 @@ export interface ApiProductProduct extends Schema.CollectionType {
       'api::purchase.purchase'
     >;
     image: Attribute.Media<'images'> & Attribute.Required;
+    canDelivery: Attribute.Boolean & Attribute.DefaultTo<false>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<

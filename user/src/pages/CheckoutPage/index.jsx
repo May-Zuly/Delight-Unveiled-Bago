@@ -40,7 +40,7 @@ const CheckoutPage = () => {
       const checkoutData = {
         products: cartData,
         user_id: loginUser.user.id,
-        total: 2000,
+        total: getTotalAmount(),
       };
       try {
         const res = await api.post(`order/apply`, checkoutData, {

@@ -22,7 +22,8 @@
       "enum": [
         "order",
         "delivering",
-        "delivered"
+        "delivered",
+        "cancelled"
       ],
       "default": "order",
       "required": true
@@ -44,6 +45,14 @@
       "relation": "oneToOne",
       "target": "api::payment.payment",
       "mappedBy": "order"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
     }
   }
 }

@@ -45,6 +45,7 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
         ...entry,
         payment: entry?.payment?.type,
         customer: entry?.customer?.username,
+        phoneNumber: entry?.customer?.phoneNumber,
         purchases:
           entry?.purchases.length > 0
             ? entry?.purchases.map((p) => ({
@@ -81,6 +82,7 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
 
       entry.payment = entry?.payment?.type;
       entry.customer = entry?.customer?.username;
+      entry.phoneNumber = entry?.customer?.phoneNumber;
       entry.purchases =
         entry.purchases.length > 0
           ? entry.purchases.map((p) => ({
@@ -101,39 +103,58 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
 
   async applyOrder(ctx) {
     try {
-      const body = ctx.request.body;
-      //console.log(body);
-      //console.log(ctx.request.files);
+      let body = ctx.request.body;
+      let data = body;
+      let file = null;
+      if (body.data) {
+        data = JSON.parse(body.data);
+      }
+      if (ctx.request.files) {
+        file = ctx.request.files["files.image"];
+      }
       const promisePurchase = [];
-      for (let i = 0; i < body.products.length; i++) {
+      for (let i = 0; i < data.products.length; i++) {
         promisePurchase.push(
           strapi.db.query("api::purchase.purchase").create({
             data: {
-              quantity: body.products[i].quantity,
-              product: body.products[i].id,
-              customer: body.user_id,
+              quantity: data.products[i].quantity,
+              product: data.products[i].id,
+              customer: data.user_id,
             },
           })
         );
       }
       const purchaseLst = await Promise.all(promisePurchase);
       const purchaseIds = purchaseLst.map((p) => p.id);
+
+      const createdFiles = await strapi.plugins.upload.services.upload.upload({
+        data: {
+          fileInfo: {
+            name: "Order",
+            caption: "Order",
+            alternativeText: "Order",
+          },
+        },
+        files: file,
+      });
       const order = await strapi.db.query("api::order.order").create({
         data: {
-          total: body.total,
+          total: data.total,
           status: "order",
           purchases: purchaseIds,
-          customer: body.user_id,
+          customer: data.user_id,
+          image: createdFiles.length > 0 ? createdFiles[0].id : null,
         },
       });
       await strapi.db.query("api::payment.payment").create({
         data: {
-          type: body.payment_type ? body.payment_type : "cash",
+          type: data.payment_type ? data.payment_type : "cash",
           order: order.id,
         },
       });
       return "Success";
     } catch (err) {
+      console.log(err);
       ctx.badRequest("Error in create order payment", err);
     }
   },
