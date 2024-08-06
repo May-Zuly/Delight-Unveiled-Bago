@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Tabs, Button, Row, Col, Card, Tag } from "antd";
+import { Tabs, Button, Row, Col, Card, Tag ,Typography } from "antd";
 import { EyeOutlined, ShoppingCartOutlined } from "@ant-design/icons";
 import qs from "qs";
 import { useNavigate } from "react-router-dom";
@@ -10,6 +10,8 @@ import api from "../../api/helper";
 import "antd/dist/reset.css"; // Optional: reset Ant Design styles to remove any conflicts
 import "./ProductSection.css";
 
+
+const { Title, Paragraph} = Typography;
 const { TabPane } = Tabs;
 
 const fetchProducts = async () => {
@@ -84,21 +86,12 @@ const ProductSection = () => {
     <div className="product-section" id="product">
       <div className="product-container">
         <Row gutter={[16, 16]} align="bottom">
-          <Col lg={12}>
+          <Col lg={24}>
             <div className="section-header">
-              <h1>Our Products</h1>
-              <p>
-                Tempor ut dolore lorem kasd vero ipsum sit eirmod sit. Ipsum
-                diam justo sed rebum vero dolor duo.
-              </p>
-            </div>
-          </Col>
-          <Col lg={12}>
-            <div className="tabs-container">
-              <Tabs activeKey={activeTab} onChange={(key) => setActiveTab(key)}>
-                <TabPane tab="Groceries" key="1" />
-                <TabPane tab="Artifacts" key="2" />
-              </Tabs>
+              <Title level={2} className="product-title">Our Products</Title>
+              <Paragraph className="product-description">
+              Discover an exquisite selection of groceries and artifacts from the Bago Region, meticulously curated to bring the best of our heritage and quality to your doorstep!
+              </Paragraph>
             </div>
           </Col>
         </Row>
@@ -132,7 +125,7 @@ const ProductSection = () => {
                         />
                         <div className="price mt-2">
                           <span className="text-primary me-1">
-                            ${product.attributes.price}.00
+                            Ks {product.attributes.price}
                           </span>
                         </div>
                         <div
@@ -190,6 +183,18 @@ const ProductSection = () => {
                 shape="round"
                 size="large"
                 onClick={() => navigate("/products")}
+                style={{
+                    backgroundColor: '#995f20',
+                    borderColor: '#aa620f',
+                }}
+                onMouseEnter={(e) => {
+                    e.currentTarget.style.backgroundColor = '#dda15e';
+                    e.currentTarget.style.borderColor = '#995f20';
+                }}
+                onMouseLeave={(e) => {
+                    e.currentTarget.style.backgroundColor = '#995f20';
+                    e.currentTarget.style.borderColor = '#aa620f';
+                }}
               >
                 Browse More Products
               </Button>

@@ -76,6 +76,18 @@ export default function ProductSearch({
             type="primary"
             disabled={btnDisabled()}
             onClick={() => searchProduct(searchData)}
+            style={{
+              backgroundColor: "#995f20",
+              borderColor: "#aa620f",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = "#dda15e";
+              e.currentTarget.style.borderColor = "#995f20";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = "#995f20";
+              e.currentTarget.style.borderColor = "#aa620f";
+            }}
           >
             Search
           </Button>

@@ -1,4 +1,4 @@
-import { Button, message, Row, Col, Form, Input } from "antd";
+import { Button, message, Row, Col, Form, Input,Typography } from "antd";
 import {
   PhoneOutlined,
   MailOutlined,
@@ -10,6 +10,8 @@ import {
 } from "@ant-design/icons";
 import "./ContactUsSection.css";
 import api from "../../api/helper";
+
+const {Title,Paragraph} = Typography;
 
 const ContactUsSection = () => {
   const sendMessage = async (value) => {
@@ -34,63 +36,66 @@ const ContactUsSection = () => {
 
   return (
     <div className="contact-us-container py-6" id="contact-us">
-      <div className="section-header" style={{ maxWidth: "500px" }}>
-        <h1>Contact Us</h1>
-        <p>
-          Tempor ut dolore lorem kasd vero ipsum sit eirmod sit. Ipsum diam
-          justo sed rebum vero dolor duo.
-        </p>
+      <div className="contactus-section-header" style={{ maxWidth: "500px" }}>
+        <Title level={2} className="contact-us-title">Contact Us</Title>
+        <Paragraph className="contact-us-description">
+          Thank you for visiting Delight Unveiled: Groceries and Artifacts of
+          Bago Region.We look forward to hearing from you and ensuring your
+          experience with Delight Unveiled is delightful!
+        </Paragraph>
       </div>
-      <Row gutter={16} justify="center">
-        <Col md={8} sm={24}>
+      <Row gutter={16} justify="center" className="about-us-row">
+        <Col lg={8} xs={24} className="about-us-col">
           <div className="our-contact">
             <h3>Call Us</h3>
             <p>
-              <PhoneOutlined /> +012 345 67890
+              <PhoneOutlined /> +959 426 557737
             </p>
             <h3>Email Us</h3>
             <p>
-              <MailOutlined /> info@example.com
+              <MailOutlined /> info@delightunveiled.com
             </p>
             <h3>Office Address</h3>
             <p>
-              <EnvironmentOutlined /> 123 Street, New York, USA
+              <EnvironmentOutlined /> BoGyok Street, Pyay, Bago Region
             </p>
             <h3>Follow Us</h3>
             <div className="contact-icons">
               <Button
                 shape="circle"
                 icon={<TwitterOutlined />}
-                className="btn btn-square btn-outline-light me-1"
+                className="btn-square"
               />
               <Button
                 shape="circle"
                 icon={<FacebookOutlined />}
-                className="btn btn-square btn-outline-light me-1"
+                className="btn-square"
               />
               <Button
                 shape="circle"
                 icon={<YoutubeOutlined />}
-                className="btn btn-square btn-outline-light me-1"
+                className="btn-square"
               />
               <Button
                 shape="circle"
                 icon={<LinkedinOutlined />}
-                className="btn btn-square btn-outline-light me-1"
+                className="btn-square"
               />
             </div>
           </div>
         </Col>
-        <Col lg={12} md={24}>
+        <Col lg={12} md={24} className="about-us-col">
+        <div className="contact-us-form">
           <p className="about-contact">
-            The contact form is currently inactive. Get a functional and working
-            contact form with Ajax & PHP in a few minutes. Just copy and paste
-            the files, add a little code and you're done.{" "}
-            <a href="https://htmlcodex.com/contact-form">Download Now</a>.
+            If you are a producer or seller interested in listing your products
+            on our platform, please reach out to our team from contact form or
+            call .For any other inquiries or feedback, please fill out the
+            contact form below, and we will get back to you as soon as possible.
+            {/* <a href="https://htmlcodex.com/contact-form">Download Now</a>. */}
           </p>
           <Form layout="vertical" onFinish={sendMessage}>
             <Row gutter={16}>
-              <Col span={12}>
+              <Col span={12} xs={24} sm={12}>
                 <Form.Item
                   label="Your Name"
                   name="name"
@@ -101,7 +106,7 @@ const ContactUsSection = () => {
                   <Input placeholder="Your Name" />
                 </Form.Item>
               </Col>
-              <Col span={12}>
+              <Col span={12} xs={24} sm={12}>
                 <Form.Item
                   label="Your Email"
                   name="email"
@@ -136,12 +141,25 @@ const ContactUsSection = () => {
                 shape="round"
                 size="large"
                 htmlType="submit"
+                style={{
+                    backgroundColor: '#995f20',
+                    borderColor: '#aa620f',
+                }}
+                onMouseEnter={(e) => {
+                    e.currentTarget.style.backgroundColor = '#dda15e';
+                    e.currentTarget.style.borderColor = '#995f20';
+                }}
+                onMouseLeave={(e) => {
+                    e.currentTarget.style.backgroundColor = '#995f20';
+                    e.currentTarget.style.borderColor = '#aa620f';
+                }}
               >
                 Send Message
               </Button>
             </Form.Item>
           </Form>
-        </Col>
+        </div>
+        </Col>   
       </Row>
     </div>
   );

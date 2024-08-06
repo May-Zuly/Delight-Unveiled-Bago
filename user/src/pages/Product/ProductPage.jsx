@@ -1,20 +1,22 @@
-import { useEffect, useState } from "react";
-import {
-  Card,
-  Image,
-  Typography,
-  Badge,
-  Rate,
-  Button,
-  Row,
-  Col,
-  Pagination,
-} from "antd";
 import "./ProductPage.css";
-import api from "../../api/helper";
-import qs from "qs";
+
+import {
+  Badge,
+  Button,
+  Card,
+  Col,
+  Image,
+  Pagination,
+  Rate,
+  Row,
+  Typography,
+} from "antd";
+import { useEffect, useState } from "react";
+
 import ProductSearch from "./ProductSearch";
+import api from "../../api/helper";
 import { cart } from "../../store";
+import qs from "qs";
 import { useRecoilState } from "recoil";
 
 export default function ProductPage() {
@@ -175,6 +177,7 @@ export default function ProductPage() {
                 <div className="itemCardOverlay">Out of Stock</div>
               )}
               <Card
+                hoverable
                 className="itemCard"
                 title={product.attributes.title}
                 cover={

@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import CarouselSection from "../../components/Carousel/CarouselSection";
 import GroceriesSection from "../../components/Groceries/GroceriesSection";
-import FeatureSection from "../../components/Features/Feature";
+import Features from "../../components/Features/FeatureSection";
 import ProductSection from "../../components/Product/ProductSection";
 import AboutUsSection from "../../components/AboutUs/AboutUsSection";
 import ContactUsSection from "../../components/ContactUs/ContactUsSection";
@@ -13,7 +13,8 @@ const HomePage = () => {
     <>
       <CarouselSection />
       <GroceriesSection />
-      <FeatureSection />
+      {/* <FeatureSection /> */}
+      <Features/>
       <AboutUsSection />
       <ProductSection />
       <ContactUsSection />

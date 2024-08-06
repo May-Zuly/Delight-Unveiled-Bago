@@ -1,0 +1,187 @@
+.about_us_page {
+    /* padding: 50px; */
+    background: #f5f5f5;
+    margin-bottom: 20px;
+  }
+
+  .about-section {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 50px;
+    background-color:#f0dbc7;
+  }
+
+  .aboutus-image-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 410px; /* Set the desired height for the image box */
+    overflow: hidden; /* Hide any overflow */
+  }
+
+  .about-image {
+    width: auto;
+    height: 100%; /* Ensure the image covers the height of the container */
+    object-fit: contain; /* Ensure the entire image is visible inside the container */
+  }
+  
+  .about-text {
+    padding: 20px;
+  }
+  
+  .about-text h2 {
+    font-size: 36px;
+    font-weight: bold;
+  }
+  
+  .about-text h3 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 20px;
+  }
+  
+  .about-text p {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-top: 20px;
+  }
+  
+  .check-services-button {
+    margin-top: 20px;
+  }
+  
+  .values-section {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .values-section h2 {
+    font-size: 32px;
+    font-weight: bold;
+    padding-bottom: 30px;
+  }
+  
+  .value-card {
+    /* text-align: center; */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+  }
+ .value-card:hover{
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+ }
+  .value-card-icon-title {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .value-card-title-divider {
+    height: 2px; /* Line thickness */
+    background-color: #dc8623; /* Line color */
+    margin: 10px 0; /* Space above and below the line */
+  }
+  
+  .value-card-icon {
+    font-size: 30px;
+    margin-right: 10px;
+    color: #dc8623;
+  }
+  
+  .value-card h4 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: bold;
+    color: #aa620f;
+  }
+  
+  .value-card p {
+    text-align: justify;
+    font-size: 16px;
+    line-height: 1.5;
+    margin-top: 10px;
+  }
+
+
+  .aboutus-testinomy{
+    padding: 50px 0;
+  }
+  .aboutus-carousel-container {
+    background: #fff;
+    padding: 50px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+    margin-bottom: 30px;
+  }
+  
+  .aboutus-carousel-title {
+    color: #2c396b;
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+  }
+  
+  .aboutus-carousel-slide {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #2c396b;
+    /* margin-bottom: 20px; */
+  }
+  
+  .aboutus-carousel-content {
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    text-align:start;
+  }
+
+  .aboutus-carousel-image {
+    border-radius: 50% !important;
+    border: 10px solid #ffb5b5;
+    margin-bottom: 20px;
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+    /* text-align: end; */
+  }
+  
+  .aboutus-carousel-text {
+    font-size: 16px;
+    font-style: italic;
+    margin: 10px 0;
+  }
+  
+  .aboutus-carousel-name {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .carousel-buttons {
+    position: absolute;
+    /* bottom: -60px; */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .carousel-buttons .ant-btn {
+    background-color: #2c396b;
+    color: #fff;
+    border: none;
+  }
+  
+  .carousel-buttons .ant-btn:hover {
+    background-color: #ffb5b5;
+    color: #2c396b;
+  }
+  

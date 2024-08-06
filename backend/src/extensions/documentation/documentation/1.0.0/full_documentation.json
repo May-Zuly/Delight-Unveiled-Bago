@@ -18,10 +18,7 @@
   },
   "x-strapi-config": {
     "path": "/documentation",
-    "plugins": [
-      "upload",
-      "users-permissions"
-    ]
+    "plugins": ["upload", "users-permissions"]
   },
   "servers": [
     {
@@ -49,9 +46,7 @@
     "schemas": {
       "Error": {
         "type": "object",
-        "required": [
-          "error"
-        ],
+        "required": ["error"],
         "properties": {
           "data": {
             "nullable": true,
@@ -88,15 +83,10 @@
       },
       "OrderRequest": {
         "type": "object",
-        "required": [
-          "data"
-        ],
+        "required": ["data"],
         "properties": {
           "data": {
-            "required": [
-              "total",
-              "status"
-            ],
+            "required": ["total", "status"],
             "type": "object",
             "properties": {
               "total": {
@@ -106,12 +96,7 @@
               },
               "status": {
                 "type": "string",
-                "enum": [
-                  "order",
-                  "delivering",
-                  "delivered",
-                  "cancelled"
-                ]
+                "enum": ["order", "delivering", "delivered", "cancelled"]
               },
               "customer": {
                 "oneOf": [
@@ -212,10 +197,7 @@
       },
       "Order": {
         "type": "object",
-        "required": [
-          "total",
-          "status"
-        ],
+        "required": ["total", "status"],
         "properties": {
           "total": {
             "type": "string",
@@ -224,12 +206,7 @@
           },
           "status": {
             "type": "string",
-            "enum": [
-              "order",
-              "delivering",
-              "delivered",
-              "cancelled"
-            ]
+            "enum": ["order", "delivering", "delivered", "cancelled"]
           },
           "customer": {
             "type": "object",
@@ -697,11 +674,7 @@
                       },
                       "type": {
                         "type": "string",
-                        "enum": [
-                          "admin",
-                          "producer",
-                          "customer"
-                        ]
+                        "enum": ["admin", "producer", "customer"]
                       },
                       "profile": {
                         "type": "object",
@@ -1107,10 +1080,7 @@
                                                 },
                                                 "type": {
                                                   "type": "string",
-                                                  "enum": [
-                                                    "food",
-                                                    "furniture"
-                                                  ]
+                                                  "enum": ["food", "furniture"]
                                                 },
                                                 "description": {
                                                   "type": "string"
@@ -2341,22 +2311,15 @@
       },
       "PaymentRequest": {
         "type": "object",
-        "required": [
-          "data"
-        ],
+        "required": ["data"],
         "properties": {
           "data": {
-            "required": [
-              "type"
-            ],
+            "required": ["type"],
             "type": "object",
             "properties": {
               "type": {
                 "type": "string",
-                "enum": [
-                  "cash",
-                  "onlinePay"
-                ]
+                "enum": ["cash", "onlinePay"]
               },
               "order": {
                 "oneOf": [
@@ -2432,16 +2395,11 @@
       },
       "Payment": {
         "type": "object",
-        "required": [
-          "type"
-        ],
+        "required": ["type"],
         "properties": {
           "type": {
             "type": "string",
-            "enum": [
-              "cash",
-              "onlinePay"
-            ]
+            "enum": ["cash", "onlinePay"]
           },
           "order": {
             "type": "object",
@@ -2935,11 +2893,7 @@
                                   },
                                   "type": {
                                     "type": "string",
-                                    "enum": [
-                                      "admin",
-                                      "producer",
-                                      "customer"
-                                    ]
+                                    "enum": ["admin", "producer", "customer"]
                                   },
                                   "profile": {
                                     "type": "object",
@@ -3913,10 +3867,7 @@
                                 "properties": {
                                   "type": {
                                     "type": "string",
-                                    "enum": [
-                                      "cash",
-                                      "onlinePay"
-                                    ]
+                                    "enum": ["cash", "onlinePay"]
                                   },
                                   "order": {
                                     "type": "object",
@@ -4516,18 +4467,10 @@
       },
       "ProductRequest": {
         "type": "object",
-        "required": [
-          "data"
-        ],
+        "required": ["data"],
         "properties": {
           "data": {
-            "required": [
-              "name",
-              "type",
-              "description",
-              "price",
-              "image"
-            ],
+            "required": ["name", "type", "description", "price", "image"],
             "type": "object",
             "properties": {
               "name": {
@@ -4535,10 +4478,7 @@
               },
               "type": {
                 "type": "string",
-                "enum": [
-                  "food",
-                  "furniture"
-                ]
+                "enum": ["food", "furniture"]
               },
               "description": {
                 "type": "string"
@@ -4656,23 +4596,14 @@
       },
       "Product": {
         "type": "object",
-        "required": [
-          "name",
-          "type",
-          "description",
-          "price",
-          "image"
-        ],
+        "required": ["name", "type", "description", "price", "image"],
         "properties": {
           "name": {
             "type": "string"
           },
           "type": {
             "type": "string",
-            "enum": [
-              "food",
-              "furniture"
-            ]
+            "enum": ["food", "furniture"]
           },
           "description": {
             "type": "string"
@@ -5151,11 +5082,7 @@
                       },
                       "type": {
                         "type": "string",
-                        "enum": [
-                          "admin",
-                          "producer",
-                          "customer"
-                        ]
+                        "enum": ["admin", "producer", "customer"]
                       },
                       "profile": {
                         "type": "object",
@@ -5561,10 +5488,7 @@
                                                 },
                                                 "type": {
                                                   "type": "string",
-                                                  "enum": [
-                                                    "food",
-                                                    "furniture"
-                                                  ]
+                                                  "enum": ["food", "furniture"]
                                                 },
                                                 "description": {
                                                   "type": "string"
@@ -6801,14 +6725,10 @@
       },
       "PurchaseRequest": {
         "type": "object",
-        "required": [
-          "data"
-        ],
+        "required": ["data"],
         "properties": {
           "data": {
-            "required": [
-              "quantity"
-            ],
+            "required": ["quantity"],
             "type": "object",
             "properties": {
               "quantity": {
@@ -6899,9 +6819,7 @@
       },
       "Purchase": {
         "type": "object",
-        "required": [
-          "quantity"
-        ],
+        "required": ["quantity"],
         "properties": {
           "quantity": {
             "type": "integer"
@@ -6923,10 +6841,7 @@
                       },
                       "type": {
                         "type": "string",
-                        "enum": [
-                          "food",
-                          "furniture"
-                        ]
+                        "enum": ["food", "furniture"]
                       },
                       "description": {
                         "type": "string"
@@ -7405,11 +7320,7 @@
                                   },
                                   "type": {
                                     "type": "string",
-                                    "enum": [
-                                      "admin",
-                                      "producer",
-                                      "customer"
-                                    ]
+                                    "enum": ["admin", "producer", "customer"]
                                   },
                                   "profile": {
                                     "type": "object",
@@ -8874,14 +8785,10 @@
       },
       "RatingRequest": {
         "type": "object",
-        "required": [
-          "data"
-        ],
+        "required": ["data"],
         "properties": {
           "data": {
-            "required": [
-              "Rate"
-            ],
+            "required": ["Rate"],
             "type": "object",
             "properties": {
               "Rate": {
@@ -8961,9 +8868,7 @@
       },
       "Rating": {
         "type": "object",
-        "required": [
-          "Rate"
-        ],
+        "required": ["Rate"],
         "properties": {
           "Rate": {
             "type": "integer"
@@ -8985,10 +8890,7 @@
                       },
                       "type": {
                         "type": "string",
-                        "enum": [
-                          "food",
-                          "furniture"
-                        ]
+                        "enum": ["food", "furniture"]
                       },
                       "description": {
                         "type": "string"
@@ -9467,11 +9369,7 @@
                                   },
                                   "type": {
                                     "type": "string",
-                                    "enum": [
-                                      "admin",
-                                      "producer",
-                                      "customer"
-                                    ]
+                                    "enum": ["admin", "producer", "customer"]
                                   },
                                   "profile": {
                                     "type": "object",
@@ -11189,9 +11087,7 @@
             }
           }
         },
-        "tags": [
-          "Order"
-        ],
+        "tags": ["Order"],
         "parameters": [
           {
             "name": "sort",
@@ -11361,9 +11257,7 @@
             }
           }
         },
-        "tags": [
-          "Order"
-        ],
+        "tags": ["Order"],
         "parameters": [],
         "operationId": "post/orders",
         "requestBody": {
@@ -11442,9 +11336,7 @@
             }
           }
         },
-        "tags": [
-          "Order"
-        ],
+        "tags": ["Order"],
         "parameters": [
           {
             "name": "id",
@@ -11522,9 +11414,7 @@
             }
           }
         },
-        "tags": [
-          "Order"
-        ],
+        "tags": ["Order"],
         "parameters": [
           {
             "name": "id",
@@ -11613,9 +11503,7 @@
             }
           }
         },
-        "tags": [
-          "Order"
-        ],
+        "tags": ["Order"],
         "parameters": [
           {
             "name": "id",
@@ -11695,9 +11583,7 @@
             }
           }
         },
-        "tags": [
-          "Payment"
-        ],
+        "tags": ["Payment"],
         "parameters": [
           {
             "name": "sort",
@@ -11867,9 +11753,7 @@
             }
           }
         },
-        "tags": [
-          "Payment"
-        ],
+        "tags": ["Payment"],
         "parameters": [],
         "operationId": "post/payments",
         "requestBody": {
@@ -11948,9 +11832,7 @@
             }
           }
         },
-        "tags": [
-          "Payment"
-        ],
+        "tags": ["Payment"],
         "parameters": [
           {
             "name": "id",
@@ -12028,9 +11910,7 @@
             }
           }
         },
-        "tags": [
-          "Payment"
-        ],
+        "tags": ["Payment"],
         "parameters": [
           {
             "name": "id",
@@ -12119,9 +11999,7 @@
             }
           }
         },
-        "tags": [
-          "Payment"
-        ],
+        "tags": ["Payment"],
         "parameters": [
           {
             "name": "id",
@@ -12201,9 +12079,7 @@
             }
           }
         },
-        "tags": [
-          "Product"
-        ],
+        "tags": ["Product"],
         "parameters": [
           {
             "name": "sort",
@@ -12373,9 +12249,7 @@
             }
           }
         },
-        "tags": [
-          "Product"
-        ],
+        "tags": ["Product"],
         "parameters": [],
         "operationId": "post/products",
         "requestBody": {
@@ -12454,9 +12328,7 @@
             }
           }
         },
-        "tags": [
-          "Product"
-        ],
+        "tags": ["Product"],
         "parameters": [
           {
             "name": "id",
@@ -12534,9 +12406,7 @@
             }
           }
         },
-        "tags": [
-          "Product"
-        ],
+        "tags": ["Product"],
         "parameters": [
           {
             "name": "id",
@@ -12625,9 +12495,7 @@
             }
           }
         },
-        "tags": [
-          "Product"
-        ],
+        "tags": ["Product"],
         "parameters": [
           {
             "name": "id",
@@ -12707,9 +12575,7 @@
             }
           }
         },
-        "tags": [
-          "Purchase"
-        ],
+        "tags": ["Purchase"],
         "parameters": [
           {
             "name": "sort",
@@ -12879,9 +12745,7 @@
             }
           }
         },
-        "tags": [
-          "Purchase"
-        ],
+        "tags": ["Purchase"],
         "parameters": [],
         "operationId": "post/purchases",
         "requestBody": {
@@ -12960,9 +12824,7 @@
             }
           }
         },
-        "tags": [
-          "Purchase"
-        ],
+        "tags": ["Purchase"],
         "parameters": [
           {
             "name": "id",
@@ -13040,9 +12902,7 @@
             }
           }
         },
-        "tags": [
-          "Purchase"
-        ],
+        "tags": ["Purchase"],
         "parameters": [
           {
             "name": "id",
@@ -13131,9 +12991,7 @@
             }
           }
         },
-        "tags": [
-          "Purchase"
-        ],
+        "tags": ["Purchase"],
         "parameters": [
           {
             "name": "id",
@@ -13213,9 +13071,7 @@
             }
           }
         },
-        "tags": [
-          "Rating"
-        ],
+        "tags": ["Rating"],
         "parameters": [
           {
             "name": "sort",
@@ -13385,9 +13241,7 @@
             }
           }
         },
-        "tags": [
-          "Rating"
-        ],
+        "tags": ["Rating"],
         "parameters": [],
         "operationId": "post/ratings",
         "requestBody": {
@@ -13466,9 +13320,7 @@
             }
           }
         },
-        "tags": [
-          "Rating"
-        ],
+        "tags": ["Rating"],
         "parameters": [
           {
             "name": "id",
@@ -13546,9 +13398,7 @@
             }
           }
         },
-        "tags": [
-          "Rating"
-        ],
+        "tags": ["Rating"],
         "parameters": [
           {
             "name": "id",
@@ -13637,9 +13487,7 @@
             }
           }
         },
-        "tags": [
-          "Rating"
-        ],
+        "tags": ["Rating"],
         "parameters": [
           {
             "name": "id",
@@ -13674,18 +13522,14 @@
           }
         },
         "summary": "",
-        "tags": [
-          "Upload - File"
-        ],
+        "tags": ["Upload - File"],
         "requestBody": {
           "description": "Upload files",
           "required": true,
           "content": {
             "multipart/form-data": {
               "schema": {
-                "required": [
-                  "files"
-                ],
+                "required": ["files"],
                 "type": "object",
                 "properties": {
                   "path": {
@@ -13748,9 +13592,7 @@
           }
         },
         "summary": "",
-        "tags": [
-          "Upload - File"
-        ],
+        "tags": ["Upload - File"],
         "requestBody": {
           "description": "Upload files",
           "required": true,
@@ -13786,9 +13628,7 @@
     },
     "/upload/files": {
       "get": {
-        "tags": [
-          "Upload - File"
-        ],
+        "tags": ["Upload - File"],
         "responses": {
           "200": {
             "description": "Get a list of files",
@@ -13820,9 +13660,7 @@
             }
           }
         ],
-        "tags": [
-          "Upload - File"
-        ],
+        "tags": ["Upload - File"],
         "responses": {
           "200": {
             "description": "Get a specific file",
@@ -13849,9 +13687,7 @@
             }
           }
         ],
-        "tags": [
-          "Upload - File"
-        ],
+        "tags": ["Upload - File"],
         "responses": {
           "200": {
             "description": "Delete a file",
@@ -13880,9 +13716,7 @@
             }
           }
         ],
-        "tags": [
-          "Users-Permissions - Auth"
-        ],
+        "tags": ["Users-Permissions - Auth"],
         "summary": "Login with a provider",
         "description": "Redirects to provider login before being redirect to /auth/{provider}/callback",
         "responses": {
@@ -13904,9 +13738,7 @@
     },
     "/auth/local": {
       "post": {
-        "tags": [
-          "Users-Permissions - Auth"
-        ],
+        "tags": ["Users-Permissions - Auth"],
         "summary": "Local login",
         "description": "Returns a jwt token and user info",
         "requestBody": {
@@ -13957,9 +13789,7 @@
     },
     "/auth/local/register": {
       "post": {
-        "tags": [
-          "Users-Permissions - Auth"
-        ],
+        "tags": ["Users-Permissions - Auth"],
         "summary": "Register a user",
         "description": "Returns a jwt token and user info",
         "requestBody": {
@@ -14014,9 +13844,7 @@
     },
     "/auth/{provider}/callback": {
       "get": {
-        "tags": [
-          "Users-Permissions - Auth"
-        ],
+        "tags": ["Users-Permissions - Auth"],
         "summary": "Default Callback from provider auth",
         "parameters": [
           {
@@ -14055,9 +13883,7 @@
     },
     "/auth/forgot-password": {
       "post": {
-        "tags": [
-          "Users-Permissions - Auth"
-        ],
+        "tags": ["Users-Permissions - Auth"],
         "summary": "Send rest password email",
         "requestBody": {
           "required": true,
@@ -14087,9 +13913,7 @@
                   "properties": {
                     "ok": {
                       "type": "string",
-                      "enum": [
-                        true
-                      ]
+                      "enum": [true]
                     }
                   }
                 }
@@ -14111,9 +13935,7 @@
     },
     "/auth/reset-password": {
       "post": {
-        "tags": [
-          "Users-Permissions - Auth"
-        ],
+        "tags": ["Users-Permissions - Auth"],
         "summary": "Rest user password",
         "requestBody": {
           "required": true,
@@ -14167,9 +13989,7 @@
     },
     "/auth/change-password": {
       "post": {
-        "tags": [
-          "Users-Permissions - Auth"
-        ],
+        "tags": ["Users-Permissions - Auth"],
         "summary": "Update user's own password",
         "requestBody": {
           "required": true,
@@ -14223,9 +14043,7 @@
     },
     "/auth/email-confirmation": {
       "get": {
-        "tags": [
-          "Users-Permissions - Auth"
-        ],
+        "tags": ["Users-Permissions - Auth"],
         "summary": "Confirm user email",
         "parameters": [
           {
@@ -14256,9 +14074,7 @@
     },
     "/auth/send-email-confirmation": {
       "post": {
-        "tags": [
-          "Users-Permissions - Auth"
-        ],
+        "tags": ["Users-Permissions - Auth"],
         "summary": "Send confirmation email",
         "requestBody": {
           "required": true,
@@ -14288,9 +14104,7 @@
                     },
                     "sent": {
                       "type": "string",
-                      "enum": [
-                        true
-                      ]
+                      "enum": [true]
                     }
                   }
                 }
@@ -14312,9 +14126,7 @@
     },
     "/users-permissions/permissions": {
       "get": {
-        "tags": [
-          "Users-Permissions - Users & Roles"
-        ],
+        "tags": ["Users-Permissions - Users & Roles"],
         "summary": "Get default generated permissions",
         "responses": {
           "200": {
@@ -14383,9 +14195,7 @@
     },
     "/users-permissions/roles": {
       "get": {
-        "tags": [
-          "Users-Permissions - Users & Roles"
-        ],
+        "tags": ["Users-Permissions - Users & Roles"],
         "summary": "List roles",
         "responses": {
           "200": {
@@ -14444,9 +14254,7 @@
         }
       },
       "post": {
-        "tags": [
-          "Users-Permissions - Users & Roles"
-        ],
+        "tags": ["Users-Permissions - Users & Roles"],
         "summary": "Create a role",
         "requestBody": {
           "$ref": "#/components/requestBodies/Users-Permissions-RoleRequest"
@@ -14461,9 +14269,7 @@
                   "properties": {
                     "ok": {
                       "type": "string",
-                      "enum": [
-                        true
-                      ]
+                      "enum": [true]
                     }
                   }
                 }
@@ -14485,9 +14291,7 @@
     },
     "/users-permissions/roles/{id}": {
       "get": {
-        "tags": [
-          "Users-Permissions - Users & Roles"
-        ],
+        "tags": ["Users-Permissions - Users & Roles"],
         "summary": "Get a role",
         "parameters": [
           {
@@ -14552,9 +14356,7 @@
     },
     "/users-permissions/roles/{role}": {
       "put": {
-        "tags": [
-          "Users-Permissions - Users & Roles"
-        ],
+        "tags": ["Users-Permissions - Users & Roles"],
         "summary": "Update a role",
         "parameters": [
           {
@@ -14580,9 +14382,7 @@
                   "properties": {
                     "ok": {
                       "type": "string",
-                      "enum": [
-                        true
-                      ]
+                      "enum": [true]
                     }
                   }
                 }
@@ -14602,9 +14402,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "Users-Permissions - Users & Roles"
-        ],
+        "tags": ["Users-Permissions - Users & Roles"],
         "summary": "Delete a role",
         "parameters": [
           {
@@ -14627,9 +14425,7 @@
                   "properties": {
                     "ok": {
                       "type": "string",
-                      "enum": [
-                        true
-                      ]
+                      "enum": [true]
                     }
                   }
                 }
@@ -14651,9 +14447,7 @@
     },
     "/users": {
       "get": {
-        "tags": [
-          "Users-Permissions - Users & Roles"
-        ],
+        "tags": ["Users-Permissions - Users & Roles"],
         "summary": "Get list of users",
         "responses": {
           "200": {
@@ -14694,9 +14488,7 @@
         }
       },
       "post": {
-        "tags": [
-          "Users-Permissions - Users & Roles"
-        ],
+        "tags": ["Users-Permissions - Users & Roles"],
         "summary": "Create a user",
         "requestBody": {
           "required": true,
@@ -14704,11 +14496,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "username",
-                  "email",
-                  "password"
-                ],
+                "required": ["username", "email", "password"],
                 "properties": {
                   "email": {
                     "type": "string"
@@ -14785,9 +14573,7 @@
     },
     "/users/{id}": {
       "get": {
-        "tags": [
-          "Users-Permissions - Users & Roles"
-        ],
+        "tags": ["Users-Permissions - Users & Roles"],
         "summary": "Get a user",
         "parameters": [
           {
@@ -14834,9 +14620,7 @@
         }
       },
       "put": {
-        "tags": [
-          "Users-Permissions - Users & Roles"
-        ],
+        "tags": ["Users-Permissions - Users & Roles"],
         "summary": "Update a user",
         "parameters": [
           {
@@ -14855,11 +14639,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "username",
-                  "email",
-                  "password"
-                ],
+                "required": ["username", "email", "password"],
                 "properties": {
                   "email": {
                     "type": "string"
@@ -14934,9 +14714,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "Users-Permissions - Users & Roles"
-        ],
+        "tags": ["Users-Permissions - Users & Roles"],
         "summary": "Delete a user",
         "parameters": [
           {
@@ -14989,9 +14767,7 @@
     },
     "/users/me": {
       "get": {
-        "tags": [
-          "Users-Permissions - Users & Roles"
-        ],
+        "tags": ["Users-Permissions - Users & Roles"],
         "summary": "Get authenticated user info",
         "responses": {
           "200": {
@@ -15029,9 +14805,7 @@
     },
     "/users/count": {
       "get": {
-        "tags": [
-          "Users-Permissions - Users & Roles"
-        ],
+        "tags": ["Users-Permissions - Users & Roles"],
         "summary": "Get user count",
         "responses": {
           "200": {
