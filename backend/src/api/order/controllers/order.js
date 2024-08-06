@@ -110,11 +110,22 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
       let body = ctx.request.body;
       let data = body;
       let file = null;
+      let createdFiles = null;
       if (body.data) {
         data = JSON.parse(body.data);
       }
       if (ctx.request.files) {
         file = ctx.request.files["files.image"];
+        createdFiles = await strapi.plugins.upload.services.upload.upload({
+          data: {
+            fileInfo: {
+              name: "Order",
+              caption: "Order",
+              alternativeText: "Order",
+            },
+          },
+          files: file,
+        });
       }
       const promisePurchase = [];
       for (let i = 0; i < data.products.length; i++) {
@@ -131,23 +142,13 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
       const purchaseLst = await Promise.all(promisePurchase);
       const purchaseIds = purchaseLst.map((p) => p.id);
 
-      const createdFiles = await strapi.plugins.upload.services.upload.upload({
-        data: {
-          fileInfo: {
-            name: "Order",
-            caption: "Order",
-            alternativeText: "Order",
-          },
-        },
-        files: file,
-      });
       const order = await strapi.db.query("api::order.order").create({
         data: {
           total: data.total,
           status: "order",
           purchases: purchaseIds,
           customer: data.user_id,
-          image: createdFiles.length > 0 ? createdFiles[0].id : null,
+          image: createdFiles ? createdFiles[0].id : null,
         },
       });
       await strapi.db.query("api::payment.payment").create({
