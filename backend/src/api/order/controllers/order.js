@@ -36,6 +36,7 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
         orderBy: { createdAt: "desc" },
         where: conditions,
         populate: {
+          image: true,
           payment: true,
           customer: true,
           purchases: { populate: { product: { populate: { image: true } } } },
@@ -46,6 +47,7 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
         payment: entry?.payment?.type,
         customer: entry?.customer?.username,
         phoneNumber: entry?.customer?.phoneNumber,
+        image: entry.image?.url,
         purchases:
           entry?.purchases.length > 0
             ? entry?.purchases.map((p) => ({
@@ -74,6 +76,7 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
       const entry = await strapi.db.query("api::order.order").findOne({
         where: { id },
         populate: {
+          image: true,
           payment: true,
           customer: true,
           purchases: { populate: { product: { populate: { image: true } } } },
@@ -83,6 +86,7 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
       entry.payment = entry?.payment?.type;
       entry.customer = entry?.customer?.username;
       entry.phoneNumber = entry?.customer?.phoneNumber;
+      entry.image = entry.image?.url;
       entry.purchases =
         entry.purchases.length > 0
           ? entry.purchases.map((p) => ({

@@ -1,4 +1,4 @@
-import { Button, Modal, Pagination, Radio, Space, Table } from "antd";
+import { Button, Image, Modal, Pagination, Radio, Space, Table } from "antd";
 import { useEffect, useState } from "react";
 
 import ProductForm from "../../components/ProductForm";
@@ -21,6 +21,12 @@ export default function Order() {
   });
 
   const columns = [
+    {
+      title: "Payment Screen Shoot",
+      dataIndex: "image",
+      render: (image) =>
+        image && <Image src={`http://localhost:1337${image}`} width={100} />,
+    },
     {
       title: "Customer Name",
       dataIndex: "customer",
@@ -111,7 +117,7 @@ export default function Order() {
       title: "Product Image",
       dataIndex: "product_image",
       render: (product_image) => (
-        <img src={`http://localhost:1337${product_image}`} width="100" />
+        <Image src={`http://localhost:1337${product_image}`} width={100} />
       ),
     },
     {
@@ -189,7 +195,8 @@ export default function Order() {
         width={1000}
         title="Order Detail"
         open={visible}
-        onCancel={() => setVisible(false)}
+        onOk={() => setVisible(false)}
+        cancelButtonProps={{ style: { display: "none" } }}
       >
         <Table
           columns={detailColumn}

@@ -1,25 +1,60 @@
-import { Card, Form, Input, Button, Row, Col, List, message } from "antd";
+import "./CheckoutPage.css";
+
+import { Button, Card, Col, Form, List, Row, Upload, message } from "antd";
+
+import ImgCrop from "antd-img-crop";
+import { PlusOutlined } from "@ant-design/icons";
+import { Radio } from "antd";
+import api from "../../api/helper";
+import { cart } from "../../store";
 import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
-import { cart } from "../../store";
-import "./CheckoutPage.css";
-import { Radio } from "antd";
 import { useState } from "react";
-import api from "../../api/helper";
 
 const CheckoutPage = () => {
   const navigate = useNavigate();
   const [value, setValue] = useState(1);
 
+  const [fileList, setFileList] = useState([]);
+
+  const onFileChange = ({ fileList: newFileList }) => {
+    setFileList(newFileList);
+  };
+
   const onChange = (e) => {
-    console.log("radio checked", e.target.value);
     setValue(e.target.value);
   };
   const [cartData, setCartData] = useRecoilState(cart);
 
-  const onFinish = (values) => {
-    console.log("Payment Details: ", values);
-    // Handle payment logic here
+  const onFinish = async () => {
+    const loginUser = JSON.parse(localStorage.getItem("loginUser"));
+    if (loginUser) {
+      const data = {
+        products: cartData,
+        user_id: loginUser.user.id,
+        total: getTotalAmount(),
+        payment_type: "onlinePay",
+      };
+      const formData = new FormData();
+      if (fileList.length > 0) {
+        formData.append("files.image", fileList[0].originFileObj, data.name);
+      }
+      formData.append("data", JSON.stringify(data));
+      try {
+        const res = await api.post(`order/apply`, formData, {
+          headers: { requireToken: true },
+        });
+        if (res.data) {
+          setCartData([]);
+          message.success("Payment Successfully");
+          navigate("/products");
+        }
+      } catch (error) {
+        message.error("Error");
+      }
+    } else {
+      message.error("Please login in");
+    }
   };
 
   const getTotalAmount = () => {
@@ -65,61 +100,46 @@ const CheckoutPage = () => {
         <Col xs={24} sm={24} md={14}>
           <Card title="Payment Details" className="checkout-form">
             <Radio.Group onChange={onChange} value={value}>
-              <Radio value={1}>Bank</Radio>
-              <Radio value={2}>Cash</Radio>
+              <Radio value={1}>Mobile Banking</Radio>
+              <Radio value={2}>Cash On Delivery</Radio>
             </Radio.Group>
             {value === 1 && (
-              <Form name="payment" layout="vertical" onFinish={onFinish}>
-                <Form.Item
-                  name="name"
-                  label="Name on Card"
-                  rules={[
-                    {
-                      required: true,
-                      message: "Please enter the name on card",
-                    },
-                  ]}
-                >
-                  <Input />
-                </Form.Item>
+              <>
+                <div>Payment Information</div>
+                <Form name="payment" layout="vertical" onFinish={onFinish}>
+                  <Form.Item
+                    label=""
+                    name="image"
+                    valuePropName="fileList"
+                    style={{ marginTop: "10px" }}
+                  >
+                    <ImgCrop rotationSlider>
+                      <Upload
+                        listType="picture-card"
+                        fileList={fileList}
+                        onChange={onFileChange}
+                        maxCount={1}
+                      >
+                        {fileList.length < 1 && (
+                          <button
+                            style={{ border: 0, background: "none" }}
+                            type="button"
+                          >
+                            <PlusOutlined />
+                            <div style={{ marginTop: 8 }}>Upload</div>
+                          </button>
+                        )}
+                      </Upload>
+                    </ImgCrop>
+                  </Form.Item>
 
-                <Form.Item
-                  name="cardNumber"
-                  label="Card Number"
-                  rules={[
-                    {
-                      required: true,
-                      message: "Please enter your card number",
-                    },
-                  ]}
-                >
-                  <Input />
-                </Form.Item>
-
-                <Form.Item
-                  name="expiry"
-                  label="Expiry Date"
-                  rules={[
-                    { required: true, message: "Please enter the expiry date" },
-                  ]}
-                >
-                  <Input placeholder="MM/YY" />
-                </Form.Item>
-
-                <Form.Item
-                  name="cvv"
-                  label="CVV"
-                  rules={[{ required: true, message: "Please enter the CVV" }]}
-                >
-                  <Input />
-                </Form.Item>
-
-                <Form.Item>
-                  <Button type="primary" htmlType="submit" block>
-                    Pay {getTotalAmount().toFixed(2)} MMK
-                  </Button>
-                </Form.Item>
-              </Form>
+                  <Form.Item>
+                    <Button type="primary" htmlType="submit" block>
+                      Pay {getTotalAmount().toFixed(2)} MMK
+                    </Button>
+                  </Form.Item>
+                </Form>
+              </>
             )}
             {value === 2 && (
               <Button
