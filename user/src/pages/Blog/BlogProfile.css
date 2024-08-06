@@ -8,18 +8,17 @@ Grid system: https://gist.github.com/scottkellum/bb46ea68c23e630842ee80c37513a3e
 */
 
 /* Import our variable font Fraunces */
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,100..900,0..100,0..1&family=Fraunces:ital,opsz,wght,SOFT,WONK@1,9..144,100..900,0..100,0..1&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,100..900,0..100,0..1&family=Fraunces:ital,opsz,wght,SOFT,WONK@1,9..144,100..900,0..100,0..1&display=swap'); */
 
 /* Variables and page setup */
 
 html {
-  font-family: Fraunces, serif;
-  font-size: 115%;
-  line-height: 1.35;
+  /* font-family: Fraunces, serif; */
+  /* font-size: 115%; */
+  /* line-height: 1.35; */
   font-weight: 340;
   color: var(--text);
-  background: var(--background);
-  padding-bottom: 20vh;
+  /* padding-bottom: 20vh; */
 
   /* Typetura */
   --tt-key: html;
@@ -37,6 +36,7 @@ html {
   --background-alt: #ffffff;
   --text: #31355b;
 }
+
 @keyframes html {
   0% {
     font-size: 0%;
@@ -46,6 +46,7 @@ html {
     font-size: 125%;
   }
 }
+
 * {
   --grid: minmax(var(--gutter), 1fr)
     repeat(
@@ -67,33 +68,8 @@ body {
   margin: 0;
 }
 
-.img {
+.video {
   width: 100%;
-}
-
-/* Typography */
-
-.masthead {
-  color: var(--primary);
-  mix-blend-mode: multiply;
-  text-align: center;
-  font-variation-settings: 'WONK' 1, 'SOFT' 30;
-  --tt-key: masthead;
-  --tt-max: 1200;
-  --tt-ease: ease-in-out;
-  margin: 0.5em 0 -0.5em;
-}
-@keyframes masthead {
-  0% {
-    font-size: 1rem;
-    margin-bottom: -0.45em;
-    font-weight: 600;
-  }
-  100% {
-    font-size: 6.5rem;
-    margin-bottom: -0.375em;
-    font-weight: 500;
-  }
 }
 
 .primary-headline {
@@ -101,9 +77,11 @@ body {
   --tt-ease: cubic-bezier(1, 0, 1, 1);
   --tt-max: 585;
   line-height: 1;
-  font-variation-settings: 'SOFT' 0, 'WONK' 1;
+  font-variation-settings: "SOFT" 0, "WONK" 1;
   margin: 0.5rem 0;
+  font-size: 30px;
 }
+
 @keyframes primary-headline {
   0% {
     font-size: 1rem;
@@ -143,9 +121,10 @@ body {
   flex-direction: column;
 }
 
-.entry-img {
-  aspect-ratio: 5 / 3;
+.entry-video {
+  aspect-ratio: 16 / 9;
   object-fit: cover;
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.8);
 }
 
 .entry-date {
@@ -159,11 +138,11 @@ body {
 }
 
 .entry-lede time::after {
-  content: '';
+  content: "";
   display: block;
   width: calc(100% + (var(--gutter) * 2));
   height: 1px;
-  margin-left: calc(var(--gutter) * -2);
+  margin-left: calc(var(--gutter) * -1);
   background: var(--primary);
   mix-blend-mode: multiply;
   margin-top: 0.67rem;
@@ -195,7 +174,7 @@ body {
     margin-bottom: 4rem;
   }
 
-  .entry-lede > .entry-img {
+  .entry-lede > .entry-video {
     aspect-ratio: auto;
     grid-column-start: 1;
     grid-column-end: span 10;
@@ -209,6 +188,7 @@ body {
     padding: 0.5rem var(--gutter) 1rem;
   }
 }
+
 @media (min-width: 50em) {
   html {
     --columns: 24;
@@ -216,7 +196,7 @@ body {
 
   .main::before,
   .main::after {
-    content: '';
+    content: "";
     display: block;
     grid-column-start: 8;
     grid-column-end: 26;
@@ -228,7 +208,7 @@ body {
   }
   .main::after {
     grid-column-start: 2;
-    background-color: var(--primary);
+    /* background-color: var(--primary); */
     height: 1px;
     mix-blend-mode: multiply;
   }
@@ -256,7 +236,7 @@ body {
     margin-bottom: 4rem;
   }
 
-  .entry-lede > .entry-img {
+  .entry-lede > .entry-video {
     aspect-ratio: auto;
     grid-column-start: 1;
     grid-column-end: span 13;
@@ -265,8 +245,8 @@ body {
   .entry-lede .entry-content {
     grid-column-start: 14;
     grid-column-end: span 12;
-    margin: 0.5rem 0;
-    padding: 4rem 0 0;
+    /* margin: 0.5rem 0; */
+    padding: 3rem 0 0;
     background: none;
   }
 

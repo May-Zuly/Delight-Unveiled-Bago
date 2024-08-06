@@ -12,12 +12,21 @@
   }
   
   .ant-card {
+    height: 100%;
     border-radius: 10px;
     overflow: hidden;
   }
-  .ant-card-cover video {
+  /* .ant-card-cover video {
     width: 100%;
     height: 200px;
+    border-bottom: 1px solid #e8e8e8;
+  } */
+  .ant-card-cover .blog-image {
+   
+    /* height: auto; */
+    object-fit: cover;
+    width: 100%;
+    height: 250px;
     border-bottom: 1px solid #e8e8e8;
   }
   
