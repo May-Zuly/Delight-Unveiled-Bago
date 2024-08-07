@@ -19,8 +19,7 @@ function LoginFormApp() {
         type: "success",
         content: "Login Successful!",
       });
-      if (res.data) {
-        console.log("Login data : ", res.data);
+      if (res.data && res.data.user.type === "customer") {
         localStorage.setItem("loginUser", JSON.stringify(res.data));
         navigate("/");
       }
