@@ -196,6 +196,7 @@ export default function Order() {
         title="Order Detail"
         open={visible}
         onOk={() => setVisible(false)}
+        onCancel={() => setVisible(false)}
         cancelButtonProps={{ style: { display: "none" } }}
       >
         <Table
@@ -209,6 +210,7 @@ export default function Order() {
         title="Change Status"
         open={statusModal}
         onCancel={() => setStatusModal(false)}
+        closeIcon={true}
         onOk={() => onStatusChangeFunc()}
       >
         <Radio.Group onChange={onChange} value={value}>

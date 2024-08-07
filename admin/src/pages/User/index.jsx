@@ -5,6 +5,7 @@ import UserForm from "../../components/UserForm";
 import api from "../../api/helper";
 import { dateFormat } from "../../utils/constant";
 import dayjs from "dayjs";
+import qs from "qs";
 import { useRecoilValue } from "recoil";
 import { userData } from "../../store";
 
@@ -86,8 +87,23 @@ export default function App() {
   const fetchUsers = async () => {
     setLoading(true);
     try {
-      const res = await api.get("users", {
-        headers: { requireToken: true },
+      const query = qs.stringify(
+        {
+          sort: ["createdAt:desc"],
+          populate: {
+            image: true,
+          },
+          pagination: {
+            start: 0,
+            limit: 99999,
+          },
+        },
+        {
+          encodeValuesOnly: true,
+        }
+      );
+      const res = await api.get(`users?${query}`, {
+        headers: { requireToken: false },
       });
       if (res.data) {
         setData(res.data);
@@ -154,7 +170,7 @@ export default function App() {
 
   return (
     <>
-      <Table columns={columns} dataSource={data} />
+      <Table columns={columns} dataSource={data} pagination={false} />
       <Modal
         title="Edit User"
         open={visible}

@@ -20,9 +20,28 @@ export default function Login() {
       const res = await api.post("auth/local", value, {
         headers: { requireToken: false },
       });
-      if (res.data) {
+      if (res.data && res.data.user.type !== "customer") {
         setToken(res.data.jwt);
-        setUserData(res.data.user);
+        const userData = { ...res.data.user };
+        if (userData.type === "admin") {
+          userData.permissions = [
+            "/home",
+            "/order",
+            "/product",
+            "/product/create",
+            "/user",
+            "/user/create",
+          ];
+        }
+        if (userData.type === "producer") {
+          userData.permissions = [
+            "/home",
+            "/order",
+            "/product",
+            "/product/create",
+          ];
+        }
+        setUserData(userData);
         navigate("/home");
         setLoading(false);
       }

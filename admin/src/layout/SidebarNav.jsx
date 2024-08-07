@@ -8,10 +8,13 @@ import { Layout, Menu } from "antd";
 import { Link, useLocation } from "react-router-dom";
 
 import logoImg from "../assets/images/logo.png";
+import { useRecoilValue } from "recoil";
+import { userData } from "../store";
 
 const { Sider } = Layout;
 
 export default function Sidebar({ collapsed }) {
+  const loginUser = useRecoilValue(userData);
   let openkeys = useLocation().pathname;
   const pathname = useLocation().pathname;
   if (openkeys.split("/").length > 2) openkeys = `/${openkeys.split("/")[1]}`;
@@ -22,11 +25,13 @@ export default function Sidebar({ collapsed }) {
       key: "/home",
       icon: <HomeOutlined style={{ fontSize: "20px" }} type="setting" />,
       label: <Link to="/home">Home</Link>,
+      role: ["admin", "producer"],
     },
     {
       key: "/order",
       icon: <FileDoneOutlined style={{ fontSize: "20px" }} type="setting" />,
       label: <Link to="/order">Orders</Link>,
+      role: ["admin", "producer"],
     },
     {
       key: "/producttag",
@@ -42,6 +47,7 @@ export default function Sidebar({ collapsed }) {
           label: <Link to="/product/create">Create</Link>,
         },
       ],
+      role: ["admin", "producer"],
     },
     {
       key: "/usertag",
@@ -57,8 +63,12 @@ export default function Sidebar({ collapsed }) {
           label: <Link to="/user/create">Create</Link>,
         },
       ],
+      role: ["admin"],
     },
   ];
+  const filterMenu = menuItems.filter((menu) =>
+    menu.role.includes(loginUser.type)
+  );
   return (
     <Sider
       breakpoint="lg"
@@ -84,7 +94,7 @@ export default function Sidebar({ collapsed }) {
         style={{
           padding: "10px",
         }}
-        items={menuItems}
+        items={filterMenu}
       />
     </Sider>
   );

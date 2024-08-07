@@ -9,7 +9,7 @@ import api from "../api/helper";
 const { Title } = Typography;
 export default function Home() {
   const [loading, setLoading] = useState("");
-  const [userCount, setUserCount] = useState("");
+  const [data, setData] = useState("");
 
   useEffect(() => {
     fetchUserCount();
@@ -18,11 +18,11 @@ export default function Home() {
   const fetchUserCount = async () => {
     setLoading(true);
     try {
-      const res = await api.get("users/count", {
+      const res = await api.get("order/analysis", {
         headers: { requireToken: true },
       });
       if (res.data) {
-        setUserCount(res.data);
+        setData(res.data);
         setLoading(false);
       }
     } catch (error) {
@@ -33,23 +33,23 @@ export default function Home() {
 
   const count = [
     {
-      today: "Total User",
-      title: userCount,
+      today: "Total Customer",
+      title: data.customerCount,
       icon: <UserOutlined style={{ fontSize: 18 }} />,
     },
     {
       today: "Total Producer",
-      title: "5",
+      title: data.producerCount,
       icon: <UserOutlined style={{ fontSize: 18 }} />,
     },
     {
-      today: "Total Customer",
-      title: "20",
+      today: "Total Product",
+      title: data.productCount,
       icon: <UserOutlined style={{ fontSize: 18 }} />,
     },
     {
       today: "Total Order",
-      title: "1000",
+      title: data.orderCount,
       icon: <UserOutlined style={{ fontSize: 18 }} />,
     },
   ];
@@ -149,10 +149,10 @@ export default function Home() {
         </Row> */}
         <Row gutter={[16, 16]}>
           <Col span={10}>
-            <ColumnChart />
+            <ColumnChart data={data.barChart} />
           </Col>
           <Col>
-            <PieChart />
+            <PieChart data={data.pieChart} />
           </Col>
         </Row>
       </Spin>

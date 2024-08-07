@@ -155,10 +155,9 @@ export default function App() {
         createdAt: item.attributes.createdAt,
         updatedAt: item.attributes.updatedAt,
       }));
-      console.log(transformedArray, "tarad");
       let newData = { ...res.data, data: transformedArray };
       setData(newData);
-      setTotalItems(res.meta.pagination.total);
+      setTotalItems(res.data.meta.pagination.total);
       setLoading(false);
     } catch (error) {
       setLoading(false);
