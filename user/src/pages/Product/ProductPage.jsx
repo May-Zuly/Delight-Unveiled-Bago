@@ -11,6 +11,7 @@ import {
   Row,
   Typography,
 } from "antd";
+import { ShoppingCartOutlined } from "@ant-design/icons";
 import { useEffect, useState } from "react";
 
 import ProductSearch from "./ProductSearch";
@@ -194,6 +195,7 @@ export default function ProductPage() {
                     type="link"
                     onClick={() => addProductToCart(product)}
                     disabled={product.attributes.stock === 0} // Disable button if out of stock
+                    icon={<ShoppingCartOutlined />}
                   >
                     Add to Cart{" "}
                     {getQuantity(product.id) && (
@@ -223,7 +225,7 @@ export default function ProductPage() {
                         Name: {product.attributes.name}
                       </Typography.Paragraph>
                       <Typography.Paragraph>
-                        Price: ${product.attributes.price}
+                        Price: ks {product.attributes.price}
                       </Typography.Paragraph>
                     </>
                   }
