@@ -1,10 +1,36 @@
 "use strict";
+const { eachDayOfInterval, formatISO, format, subDays } = require("date-fns");
 
 /**
  * order controller
  */
 
 const { createCoreController } = require("@strapi/strapi").factories;
+
+const limit = 999999;
+
+const getDataByDateRange = (data) => {
+  const today = new Date();
+  const startDate = subDays(today, 6);
+  const dates = eachDayOfInterval({ start: startDate, end: today });
+  const formattedDates = dates.map((date) => format(date, "yyyy-MM-dd"));
+
+  const result = [];
+  formattedDates.forEach((date) => {
+    const targetData = data.filter(
+      (d) => format(d.createdAt, "yyyy-MM-dd") === date
+    );
+    let count = 0;
+    targetData.forEach((t) => {
+      count += t.total ? parseInt(t.total) : 1;
+    });
+    result.push({
+      date,
+      value: count,
+    });
+  });
+  return result;
+};
 
 module.exports = createCoreController("api::order.order", ({ strapi }) => ({
   async orderList(ctx) {
@@ -20,16 +46,16 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
       }
       if (fromDate && toDate) {
         conditions.createdAt = {
-          $gt: new Date(fromDate).toISOString(),
-          $lt: new Date(toDate).toISOString(),
+          $gt: format(fromDate, "yyyy-MM-dd"),
+          $lt: format(toDate, "yyyy-MM-dd"),
         };
       } else if (fromDate) {
         conditions.createdAt = {
-          $gt: new Date(fromDate).toISOString(),
+          $gt: format(fromDate, "yyyy-MM-dd"),
         };
       } else if (toDate) {
         conditions.createdAt = {
-          $lt: new Date(toDate).toISOString(),
+          $lt: format(toDate, "yyyy-MM-dd"),
         };
       }
       const entries = await strapi.db.query("api::order.order").findMany({
@@ -41,6 +67,7 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
           customer: true,
           purchases: { populate: { product: { populate: { image: true } } } },
         },
+        limit,
       });
       return entries.map((entry) => ({
         ...entry,
@@ -60,8 +87,64 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
             : [],
       }));
     } catch (error) {
-      console.error(error);
       ctx.badRequest(error, "Error in fetch order list");
+    }
+  },
+
+  async orderAnalysis(ctx) {
+    try {
+      const currentDate = new Date();
+
+      const startOfWeek = subDays(currentDate, 7);
+      const endOfWeek = currentDate;
+
+      const formattedStartOfWeek = formatISO(startOfWeek);
+      const formattedEndOfWeek = formatISO(endOfWeek);
+
+      const weekOrders = await strapi.db.query("api::order.order").findMany({
+        where: {
+          createdAt: {
+            $gt: formattedStartOfWeek,
+            $lt: formattedEndOfWeek,
+          },
+        },
+        limit,
+      });
+      const barChart = getDataByDateRange(weekOrders);
+      const weekProducts = await strapi.db
+        .query("api::product.product")
+        .findMany({
+          where: {
+            createdAt: {
+              $gt: formattedStartOfWeek,
+              $lt: formattedEndOfWeek,
+            },
+          },
+          limit,
+        });
+      const pieChart = getDataByDateRange(weekProducts);
+      const products = await strapi.db.query("api::product.product").findMany({
+        limit,
+      });
+      const orders = await strapi.db.query("api::order.order").findMany({
+        limit,
+      });
+      const customers = await strapi
+        .query("plugin::users-permissions.user")
+        .findMany({ where: { type: "customer" } });
+      const producers = await strapi
+        .query("plugin::users-permissions.user")
+        .findMany({ where: { type: "producer" } });
+      return {
+        barChart,
+        pieChart,
+        customerCount: customers.length,
+        producerCount: producers.length,
+        productCount: products.length,
+        orderCount: orders.length,
+      };
+    } catch (err) {
+      ctx.badRequest(err, "Error in fetch order analysis data!");
     }
   },
 
@@ -100,7 +183,6 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
 
       return entry;
     } catch (error) {
-      console.error(error);
       ctx.badRequest(error, "Error in fetch order detail");
     }
   },
@@ -159,8 +241,7 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
       });
       return "Success";
     } catch (err) {
-      console.log(err);
-      ctx.badRequest("Error in create order payment", err);
+      ctx.badRequest(err, "Error in create order payment");
     }
   },
 }));

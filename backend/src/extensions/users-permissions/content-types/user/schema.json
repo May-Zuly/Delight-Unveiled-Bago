@@ -103,17 +103,17 @@
       "target": "api::rating.rating",
       "mappedBy": "customer"
     },
-    "products": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::product.product",
-      "mappedBy": "customer"
-    },
     "orders": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::order.order",
       "mappedBy": "customer"
+    },
+    "products": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::product.product",
+      "mappedBy": "seller"
     }
   }
 }

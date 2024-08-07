@@ -7,6 +7,11 @@ module.exports = {
     },
     {
       method: "GET",
+      path: "/order/analysis",
+      handler: "order.orderAnalysis",
+    },
+    {
+      method: "GET",
       path: "/order/detail/:id",
       handler: "order.orderDetail",
     },

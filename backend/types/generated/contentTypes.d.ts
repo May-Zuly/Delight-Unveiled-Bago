@@ -786,15 +786,15 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'oneToMany',
       'api::rating.rating'
     >;
-    products: Attribute.Relation<
-      'plugin::users-permissions.user',
-      'oneToMany',
-      'api::product.product'
-    >;
     orders: Attribute.Relation<
       'plugin::users-permissions.user',
       'oneToMany',
       'api::order.order'
+    >;
+    products: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'oneToMany',
+      'api::product.product'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -924,7 +924,7 @@ export interface ApiProductProduct extends Schema.CollectionType {
     description: Attribute.Text & Attribute.Required;
     price: Attribute.BigInteger & Attribute.Required;
     stock: Attribute.Integer;
-    customer: Attribute.Relation<
+    seller: Attribute.Relation<
       'api::product.product',
       'manyToOne',
       'plugin::users-permissions.user'
