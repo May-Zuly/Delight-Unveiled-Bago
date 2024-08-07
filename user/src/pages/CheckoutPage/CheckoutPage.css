@@ -1,13 +1,15 @@
-
+.checkout-container{
+  margin: 20px auto;
+}
 
 .checkout-form {
   max-width: 600px;
   margin: auto;
 }
 
-.summary-card {
+/* .summary-card {
   margin-top: 20px;
-}
+} */
 
 .total-amount {
   font-weight: bold;

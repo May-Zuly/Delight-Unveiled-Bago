@@ -15,6 +15,7 @@ import LoginFormApp from "./pages/Login/LoginForm";
 import LogoutPage from "./pages/Logout/LogoutPage";
 import ProductPage from "./pages/Product/ProductPage";
 import Register from "./pages/Register/RegisterPage";
+import ProductDetailPage from "./pages/Product/ProductDetail";
 
 const App = () => {
   return (
@@ -33,6 +34,7 @@ const App = () => {
           <Route path="/feature-detail" element={<FeatureDetail />} />
           <Route path="/checkout" element={<CheckoutPage />} />
           <Route path="/about-us-page" element={<AboutUsPage />} />
+          <Route path="/product-details" element={<ProductDetailPage/>}/>
         </Routes>
       </DefaultLayout>
     </Router>
