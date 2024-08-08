@@ -1,0 +1,40 @@
+.user-profile-container {
+    padding: 24px;
+    max-width: 800px;
+    margin:20px auto;
+    background-color: #f9f9f9;
+    /* background-color:#ece6e6; */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  .user-info-card{
+    background-color: #aa620f;
+    color: aliceblue;
+  }
+  
+  .user-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 24px;
+  }
+  
+  .user-details {
+    margin-left: 16px;
+  }
+  
+  .profile-tabs {
+    margin-top: 24px;
+   
+  }
+
+  .ant-tabs-tab:hover {
+    color: #995f20;
+  }
+
+  .ant-tabs-ink-bar {
+    background-color: #995f20 !important;
+  }
+
+  .ant-tabs-tab-active .ant-tabs-tab-btn {
+    color: #995f20 !important;
+  }
