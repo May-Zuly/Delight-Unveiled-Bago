@@ -19,8 +19,10 @@ import api from "../../api/helper";
 import { cart } from "../../store";
 import qs from "qs";
 import { useRecoilState } from "recoil";
+import { useNavigate } from "react-router-dom";
 
 export default function ProductPage() {
+  const navigate = useNavigate();
   const [cartData, setCartData] = useRecoilState(cart);
   const [searchData, setSearchData] = useState({
     minPrice: "",
@@ -165,6 +167,7 @@ export default function ProductPage() {
             sm={12}
             md={8}
             lg={6} // Mobile (1 column), Tablet (2 columns), Desktop (4 columns)
+            onClick={() => navigate(`/product/${product.id}`)}
           >
             {currentPage === 1 && (
               <Badge.Ribbon

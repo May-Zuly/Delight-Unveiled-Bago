@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2024-08-07T14:41:30.491Z"
+    "x-generation-date": "2024-08-08T16:03:40.268Z"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -1154,7 +1154,7 @@
                                                           "attributes": {
                                                             "type": "object",
                                                             "properties": {
-                                                              "Rate": {
+                                                              "rating": {
                                                                 "type": "integer"
                                                               },
                                                               "product": {
@@ -1190,6 +1190,9 @@
                                                                     }
                                                                   }
                                                                 }
+                                                              },
+                                                              "comment": {
+                                                                "type": "string"
                                                               },
                                                               "createdAt": {
                                                                 "type": "string",
@@ -3392,7 +3395,7 @@
                                                                       "attributes": {
                                                                         "type": "object",
                                                                         "properties": {
-                                                                          "Rate": {
+                                                                          "rating": {
                                                                             "type": "integer"
                                                                           },
                                                                           "product": {
@@ -3428,6 +3431,9 @@
                                                                                 }
                                                                               }
                                                                             }
+                                                                          },
+                                                                          "comment": {
+                                                                            "type": "string"
                                                                           },
                                                                           "createdAt": {
                                                                             "type": "string",
@@ -5608,7 +5614,7 @@
                                                           "attributes": {
                                                             "type": "object",
                                                             "properties": {
-                                                              "Rate": {
+                                                              "rating": {
                                                                 "type": "integer"
                                                               },
                                                               "product": {
@@ -5644,6 +5650,9 @@
                                                                     }
                                                                   }
                                                                 }
+                                                              },
+                                                              "comment": {
+                                                                "type": "string"
                                                               },
                                                               "createdAt": {
                                                                 "type": "string",
@@ -8368,7 +8377,7 @@
                                             "attributes": {
                                               "type": "object",
                                               "properties": {
-                                                "Rate": {
+                                                "rating": {
                                                   "type": "integer"
                                                 },
                                                 "product": {
@@ -8404,6 +8413,9 @@
                                                       }
                                                     }
                                                   }
+                                                },
+                                                "comment": {
+                                                  "type": "string"
                                                 },
                                                 "createdAt": {
                                                   "type": "string",
@@ -8880,11 +8892,11 @@
         "properties": {
           "data": {
             "required": [
-              "Rate"
+              "rating"
             ],
             "type": "object",
             "properties": {
-              "Rate": {
+              "rating": {
                 "type": "integer"
               },
               "product": {
@@ -8908,6 +8920,9 @@
                   }
                 ],
                 "example": "string or id"
+              },
+              "comment": {
+                "type": "string"
               }
             }
           }
@@ -8962,10 +8977,10 @@
       "Rating": {
         "type": "object",
         "required": [
-          "Rate"
+          "rating"
         ],
         "properties": {
-          "Rate": {
+          "rating": {
             "type": "integer"
           },
           "product": {
@@ -10430,7 +10445,7 @@
                                             "attributes": {
                                               "type": "object",
                                               "properties": {
-                                                "Rate": {
+                                                "rating": {
                                                   "type": "integer"
                                                 },
                                                 "product": {
@@ -10466,6 +10481,9 @@
                                                       }
                                                     }
                                                   }
+                                                },
+                                                "comment": {
+                                                  "type": "string"
                                                 },
                                                 "createdAt": {
                                                   "type": "string",
@@ -10850,6 +10868,9 @@
                 }
               }
             }
+          },
+          "comment": {
+            "type": "string"
           },
           "createdAt": {
             "type": "string",

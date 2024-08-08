@@ -12,7 +12,7 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "Rate": {
+    "rating": {
       "type": "integer",
       "max": 5,
       "min": 0,
@@ -29,6 +29,10 @@
       "relation": "manyToOne",
       "target": "plugin::users-permissions.user",
       "inversedBy": "ratings"
+    },
+    "comment": {
+      "type": "text",
+      "required": false
     }
   }
 }

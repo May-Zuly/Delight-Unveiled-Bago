@@ -15,16 +15,18 @@ function LoginFormApp() {
       const res = await api.post("auth/local", values, {
         headers: { requireToken: false },
       });
-      messageApi.open({
-        type: "success",
-        content: "Login Successful!",
-      });
+
       if (res.data && res.data.user.type === "customer") {
+        messageApi.open({
+          type: "success",
+          content: "Login Successful!",
+        });
         localStorage.setItem("loginUser", JSON.stringify(res.data));
         navigate("/");
+      } else {
+        message.error("Please Login Again!!");
       }
     } catch (error) {
-      console.error("Login error : ", error);
       messageApi.open({
         type: "error",
         content: "Invalid email or password!",

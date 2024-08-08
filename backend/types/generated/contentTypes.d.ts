@@ -1015,7 +1015,7 @@ export interface ApiRatingRating extends Schema.CollectionType {
     draftAndPublish: false;
   };
   attributes: {
-    Rate: Attribute.Integer &
+    rating: Attribute.Integer &
       Attribute.Required &
       Attribute.SetMinMax<
         {
@@ -1034,6 +1034,7 @@ export interface ApiRatingRating extends Schema.CollectionType {
       'manyToOne',
       'plugin::users-permissions.user'
     >;
+    comment: Attribute.Text;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
