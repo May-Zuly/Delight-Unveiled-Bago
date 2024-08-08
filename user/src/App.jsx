@@ -16,6 +16,7 @@ import LogoutPage from "./pages/Logout/LogoutPage";
 import ProductPage from "./pages/Product/ProductPage";
 import Register from "./pages/Register/RegisterPage";
 import ProductDetailPage from "./pages/Product/ProductDetail";
+import UserProfile from "./pages/Profile/UserProfile";
 
 const App = () => {
   return (
@@ -35,6 +36,7 @@ const App = () => {
           <Route path="/checkout" element={<CheckoutPage />} />
           <Route path="/about-us-page" element={<AboutUsPage />} />
           <Route path="/product/:id" element={<ProductDetailPage />} />
+          <Route path="/profile" element={<UserProfile />} />
         </Routes>
       </DefaultLayout>
     </Router>
