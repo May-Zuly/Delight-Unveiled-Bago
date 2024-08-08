@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Tabs, Button, Row, Col, Card, Tag ,Typography } from "antd";
+import { Tabs, Button, Row, Col, Card, Tag, Typography } from "antd";
 import { EyeOutlined, ShoppingCartOutlined } from "@ant-design/icons";
 import qs from "qs";
 import { useNavigate } from "react-router-dom";
@@ -10,8 +10,7 @@ import api from "../../api/helper";
 import "antd/dist/reset.css"; // Optional: reset Ant Design styles to remove any conflicts
 import "./ProductSection.css";
 
-
-const { Title, Paragraph} = Typography;
+const { Title, Paragraph } = Typography;
 const { TabPane } = Tabs;
 
 const fetchProducts = async () => {
@@ -88,9 +87,13 @@ const ProductSection = () => {
         <Row gutter={[16, 16]} align="bottom">
           <Col lg={24}>
             <div className="section-header">
-              <Title level={2} className="product-title">Our Products</Title>
+              <Title level={2} className="product-title">
+                Our Products
+              </Title>
               <Paragraph className="product-description">
-              Discover an exquisite selection of groceries and artifacts from the Bago Region, meticulously curated to bring the best of our heritage and quality to your doorstep!
+                Discover an exquisite selection of groceries and artifacts from
+                the Bago Region, meticulously curated to bring the best of our
+                heritage and quality to your doorstep!
               </Paragraph>
             </div>
           </Col>
@@ -103,75 +106,88 @@ const ProductSection = () => {
                 <>
                   {products.map((product) => (
                     <Col xl={6} lg={8} md={12} key={product.id}>
-                      <Card
-                        hoverable
-                        cover={
-                          <img
-                            alt={product.attributes.name}
-                            src={
-                              `http://localhost:1337` +
-                              product.attributes.image.data.attributes.url
-                            }
-                            className="card-img"
-                          />
-                        }
-                      >
-                        <Tag color="magenta" className="position-absolute">
-                          New
-                        </Tag>
-                        <Card.Meta
-                          title={product.attributes.name}
-                          className="text-title"
-                        />
-                        <div className="price mt-2">
-                          <span className="text-primary me-1">
-                            Ks {product.attributes.price}
-                          </span>
-                        </div>
-                        <div
-                          className="actions mt-3"
-                          style={{
-                            display: "flex",
-                            justifyContent: "space-between",
-                          }}
+                      <div className="itemCardWrapper">
+                        {product.attributes.stock === 0 && (
+                          <div className="itemCardOverlay">Out of Stock</div>
+                        )}
+                        <Card
+                          hoverable
+                          cover={
+                            <img
+                              alt={product.attributes.name}
+                              src={
+                                `http://localhost:1337` +
+                                product.attributes.image.data.attributes.url
+                              }
+                              className="card-img"
+                            />
+                          }
                         >
-                          <Button type="link" icon={<EyeOutlined />}>
-                            View detail
-                          </Button>
-                          <Button
-                            type="link"
-                            icon={
-                              <div className="cartButton">
-                                {getQuantity(product.id) ? (
-                                  <div
-                                    style={{
-                                      width: "30px",
-                                      height: "30px",
-                                      borderRadius: "50%",
-                                      background: "rgb(170, 98, 15)",
-                                      color: "white",
-                                      display: "flex",
-                                      justifyContent: "center",
-                                      alignItems: "center",
-                                      marginLeft: "8px",
-                                    }}
-                                  >
-                                    {getQuantity(product.id)}
-                                  </div>
-                                ) : (
-                                  <Button
-                                    style={{ border: "none" }}
-                                    icon={<ShoppingCartOutlined />}
-                                  />
-                                )}
-                              </div>
-                            }
-                            onClick={() => addProductToCart(product)}
+                          <Tag color="magenta" className="position-absolute">
+                            New
+                          </Tag>
+                          <Card.Meta
+                            title={product.attributes.name}
+                            className="text-title"
+                          />
+                          <div className="price mt-2">
+                            <span className="text-primary me-1">
+                              Ks {product.attributes.price}
+                            </span>
+                          </div>
+                          <div
+                            className="actions mt-3"
+                            style={{
+                              display: "flex",
+                              justifyContent: "space-between",
+                            }}
                           >
-                            Add to Cart
-                          </Button>
-                        </div>
-                      </Card>
+                            <Button
+                              type="link"
+                              icon={<EyeOutlined />}
+                              onClick={() => {
+                                product.attributes.stock > 0 &&
+                                  navigate(`/product/${product.id}`);
+                              }}
+                            >
+                              View detail
+                            </Button>
+                            <Button
+                              type="link"
+                              icon={
+                                <div className="cartButton">
+                                  {getQuantity(product.id) ? (
+                                    <div
+                                      style={{
+                                        width: "30px",
+                                        height: "30px",
+                                        borderRadius: "50%",
+                                        background: "rgb(170, 98, 15)",
+                                        color: "white",
+                                        display: "flex",
+                                        justifyContent: "center",
+                                        alignItems: "center",
+                                        marginLeft: "8px",
+                                      }}
+                                    >
+                                      {getQuantity(product.id)}
+                                    </div>
+                                  ) : (
+                                    <Button
+                                      style={{ border: "none" }}
+                                      icon={<ShoppingCartOutlined />}
+                                    />
+                                  )}
+                                </div>
+                              }
+                              disabled={product.attributes.stock === 0}
+                              onClick={() => addProductToCart(product)}
+                            >
+                              Add to Cart
+                            </Button>
+                          </div>
+                        </Card>
+                      </div>
                     </Col>
                   ))}
                 </>
@@ -184,16 +200,16 @@ const ProductSection = () => {
                 size="large"
                 onClick={() => navigate("/products")}
                 style={{
-                    backgroundColor: '#995f20',
-                    borderColor: '#aa620f',
+                  backgroundColor: "#995f20",
+                  borderColor: "#aa620f",
                 }}
                 onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = '#dda15e';
-                    e.currentTarget.style.borderColor = '#995f20';
+                  e.currentTarget.style.backgroundColor = "#dda15e";
+                  e.currentTarget.style.borderColor = "#995f20";
                 }}
                 onMouseLeave={(e) => {
-                    e.currentTarget.style.backgroundColor = '#995f20';
-                    e.currentTarget.style.borderColor = '#aa620f';
+                  e.currentTarget.style.backgroundColor = "#995f20";
+                  e.currentTarget.style.borderColor = "#aa620f";
                 }}
               >
                 Browse More Products

@@ -1,28 +1,22 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import {
-  Card,
-  Rate,
-  List,
-  Form,
-  Input,
-  Button,
-  Avatar,
-  Image,
-  message,
-} from "antd";
+import { Card, Rate, List, Form, Input, Button, Image, message } from "antd";
 import { Comment } from "@ant-design/compatible";
 import "./ProductDetail.css";
 import { ShoppingCartOutlined } from "@ant-design/icons";
 import qs from "qs";
 import api from "../../api/helper";
 import { format } from "date-fns";
+import { cart } from "../../store";
+import { useRecoilState } from "recoil";
 
 const { TextArea } = Input;
 
 const ProductDetailPage = () => {
   const loginUser = JSON.parse(localStorage.getItem("loginUser"));
   const { id } = useParams();
+
+  const [cartData, setCartData] = useRecoilState(cart);
   const [product, setProduct] = useState({});
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
@@ -53,19 +47,19 @@ const ProductDetailPage = () => {
         }
       );
       const res = await api.get(`products/${id}?${query}`, {
-        headers: { requireToken: true },
+        headers: { requireToken: !!loginUser },
       });
       setProduct(res.data.data);
-      setComments(res.data.data?.attributes?.ratings.data);
-      const ratingData = res.data.data?.attributes?.ratings.data || 0;
-      const totalRating = ratingData.length * 5;
-      const getRating = ratingData.reduce((accumulator, current) => {
-        return accumulator + current.attributes.rating;
-      }, 0);
-      console.log(totalRating, getRating);
-      const rating = (getRating / totalRating) * 5;
-      console.log(rating);
-      setProductRate(rating);
+      if (res.data.data?.attributes?.ratings) {
+        setComments(res.data.data?.attributes?.ratings.data);
+        const ratingData = res.data.data?.attributes?.ratings.data || 0;
+        const totalRating = ratingData.length * 5;
+        const getRating = ratingData.reduce((accumulator, current) => {
+          return accumulator + current.attributes.rating;
+        }, 0);
+        const rating = (getRating / totalRating) * 5;
+        setProductRate(rating);
+      }
     } catch (error) {
       message.error("Error fetching products: ");
     }
@@ -92,6 +86,31 @@ const ProductDetailPage = () => {
       fetchProducts();
     }
   };
+
+  const addProductToCart = (product) => {
+    setCartData((prevCartData) => {
+      let cartList = prevCartData.map((item) => ({ ...item }));
+      const productIndex = cartList.findIndex((d) => d.id === product.id);
+
+      if (productIndex > -1) {
+        cartList[productIndex] = {
+          ...cartList[productIndex],
+          quantity: cartList[productIndex].quantity + 1,
+        };
+      } else {
+        const newProduct = { ...product, quantity: 1 };
+        cartList.push(newProduct);
+      }
+
+      return cartList;
+    });
+  };
+
+  const getQuantity = (id) => {
+    const data = cartData.find((d) => d.id === id);
+    return data?.quantity || "";
+  };
+
   return (
     <div className="product-detail-container">
       {product && product.attributes && (
@@ -105,10 +124,43 @@ const ProductDetailPage = () => {
             />
           }
           actions={[
-            <Rate disabled defaultValue={productRate} />,
-            <Button type="link" icon={<ShoppingCartOutlined />}>
-              Add to Cart
-            </Button>,
+            <>
+              <Rate disabled defaultValue={productRate} />,
+              <Button
+                type="link"
+                icon={
+                  <div className="cartButton">
+                    {getQuantity(product.id) ? (
+                      <div
+                        style={{
+                          width: "30px",
+                          height: "30px",
+                          borderRadius: "50%",
+                          background: "rgb(170, 98, 15)",
+                          color: "white",
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          marginLeft: "8px",
+                        }}
+                      >
+                        {getQuantity(product.id)}
+                      </div>
+                    ) : (
+                      <Button
+                        style={{ border: "none" }}
+                        icon={<ShoppingCartOutlined />}
+                      />
+                    )}
+                  </div>
+                }
+                onClick={() => addProductToCart(product)}
+                disabled={product.attributes.stock === 0}
+              >
+                Add to Cart
+              </Button>
+              ,
+            </>,
           ]}
         >
           <b>{product?.attributes?.price} MMK</b>

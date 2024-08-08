@@ -11,7 +11,7 @@ import {
   Row,
   Typography,
 } from "antd";
-import { ShoppingCartOutlined } from "@ant-design/icons";
+import { EyeOutlined, ShoppingCartOutlined } from "@ant-design/icons";
 import { useEffect, useState } from "react";
 
 import ProductSearch from "./ProductSearch";
@@ -167,7 +167,6 @@ export default function ProductPage() {
             sm={12}
             md={8}
             lg={6} // Mobile (1 column), Tablet (2 columns), Desktop (4 columns)
-            onClick={() => navigate(`/product/${product.id}`)}
           >
             {currentPage === 1 && (
               <Badge.Ribbon
@@ -189,36 +188,50 @@ export default function ProductPage() {
                     className="itemCardImage"
                     src={`http://localhost:1337${product.attributes.image.data.attributes.url}`}
                     alt={product.attributes.title}
+                    preview={product.attributes.stock > 0}
                   />
                 }
                 actions={[
-                  <Rate key={product.id} value={product.attributes.rating} />,
-                  <Button
-                    key={product.id}
-                    type="link"
-                    onClick={() => addProductToCart(product)}
-                    disabled={product.attributes.stock === 0} // Disable button if out of stock
-                    icon={<ShoppingCartOutlined />}
-                  >
-                    Add to Cart{" "}
-                    {getQuantity(product.id) && (
-                      <div
-                        style={{
-                          width: "30px",
-                          height: "30px",
-                          borderRadius: "50%",
-                          background: "rgb(170, 98, 15)",
-                          color: "white",
-                          display: "flex",
-                          justifyContent: "center",
-                          alignItems: "center",
-                          marginLeft: "8px",
-                        }}
-                      >
-                        {getQuantity(product.id)}
-                      </div>
-                    )}
-                  </Button>,
+                  <>
+                    {/* <Rate key={product.id} value={product.attributes.rating} />, */}
+                    <Button
+                      type="link"
+                      icon={<EyeOutlined />}
+                      onClick={() => {
+                        product.attributes.stock > 0 &&
+                          navigate(`/product/${product.id}`);
+                      }}
+                    >
+                      View detail
+                    </Button>
+                    <Button
+                      key={product.id}
+                      type="link"
+                      onClick={() => addProductToCart(product)}
+                      disabled={product.attributes.stock === 0} // Disable button if out of stock
+                      icon={<ShoppingCartOutlined />}
+                    >
+                      Add to Cart{" "}
+                      {getQuantity(product.id) && (
+                        <div
+                          style={{
+                            width: "30px",
+                            height: "30px",
+                            borderRadius: "50%",
+                            background: "rgb(170, 98, 15)",
+                            color: "white",
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            marginLeft: "8px",
+                          }}
+                        >
+                          {getQuantity(product.id)}
+                        </div>
+                      )}
+                    </Button>
+                    ,
+                  </>,
                 ]}
               >
                 <Card.Meta
