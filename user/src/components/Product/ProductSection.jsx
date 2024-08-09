@@ -132,7 +132,7 @@ const ProductSection = () => {
                           />
                           <div className="price mt-2">
                             <span className="text-primary me-1">
-                              Ks {product.attributes.price}
+                              MMK {product.attributes.price}
                             </span>
                           </div>
                           <div

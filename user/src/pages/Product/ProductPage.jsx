@@ -241,7 +241,7 @@ export default function ProductPage() {
                         Name: {product.attributes.name}
                       </Typography.Paragraph>
                       <Typography.Paragraph>
-                        Price: ks {product.attributes.price}
+                        Price: MMK {product.attributes.price}
                       </Typography.Paragraph>
                     </>
                   }

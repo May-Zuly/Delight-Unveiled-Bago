@@ -55,8 +55,8 @@ const BlogProfile = () => {
             <h1 className="entry-headline primary-headline">
               {blogData[id]?.title}
             </h1>
-            <time className="entry-date meta">January 24, 2021</time>
-            <span className="entry-byline meta">by Alex Trost</span>
+            <time className="entry-date meta">July 22, 2024</time>
+            <span className="entry-byline meta"> by May Zuly Moe</span>
             <p className="entry-summary">{blogData[id]?.description}</p>
           </div>
         </article>
@@ -72,8 +72,8 @@ const BlogProfile = () => {
             <h1 className="entry-headline primary-headline">
               {blogData[nextId]?.title}
             </h1>
-            <time className="entry-date meta">January 24, 2021</time>
-            <span className="entry-byline meta">by Alex Trost</span>
+            <time className="entry-date meta">June 30, 2024</time>
+            <span className="entry-byline meta"> by May Zuly Moe</span>
             <Typography.Paragraph className="entry-summary" ellipsis={{ rows: 2, expandable: true, symbol: "more" }}>{blogData[nextId]?.description}</Typography.Paragraph>
           </a>
         </article>
@@ -89,8 +89,8 @@ const BlogProfile = () => {
             <h1 className="entry-headline primary-headline">
               {blogData[nextId2]?.title}
             </h1>
-            <time className="entry-date meta">January 24, 2021</time>
-            <span className="entry-byline meta">by Alex Trost</span>
+            <time className="entry-date meta">June 22, 2024</time>
+            <span className="entry-byline meta"> by May Zuly Moe</span>
             <Typography.Paragraph className="entry-summary" ellipsis={{ rows: 2, expandable: true, symbol: "more" }}>{blogData[nextId2]?.description}</Typography.Paragraph>
           </a>
         </article>

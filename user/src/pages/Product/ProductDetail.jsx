@@ -125,7 +125,7 @@ const ProductDetailPage = () => {
           }
           actions={[
             <>
-              <Rate disabled defaultValue={productRate} />,
+              <Rate disabled defaultValue={productRate} className="product-rate-section"/>
               <Button
                 type="link"
                 icon={
@@ -159,7 +159,6 @@ const ProductDetailPage = () => {
               >
                 Add to Cart
               </Button>
-              ,
             </>,
           ]}
         >
