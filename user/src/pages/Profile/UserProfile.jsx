@@ -1,63 +1,53 @@
-import React, { useState } from "react";
-import {
-  Card,
-  Tabs,
-  List,
-  Avatar,
-  Button,
-  Form,
-  Input,
-  Space,
-  Typography,
-} from "antd";
+import { useState, useEffect } from "react";
+import { Card, Tabs, List, Avatar, Button, Form, Input, message } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 import "./UserProfile.css";
+import dayjs from "dayjs";
+import api from "../../api/helper";
 
 const { TabPane } = Tabs;
-const { Text } = Typography;
 
 const UserProfile = () => {
+  const loginUser = JSON.parse(localStorage.getItem("loginUser"));
   const [userInfo, setUserInfo] = useState({
-    name: "John Doe",
-    email: "john.doe@example.com",
+    id: loginUser.user.id,
+    username: loginUser.user.username,
+    email: loginUser.user.email,
     avatar: "https://randomuser.me/api/portraits/men/1.jpg",
-    password: "password123",
+    password: loginUser.user.password,
+    phoneNumber: loginUser.user.phoneNumber,
+    address: loginUser.user.address,
   });
 
-  const [orderHistory, setOrderHistory] = useState([
-    {
-      id: 1,
-      product: "Product 1",
-      date: "2024-08-01",
-      status: "Delivered",
-    },
-    {
-      id: 2,
-      product: "Product 2",
-      date: "2024-08-05",
-      status: "In Transit",
-    },
-  ]);
+  const [orderHistory, setOrderHistory] = useState([]);
 
-  const [savedProducts, setSavedProducts] = useState([
-    {
-      id: 1,
-      product: "Product A",
-      description: "Description of Product A",
-      image: "https://via.placeholder.com/150",
-      quantity: 2,
-    },
-    {
-      id: 2,
-      product: "Product B",
-      description: "Description of Product B",
-      image: "https://via.placeholder.com/150",
-      quantity: 1,
-    },
-  ]);
+  useEffect(() => {
+    fetchOrders();
+  }, []);
 
-  const handleUpdateProfile = (values) => {
-    setUserInfo({ ...userInfo, ...values });
+  const fetchOrders = async () => {
+    try {
+      let filter = "";
+      const res = await api.get(`order/list?${filter}`, {
+        headers: { requireToken: true },
+      });
+      setOrderHistory(res.data);
+    } catch (error) {
+      message.error("Error Occur");
+    }
+  };
+
+  const handleUpdateProfile = async (data) => {
+    try {
+      const res = await api.put(`users/${data.id}`, data, {
+        headers: { requireToken: true },
+      });
+      if (res.data) {
+        setUserInfo(res.data);
+      }
+    } catch (error) {
+      message.error("Error Occur");
+    }
   };
 
   return (
@@ -66,7 +56,7 @@ const UserProfile = () => {
         <div className="user-info">
           <Avatar size={100} src={userInfo.avatar} icon={<UserOutlined />} />
           <div className="user-details">
-            <h2>{userInfo.name}</h2>
+            <h2>{userInfo.username}</h2>
             <p>{userInfo.email}</p>
           </div>
         </div>
@@ -80,28 +70,24 @@ const UserProfile = () => {
             renderItem={(item) => (
               <List.Item>
                 <List.Item.Meta
-                  title={item.product}
-                  description={`Date: ${item.date} - Status: ${item.status}`}
-                />
-              </List.Item>
-            )}
-          />
-        </TabPane>
-        <TabPane tab="Saved Products" key="2">
-          <List
-            itemLayout="horizontal"
-            dataSource={savedProducts}
-            renderItem={(item) => (
-              <List.Item>
-                <List.Item.Meta
-                  avatar={<Avatar src={item.image} shape="square" size={64} />}
-                  title={item.product}
+                  title={
+                    <>
+                      Product Name
+                      {item.purchases.map((data, index) => (
+                        <div key={index} style={{ marginLeft: "15px" }}>
+                          - {data.product_name}
+                        </div>
+                      ))}
+                    </>
+                  }
                   description={
-                    <div>
-                      <Text>{item.description}</Text>
+                    <>
+                      Total Amount: {item.total} <br />
+                      Date:{" "}
+                      {dayjs(item.createdAt).format("YYYY/MM/DD HH:mm:ss")}{" "}
                       <br />
-                      <Text strong>Quantity: {item.quantity}</Text>
-                    </div>
+                      Status: {item.status}
+                    </>
                   }
                 />
               </List.Item>
@@ -114,9 +100,12 @@ const UserProfile = () => {
             initialValues={userInfo}
             onFinish={handleUpdateProfile}
           >
+            <Form.Item name="id" hidden>
+              <Input />
+            </Form.Item>
             <Form.Item
               label="Name"
-              name="name"
+              name="username"
               rules={[{ required: true, message: "Please input your name!" }]}
             >
               <Input />
@@ -127,15 +116,6 @@ const UserProfile = () => {
               rules={[{ required: true, message: "Please input your email!" }]}
             >
               <Input />
-            </Form.Item>
-            <Form.Item
-              label="Password"
-              name="password"
-              rules={[
-                { required: true, message: "Please input your password!" },
-              ]}
-            >
-              <Input.Password />
             </Form.Item>
             <Form.Item
               label="Address"
@@ -158,6 +138,10 @@ const UserProfile = () => {
               ]}
             >
               <Input />
+            </Form.Item>
+
+            <Form.Item label="Password" name="password">
+              <Input.Password />
             </Form.Item>
             <Form.Item>
               <Button

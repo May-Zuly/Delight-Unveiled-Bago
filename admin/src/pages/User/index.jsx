@@ -103,7 +103,7 @@ export default function App() {
         }
       );
       const res = await api.get(`users?${query}`, {
-        headers: { requireToken: false },
+        headers: { requireToken: true },
       });
       if (res.data) {
         setData(res.data);

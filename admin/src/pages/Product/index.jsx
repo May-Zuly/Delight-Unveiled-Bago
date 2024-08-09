@@ -6,12 +6,16 @@ import api from "../../api/helper";
 import { dateFormat } from "../../utils/constant";
 import dayjs from "dayjs";
 import qs from "qs";
+import { userData } from "../../store";
+
+import { useRecoilValue } from "recoil";
 
 export default function App() {
   const [visible, setVisible] = useState(false);
   const [updateData, setUpdateData] = useState({});
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState("");
+  const loginUser = useRecoilValue(userData);
   const [searchData, setSearchData] = useState({
     minPrice: "",
     maxPrice: "",
@@ -47,6 +51,7 @@ export default function App() {
         $lte: Number(search.maxPrice),
       };
     }
+    if (loginUser.type === "producer") payload.seller = loginUser.id;
     return payload;
   };
 
@@ -117,12 +122,14 @@ export default function App() {
     setLoading(true);
     try {
       const filters = createSearchQuery(searchData);
+      console.log(filters);
       const query = qs.stringify(
         {
           filters,
           sort: ["createdAt:desc"],
           populate: {
             image: true,
+            seller: true,
           },
           pagination: {
             page: currentPage,
@@ -134,7 +141,7 @@ export default function App() {
         }
       );
       const res = await api.get(`products?${query}`, {
-        headers: { requireToken: false },
+        headers: { requireToken: true },
       });
       const transformedArray = res.data.data.map((item, index) => ({
         key: index,
