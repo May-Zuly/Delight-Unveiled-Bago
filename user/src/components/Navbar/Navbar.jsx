@@ -83,7 +83,7 @@ const Navbar = () => {
             </Menu.Item>
           </Menu>
           <div className="icons">
-            <Button shape="circle" icon={<SearchOutlined />} />
+            {/* <Button shape="circle" icon={<SearchOutlined />} /> */}
             <Dropdown overlay={userMenu} trigger={["click"]}>
               <Button shape="circle" icon={<UserOutlined />} />
             </Dropdown>
