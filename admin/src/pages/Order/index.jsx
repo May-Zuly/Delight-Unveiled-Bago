@@ -6,8 +6,12 @@ import api from "../../api/helper";
 import { dateFormat } from "../../utils/constant";
 import dayjs from "dayjs";
 import qs from "qs";
+import { userData } from "../../store";
+
+import { useRecoilValue } from "recoil";
 
 export default function Order() {
+  const loginUser = useRecoilValue(userData);
   const [visible, setVisible] = useState(false);
   const [statusModal, setStatusModal] = useState(false);
   const [data, setData] = useState([]);
@@ -22,10 +26,13 @@ export default function Order() {
 
   const columns = [
     {
-      title: "Payment Screen Shoot",
+      title: loginUser.type === "admin" && "Payment Screen Shoot",
       dataIndex: "image",
       render: (image) =>
-        image && <Image src={`http://localhost:1337${image}`} width={100} />,
+        image &&
+        loginUser.type === "admin" && (
+          <Image src={`http://localhost:1337${image}`} width={100} />
+        ),
     },
     {
       title: "Customer Name",
@@ -68,13 +75,15 @@ export default function Order() {
       key: "action",
       render: (record) => (
         <Space size="middle">
-          <Button
-            onClick={() => {
-              onChangeStatus(record.id);
-            }}
-          >
-            Change Status
-          </Button>
+          {loginUser.type === "admin" && (
+            <Button
+              onClick={() => {
+                onChangeStatus(record.id);
+              }}
+            >
+              Change Status
+            </Button>
+          )}
           <Button onClick={() => onDetailFunc(record.id)}>Detail</Button>
         </Space>
       ),

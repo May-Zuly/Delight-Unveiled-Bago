@@ -2,6 +2,7 @@ import { Button, Modal, Pagination, Space, Table } from "antd";
 import { useEffect, useState } from "react";
 
 import ProductForm from "../../components/ProductForm";
+import ProductSearch from "../../components/ProductSearch";
 import api from "../../api/helper";
 import { dateFormat } from "../../utils/constant";
 import dayjs from "dayjs";
@@ -21,6 +22,8 @@ export default function App() {
     maxPrice: "",
     category: null,
     itemName: "",
+    stock: "",
+    township: null,
   });
   const [currentPage, setCurrentPage] = useState(1);
   const [totalItems, setTotalItems] = useState(0);
@@ -31,6 +34,16 @@ export default function App() {
     if (search.category) {
       payload.type = {
         $eq: search.category,
+      };
+    }
+    if (search.township) {
+      payload.township = {
+        $eq: search.township,
+      };
+    }
+    if (search.stock) {
+      payload.stock = {
+        $lte: search.stock,
       };
     }
     if (search.itemName) {
@@ -132,7 +145,6 @@ export default function App() {
     setLoading(true);
     try {
       const filters = createSearchQuery(searchData);
-      console.log(filters);
       const query = qs.stringify(
         {
           filters,
@@ -236,8 +248,26 @@ export default function App() {
     setUpdateData({});
     setVisible(false);
   };
+  const searchProduct = async (search) => {
+    setCurrentPage(1);
+    setSearchData(search);
+    try {
+      const res = await fetchProducts();
+      if (res) {
+        setItems(res.data);
+        setTotalItems(res.meta.pagination.total); // Ensure correct total items
+      }
+    } catch (error) {
+      console.error("Error in search : ", error);
+    }
+  };
   return (
     <>
+      <ProductSearch
+        searchProduct={searchProduct}
+        searchData={searchData}
+        setSearchData={setSearchData}
+      />
       <Table columns={columns} dataSource={data.data} pagination={false} />
       <Pagination
         showSizeChanger={false}
