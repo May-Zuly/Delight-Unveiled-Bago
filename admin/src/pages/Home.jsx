@@ -3,7 +3,11 @@ import { useEffect, useState } from "react";
 
 import ColumnChart from "../components/ColumnChart";
 import PieChart from "../components/PieChart";
-import { UserOutlined } from "@ant-design/icons";
+import {
+  UserOutlined,
+  ShoppingOutlined,
+  SolutionOutlined,
+} from "@ant-design/icons";
 import api from "../api/helper";
 
 const { Title } = Typography;
@@ -45,12 +49,12 @@ export default function Home() {
     {
       today: "Total Product",
       title: data.productCount,
-      icon: <UserOutlined style={{ fontSize: 18 }} />,
+      icon: <ShoppingOutlined style={{ fontSize: 18 }} />,
     },
     {
       today: "Total Order",
       title: data.orderCount,
-      icon: <UserOutlined style={{ fontSize: 18 }} />,
+      icon: <SolutionOutlined style={{ fontSize: 18 }} />,
     },
   ];
   return (
@@ -72,21 +76,23 @@ export default function Home() {
                 style={{
                   marginTop: "10px",
                   padding: 0,
-                  background: "#E5EEF6",
+                  background: "#aa620f", //#E5EEF6
                 }}
               >
                 <Row align="middle" gutter={[24, 0]}>
                   <Col xs={18}>
                     <span
                       style={{
-                        color: "#8c8c8c",
+                        color: "aliceblue", //#8c8c8c
                         fontWeight: "500",
                         fontSize: "14px",
                       }}
                     >
                       {c.today}
                     </span>
-                    <Title level={3}>{c.title}</Title>
+                    <Title level={3} style={{ color: "#d6bcbc" }}>
+                      {c.title}
+                    </Title>
                   </Col>
                   <Col xs={6}>
                     <div className="icon-box">{c.icon}</div>

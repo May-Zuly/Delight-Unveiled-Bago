@@ -40,7 +40,7 @@ export default function HeaderMenu({ collapsed, setCollapsed }) {
 
   return (
     <>
-      <Row style={{ padding: "15px", background: "white" }}>
+      <Row style={{ padding: "20px", background: "#f0dbc7" }}>
         <Col span={10}>
           <Button
             type="text"
@@ -55,7 +55,9 @@ export default function HeaderMenu({ collapsed, setCollapsed }) {
           <Dropdown menu={{ items }} placement="bottomRight" arrow>
             <Avatar icon={<UserOutlined />} style={{ cursor: "pointer" }} />
           </Dropdown>
-          <span style={{ marginRight: "15px" }}>{user.username}</span>
+          <span style={{ marginRight: "15px", fontSize: "16px" }}>
+            {user.username}
+          </span>
         </Col>
       </Row>
     </>
