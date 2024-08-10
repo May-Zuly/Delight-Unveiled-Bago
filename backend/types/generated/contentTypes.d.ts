@@ -941,6 +941,32 @@ export interface ApiProductProduct extends Schema.CollectionType {
     >;
     image: Attribute.Media<'images'> & Attribute.Required;
     canDelivery: Attribute.Boolean & Attribute.DefaultTo<false>;
+    township: Attribute.Enumeration<
+      [
+        'Paukkaung',
+        'Pyay',
+        'Shwedaung',
+        'Padaung',
+        'Nattalin',
+        'Zigon',
+        'Thegon',
+        'Paungde',
+        'Gyobingauk',
+        'Okpho',
+        'Minhla',
+        'Monyo',
+        'Letpandan',
+        'Tharrawaddy',
+        'Bago',
+        'Taungoo',
+        'Shwegyin',
+        'Nyaunglebin',
+        'Daik-U'
+      ]
+    > &
+      Attribute.Required;
+    district: Attribute.Enumeration<['bagoEast', 'bagoWest']> &
+      Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<

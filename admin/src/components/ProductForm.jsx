@@ -11,11 +11,15 @@ export default function ProductForm({
   btnText = "create",
   intitalData,
 }) {
+  const [townshipList, setTownshipList] = useState([]);
   const optionList = [
     { label: "Furniture", value: "furniture" },
     { label: "Food", value: "food" },
   ];
-
+  const districtList = [
+    { label: "Bago (East)", value: "bagoEast" },
+    { label: "Bago (West)", value: "bagoWest" },
+  ];
   const [form] = Form.useForm();
   const [fileList, setFileList] = useState([]);
 
@@ -34,6 +38,8 @@ export default function ProductForm({
       description: values.description,
       type: values.type,
       stock: values.stock,
+      township: values.township,
+      district: values.district,
     };
     const formData = new FormData();
     if (fileList.length > 0) {
@@ -41,6 +47,37 @@ export default function ProductForm({
     }
     formData.append("data", JSON.stringify(data));
     onFinish(formData, values.id);
+  };
+
+  const handleDistrictChange = async (value) => {
+    form.setFieldValue("township", null);
+    if (value === "bagoEast") {
+      await setTownshipList([
+        { label: "Bago", value: "Bago" },
+        { label: "Taungoo", value: "Taungoo" },
+        { label: "Shwegyin", value: "Shwegyin" },
+        { label: "Nyaunglebin", value: "Nyaunglebin" },
+        { label: "Daik-U", value: "Daik-U" },
+      ]);
+    }
+    if (value === "bagoWest") {
+      await setTownshipList([
+        { label: "Paukkaung", value: "Paukkaung" },
+        { label: "Pyay", value: "Pyay" },
+        { label: "Shwedaung", value: "Shwedaung" },
+        { label: "Padaung", value: "Padaung" },
+        { label: "Nattalin", value: "Nattalin" },
+        { label: "Zigon", value: "Zigon" },
+        { label: "Thegon", value: "Thegon" },
+        { label: "Paungde", value: "Paungde" },
+        { label: "Gyobingauk", value: "Gyobingauk" },
+        { label: "Okpho", value: "Okpho" },
+        { label: "Minhla", value: "Minhla" },
+        { label: "Monyo", value: "Monyo" },
+        { label: "Letpandan", value: "Letpandan" },
+        { label: "Tharrawaddy", value: "Tharrawaddy" },
+      ]);
+    }
   };
 
   return (
@@ -86,6 +123,24 @@ export default function ProductForm({
         ]}
       >
         <Input placeholder="name" />
+      </Form.Item>
+      <Form.Item
+        name="district"
+        label="District"
+        rules={[{ required: true, message: "Please Select ..." }]}
+      >
+        <Select
+          placeholder="Please Select ..."
+          options={districtList}
+          onChange={handleDistrictChange}
+        />
+      </Form.Item>
+      <Form.Item
+        name="township"
+        label="Township"
+        rules={[{ required: true, message: "Please Select ..." }]}
+      >
+        <Select placeholder="Please Select ..." options={townshipList} />
       </Form.Item>
       <Form.Item
         name="type"

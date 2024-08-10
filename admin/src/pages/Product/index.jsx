@@ -77,6 +77,16 @@ export default function App() {
       key: "description",
     },
     {
+      title: "District",
+      dataIndex: "district",
+      key: "district",
+    },
+    {
+      title: "Township",
+      dataIndex: "township",
+      key: "township",
+    },
+    {
       title: "Price",
       dataIndex: "price",
       key: "price",
@@ -159,6 +169,8 @@ export default function App() {
         description: item.attributes.description,
         price: item.attributes.price,
         stock: item.attributes.stock,
+        township: item.attributes.township,
+        district: item.attributes.district,
         createdAt: item.attributes.createdAt,
         updatedAt: item.attributes.updatedAt,
       }));
@@ -224,7 +236,6 @@ export default function App() {
     setUpdateData({});
     setVisible(false);
   };
-
   return (
     <>
       <Table columns={columns} dataSource={data.data} pagination={false} />

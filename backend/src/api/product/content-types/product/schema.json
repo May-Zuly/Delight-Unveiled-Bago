@@ -65,6 +65,39 @@
       "type": "boolean",
       "default": false,
       "required": false
+    },
+    "township": {
+      "type": "enumeration",
+      "enum": [
+        "Paukkaung",
+        "Pyay",
+        "Shwedaung",
+        "Padaung",
+        "Nattalin",
+        "Zigon",
+        "Thegon",
+        "Paungde",
+        "Gyobingauk",
+        "Okpho",
+        "Minhla",
+        "Monyo",
+        "Letpandan",
+        "Tharrawaddy",
+        "Bago",
+        "Taungoo",
+        "Shwegyin",
+        "Nyaunglebin",
+        "Daik-U"
+      ],
+      "required": true
+    },
+    "district": {
+      "type": "enumeration",
+      "enum": [
+        "bagoEast",
+        "bagoWest"
+      ],
+      "required": true
     }
   }
 }

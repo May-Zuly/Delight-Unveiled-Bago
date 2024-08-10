@@ -7,7 +7,6 @@ import {
   Col,
   Image,
   Pagination,
-  Rate,
   Row,
   Typography,
 } from "antd";
@@ -29,6 +28,7 @@ export default function ProductPage() {
     maxPrice: "",
     category: null,
     itemName: "",
+    township: null,
   });
   const [items, setItems] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -40,6 +40,11 @@ export default function ProductPage() {
     if (search.category) {
       payload.type = {
         $eq: search.category,
+      };
+    }
+    if (search.township) {
+      payload.township = {
+        $eq: search.township,
       };
     }
     if (search.itemName) {
@@ -87,7 +92,7 @@ export default function ProductPage() {
         }
       );
       const res = await api.get(`products?${query}`, {
-        headers: { requireToken: false },
+        headers: { requireToken: true },
       });
       return res.data;
     } catch (error) {

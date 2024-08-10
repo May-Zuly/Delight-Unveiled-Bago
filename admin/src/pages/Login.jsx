@@ -34,15 +34,10 @@ export default function Login() {
           ];
         }
         if (userData.type === "producer") {
-          userData.permissions = [
-            "/home",
-            "/order",
-            "/product",
-            "/product/create",
-          ];
+          userData.permissions = ["/order", "/product", "/product/create"];
         }
         setUserData(userData);
-        navigate("/home");
+        navigate(userData.permissions[0]);
         setLoading(false);
       }
     } catch (error) {

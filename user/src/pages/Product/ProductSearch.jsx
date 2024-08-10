@@ -23,13 +23,48 @@ export default function ProductSearch({
   };
 
   const btnDisabled = () => {
-    const { minPrice, maxPrice, category, itemName } = searchData;
-    return !minPrice && !maxPrice && !category && !itemName;
+    const { minPrice, maxPrice, category, itemName, township } = searchData;
+    return !minPrice && !maxPrice && !category && !itemName && !township;
   };
+
+  const townshipList = [
+    { label: "Paukkaung", value: "Paukkaung" },
+    { label: "Pyay", value: "Pyay" },
+    { label: "Shwedaung", value: "Shwedaung" },
+    { label: "Padaung", value: "Padaung" },
+    { label: "Nattalin", value: "Nattalin" },
+    { label: "Zigon", value: "Zigon" },
+    { label: "Thegon", value: "Thegon" },
+    { label: "Paungde", value: "Paungde" },
+    { label: "Gyobingauk", value: "Gyobingauk" },
+    { label: "Okpho", value: "Okpho" },
+    { label: "Minhla", value: "Minhla" },
+    { label: "Monyo", value: "Monyo" },
+    { label: "Letpandan", value: "Letpandan" },
+    { label: "Tharrawaddy", value: "Tharrawaddy" },
+    { label: "Bago", value: "Bago" },
+    { label: "Taungoo", value: "Taungoo" },
+    { label: "Shwegyin", value: "Shwegyin" },
+    { label: "Nyaunglebin", value: "Nyaunglebin" },
+    { label: "Daik-U", value: "Daik-U" },
+  ];
 
   return (
     <>
       <Row gutter={[16, 16]}>
+        <Col xs={24} sm={12} md={8} lg={4}>
+          <Select
+            showSearch
+            optionFilterProp="children"
+            allowClear
+            placeholder="Search By Township"
+            style={{ width: "100%" }}
+            name="township"
+            onChange={(value) => handleDropdownChange(value, "township")}
+            value={searchData.township}
+            options={townshipList}
+          />
+        </Col>
         <Col xs={24} sm={12} md={8} lg={4}>
           <Select
             showSearch

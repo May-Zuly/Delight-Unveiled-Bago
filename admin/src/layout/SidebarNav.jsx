@@ -25,7 +25,7 @@ export default function Sidebar({ collapsed }) {
       key: "/home",
       icon: <HomeOutlined style={{ fontSize: "20px" }} type="setting" />,
       label: <Link to="/home">Home</Link>,
-      role: ["admin", "producer"],
+      role: ["admin"],
     },
     {
       key: "/order",

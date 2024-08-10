@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2024-08-08T16:03:40.268Z"
+    "x-generation-date": "2024-08-10T10:33:27.110Z"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -1404,6 +1404,37 @@
                                                 },
                                                 "canDelivery": {
                                                   "type": "boolean"
+                                                },
+                                                "township": {
+                                                  "type": "string",
+                                                  "enum": [
+                                                    "Paukkaung",
+                                                    "Pyay",
+                                                    "Shwedaung",
+                                                    "Padaung",
+                                                    "Nattalin",
+                                                    "Zigon",
+                                                    "Thegon",
+                                                    "Paungde",
+                                                    "Gyobingauk",
+                                                    "Okpho",
+                                                    "Minhla",
+                                                    "Monyo",
+                                                    "Letpandan",
+                                                    "Tharrawaddy",
+                                                    "Bago",
+                                                    "Taungoo",
+                                                    "Shwegyin",
+                                                    "Nyaunglebin",
+                                                    "Daik-U"
+                                                  ]
+                                                },
+                                                "district": {
+                                                  "type": "string",
+                                                  "enum": [
+                                                    "bagoEast",
+                                                    "bagoWest"
+                                                  ]
                                                 },
                                                 "createdAt": {
                                                   "type": "string",
@@ -3646,6 +3677,37 @@
                                                             "canDelivery": {
                                                               "type": "boolean"
                                                             },
+                                                            "township": {
+                                                              "type": "string",
+                                                              "enum": [
+                                                                "Paukkaung",
+                                                                "Pyay",
+                                                                "Shwedaung",
+                                                                "Padaung",
+                                                                "Nattalin",
+                                                                "Zigon",
+                                                                "Thegon",
+                                                                "Paungde",
+                                                                "Gyobingauk",
+                                                                "Okpho",
+                                                                "Minhla",
+                                                                "Monyo",
+                                                                "Letpandan",
+                                                                "Tharrawaddy",
+                                                                "Bago",
+                                                                "Taungoo",
+                                                                "Shwegyin",
+                                                                "Nyaunglebin",
+                                                                "Daik-U"
+                                                              ]
+                                                            },
+                                                            "district": {
+                                                              "type": "string",
+                                                              "enum": [
+                                                                "bagoEast",
+                                                                "bagoWest"
+                                                              ]
+                                                            },
                                                             "createdAt": {
                                                               "type": "string",
                                                               "format": "date-time"
@@ -4532,7 +4594,9 @@
               "type",
               "description",
               "price",
-              "image"
+              "image",
+              "township",
+              "district"
             ],
             "type": "object",
             "properties": {
@@ -4609,6 +4673,37 @@
               },
               "canDelivery": {
                 "type": "boolean"
+              },
+              "township": {
+                "type": "string",
+                "enum": [
+                  "Paukkaung",
+                  "Pyay",
+                  "Shwedaung",
+                  "Padaung",
+                  "Nattalin",
+                  "Zigon",
+                  "Thegon",
+                  "Paungde",
+                  "Gyobingauk",
+                  "Okpho",
+                  "Minhla",
+                  "Monyo",
+                  "Letpandan",
+                  "Tharrawaddy",
+                  "Bago",
+                  "Taungoo",
+                  "Shwegyin",
+                  "Nyaunglebin",
+                  "Daik-U"
+                ]
+              },
+              "district": {
+                "type": "string",
+                "enum": [
+                  "bagoEast",
+                  "bagoWest"
+                ]
               }
             }
           }
@@ -4667,7 +4762,9 @@
           "type",
           "description",
           "price",
-          "image"
+          "image",
+          "township",
+          "district"
         ],
         "properties": {
           "name": {
@@ -5865,6 +5962,37 @@
                                                 "canDelivery": {
                                                   "type": "boolean"
                                                 },
+                                                "township": {
+                                                  "type": "string",
+                                                  "enum": [
+                                                    "Paukkaung",
+                                                    "Pyay",
+                                                    "Shwedaung",
+                                                    "Padaung",
+                                                    "Nattalin",
+                                                    "Zigon",
+                                                    "Thegon",
+                                                    "Paungde",
+                                                    "Gyobingauk",
+                                                    "Okpho",
+                                                    "Minhla",
+                                                    "Monyo",
+                                                    "Letpandan",
+                                                    "Tharrawaddy",
+                                                    "Bago",
+                                                    "Taungoo",
+                                                    "Shwegyin",
+                                                    "Nyaunglebin",
+                                                    "Daik-U"
+                                                  ]
+                                                },
+                                                "district": {
+                                                  "type": "string",
+                                                  "enum": [
+                                                    "bagoEast",
+                                                    "bagoWest"
+                                                  ]
+                                                },
                                                 "createdAt": {
                                                   "type": "string",
                                                   "format": "date-time"
@@ -6741,6 +6869,37 @@
           },
           "canDelivery": {
             "type": "boolean"
+          },
+          "township": {
+            "type": "string",
+            "enum": [
+              "Paukkaung",
+              "Pyay",
+              "Shwedaung",
+              "Padaung",
+              "Nattalin",
+              "Zigon",
+              "Thegon",
+              "Paungde",
+              "Gyobingauk",
+              "Okpho",
+              "Minhla",
+              "Monyo",
+              "Letpandan",
+              "Tharrawaddy",
+              "Bago",
+              "Taungoo",
+              "Shwegyin",
+              "Nyaunglebin",
+              "Daik-U"
+            ]
+          },
+          "district": {
+            "type": "string",
+            "enum": [
+              "bagoEast",
+              "bagoWest"
+            ]
           },
           "createdAt": {
             "type": "string",
@@ -8735,6 +8894,37 @@
                       },
                       "canDelivery": {
                         "type": "boolean"
+                      },
+                      "township": {
+                        "type": "string",
+                        "enum": [
+                          "Paukkaung",
+                          "Pyay",
+                          "Shwedaung",
+                          "Padaung",
+                          "Nattalin",
+                          "Zigon",
+                          "Thegon",
+                          "Paungde",
+                          "Gyobingauk",
+                          "Okpho",
+                          "Minhla",
+                          "Monyo",
+                          "Letpandan",
+                          "Tharrawaddy",
+                          "Bago",
+                          "Taungoo",
+                          "Shwegyin",
+                          "Nyaunglebin",
+                          "Daik-U"
+                        ]
+                      },
+                      "district": {
+                        "type": "string",
+                        "enum": [
+                          "bagoEast",
+                          "bagoWest"
+                        ]
                       },
                       "createdAt": {
                         "type": "string",
@@ -10803,6 +10993,37 @@
                       },
                       "canDelivery": {
                         "type": "boolean"
+                      },
+                      "township": {
+                        "type": "string",
+                        "enum": [
+                          "Paukkaung",
+                          "Pyay",
+                          "Shwedaung",
+                          "Padaung",
+                          "Nattalin",
+                          "Zigon",
+                          "Thegon",
+                          "Paungde",
+                          "Gyobingauk",
+                          "Okpho",
+                          "Minhla",
+                          "Monyo",
+                          "Letpandan",
+                          "Tharrawaddy",
+                          "Bago",
+                          "Taungoo",
+                          "Shwegyin",
+                          "Nyaunglebin",
+                          "Daik-U"
+                        ]
+                      },
+                      "district": {
+                        "type": "string",
+                        "enum": [
+                          "bagoEast",
+                          "bagoWest"
+                        ]
                       },
                       "createdAt": {
                         "type": "string",
