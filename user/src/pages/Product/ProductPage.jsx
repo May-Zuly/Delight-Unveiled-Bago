@@ -92,7 +92,7 @@ export default function ProductPage() {
         }
       );
       const res = await api.get(`products?${query}`, {
-        headers: { requireToken: true },
+        headers: { requireToken: false },
       });
       return res.data;
     } catch (error) {

@@ -54,7 +54,7 @@ export default function ProductSearch({
 
   return (
     <>
-      <Row gutter={[16, 16]}>
+      <Row gutter={[16, 16]} justify={"center"}>
         <Col xs={24} sm={12} md={8} lg={4}>
           <Select
             showSearch
@@ -91,7 +91,7 @@ export default function ProductSearch({
             onChange={handleChange}
           />
         </Col>
-        <Col xs={24} sm={12} md={8} lg={4}>
+        {/* <Col xs={24} sm={12} md={8} lg={4}>
           <Input
             type="number"
             placeholder="Min Price"
@@ -108,7 +108,7 @@ export default function ProductSearch({
             value={searchData.maxPrice}
             onChange={handleChange}
           />
-        </Col>
+        </Col> */}
         <Col xs={24} sm={12} md={8} lg={4}>
           <Input
             type="number"

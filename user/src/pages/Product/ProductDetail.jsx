@@ -49,7 +49,6 @@ const ProductDetailPage = () => {
       const res = await api.get(`products/${id}?${query}`, {
         headers: { requireToken: !!loginUser },
       });
-      setProduct(res.data.data);
       if (res.data.data?.attributes?.ratings) {
         setComments(res.data.data?.attributes?.ratings.data);
         const ratingData = res.data.data?.attributes?.ratings.data || 0;
@@ -58,8 +57,9 @@ const ProductDetailPage = () => {
           return accumulator + current.attributes.rating;
         }, 0);
         const rating = (getRating / totalRating) * 5;
-        setProductRate(rating);
+        await setProductRate(rating);
       }
+      await setProduct(res.data.data);
     } catch (error) {
       message.error("Error fetching products: ");
     }
@@ -68,6 +68,8 @@ const ProductDetailPage = () => {
   const handleSubmit = async () => {
     if (!newComment || !newRating)
       return message.error("Please select Rating and Comment"); // Ensure both comment and rating are provided
+
+    if (!loginUser) return message.error("Please Login ...");
     const newComments = {
       data: {
         rating: newRating,
@@ -110,7 +112,6 @@ const ProductDetailPage = () => {
     const data = cartData.find((d) => d.id === id);
     return data?.quantity || "";
   };
-
   return (
     <div className="product-detail-container">
       {product && product.attributes && (
@@ -125,7 +126,7 @@ const ProductDetailPage = () => {
           }
           actions={[
             <>
-              <Rate disabled defaultValue={productRate} className="product-rate-section"/>
+              <Rate value={productRate} className="product-rate-section" />
               <Button
                 type="link"
                 icon={
