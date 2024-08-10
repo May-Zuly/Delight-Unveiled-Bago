@@ -854,6 +854,8 @@ export interface ApiOrderOrder extends Schema.CollectionType {
       'api::payment.payment'
     >;
     image: Attribute.Media<'images'>;
+    order_phone: Attribute.String & Attribute.Required;
+    order_address: Attribute.Text & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<

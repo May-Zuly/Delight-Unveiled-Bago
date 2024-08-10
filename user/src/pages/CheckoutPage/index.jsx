@@ -1,6 +1,17 @@
 import "./CheckoutPage.css";
 
-import { Button, Card, Col, Form, List, Row, Upload, message } from "antd";
+import {
+  Button,
+  Card,
+  Col,
+  Form,
+  List,
+  Row,
+  Upload,
+  message,
+  Modal,
+  Input,
+} from "antd";
 
 import ImgCrop from "antd-img-crop";
 import { PlusOutlined } from "@ant-design/icons";
@@ -12,6 +23,8 @@ import { useRecoilState } from "recoil";
 import { useState } from "react";
 
 const CheckoutPage = () => {
+  const loginUser = JSON.parse(localStorage.getItem("loginUser"));
+  const [imageForm] = Form.useForm();
   const navigate = useNavigate();
   const [value, setValue] = useState(1);
 
@@ -19,6 +32,7 @@ const CheckoutPage = () => {
 
   const onFileChange = ({ fileList: newFileList }) => {
     setFileList(newFileList);
+    imageForm.setFieldsValue({ image: fileList });
   };
 
   const onChange = (e) => {
@@ -26,14 +40,15 @@ const CheckoutPage = () => {
   };
   const [cartData, setCartData] = useRecoilState(cart);
 
-  const onFinish = async () => {
-    const loginUser = JSON.parse(localStorage.getItem("loginUser"));
+  const checkoutWithOnlinePayment = async () => {
     if (loginUser) {
       const data = {
         products: cartData,
         user_id: loginUser.user.id,
         total: getTotalAmount(),
         payment_type: "onlinePay",
+        order_phone: form.getFieldValue("phone"),
+        order_address: form.getFieldValue("address"),
       };
       const formData = new FormData();
       if (fileList.length > 0) {
@@ -76,6 +91,8 @@ const CheckoutPage = () => {
         products: cartData,
         user_id: loginUser.user.id,
         total: getTotalAmount(),
+        order_phone: form.getFieldValue("phone"),
+        order_address: form.getFieldValue("address"),
       };
       try {
         const res = await api.post(`order/apply`, checkoutData, {
@@ -94,6 +111,23 @@ const CheckoutPage = () => {
     }
   };
 
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [selectedOption, setSelectedOption] = useState("myself");
+  const [form] = Form.useForm();
+
+  const handleOk = () => {
+    form
+      .validateFields()
+      .then(() => {
+        setIsModalVisible(false);
+        if (value === 1) checkoutWithOnlinePayment();
+        if (value === 2) checkoutWithCart();
+      })
+      .catch((info) => {
+        console.log("Validate Failed:", info);
+      });
+  };
+
   return (
     <div className="checkout-container">
       <Row>
@@ -106,12 +140,27 @@ const CheckoutPage = () => {
             {value === 1 && (
               <>
                 <div>Payment Information</div>
-                <Form name="payment" layout="vertical" onFinish={onFinish}>
+                <Form
+                  name="payment"
+                  layout="vertical"
+                  form={imageForm}
+                  onFinish={() => {
+                    loginUser
+                      ? setIsModalVisible(true)
+                      : message.error("Please Login...");
+                  }}
+                >
                   <Form.Item
                     label=""
                     name="image"
                     valuePropName="fileList"
                     style={{ marginTop: "10px" }}
+                    rules={[
+                      {
+                        required: true,
+                        message: "Please upload your payment screen shot!",
+                      },
+                    ]}
                   >
                     <ImgCrop rotationSlider>
                       <Upload
@@ -147,7 +196,7 @@ const CheckoutPage = () => {
                 htmlType="submit"
                 block
                 style={{ marginTop: "50px" }}
-                onClick={checkoutWithCart}
+                onClick={() => setIsModalVisible(true)}
               >
                 Pay {getTotalAmount().toFixed(2)} MMK
               </Button>
@@ -197,6 +246,59 @@ const CheckoutPage = () => {
           </Card>
         </Col>
       </Row>
+
+      <Modal
+        title="Delivery Information"
+        open={isModalVisible}
+        onOk={handleOk}
+        onCancel={() => setIsModalVisible(false)}
+      >
+        <Form form={form} layout="vertical">
+          <Form.Item
+            name="deliveryType"
+            label="Delivery Type"
+            rules={[
+              { required: true, message: "Please select a delivery type!" },
+            ]}
+          >
+            <Radio.Group
+              onChange={(e) => {
+                setSelectedOption(e.target.value);
+                form.setFieldsValue({ address: "" });
+                form.setFieldsValue({ phone: "" });
+                if (e.target.value === "myself") {
+                  form.setFieldsValue({ address: loginUser.user.address });
+                  form.setFieldsValue({ phone: loginUser.user.phoneNumber });
+                }
+              }}
+              value={selectedOption}
+            >
+              <Radio value="myself">For Myself</Radio>
+              <Radio value="other">For Others</Radio>
+            </Radio.Group>
+          </Form.Item>
+          <Form.Item
+            name="address"
+            label="Address"
+            rules={[{ required: true, message: "Please enter your address!" }]}
+          >
+            <Input placeholder="Enter address" />
+          </Form.Item>
+
+          <Form.Item
+            name="phone"
+            label="Phone Number"
+            rules={[
+              {
+                required: true,
+                message: "Please enter your phone number!",
+              },
+            ]}
+          >
+            <Input placeholder="Enter phone number" />
+          </Form.Item>
+        </Form>
+      </Modal>
     </div>
   );
 };

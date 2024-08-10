@@ -53,6 +53,14 @@
       "allowedTypes": [
         "images"
       ]
+    },
+    "order_phone": {
+      "type": "string",
+      "required": true
+    },
+    "order_address": {
+      "type": "text",
+      "required": true
     }
   }
 }
