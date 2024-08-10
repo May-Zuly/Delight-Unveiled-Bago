@@ -26,25 +26,67 @@ export default function Sidebar({ collapsed }) {
       icon: <HomeOutlined style={{ fontSize: "20px" }} type="setting" />,
       label: <Link to="/home">Home</Link>,
       role: ["admin"],
+      label: (
+        <Link
+          to="/home"
+          style={{ color: "#000", fontSize: "16px" }}
+          onMouseOver={(e) => (e.currentTarget.style.color = "#995f20")}
+          onMouseOut={(e) => (e.currentTarget.style.color = "#000")}
+          onMouseDown={(e) => (e.currentTarget.style.color = "#d0a97b")}
+        >
+          Home
+        </Link>
+      ),
+      role: ["admin"],
     },
     {
       key: "/order",
       icon: <FileDoneOutlined style={{ fontSize: "20px" }} type="setting" />,
-      label: <Link to="/order">Orders</Link>,
+      label: (
+        <Link
+          to="/order"
+          style={{ color: "#000", fontSize: "16px" }}
+          onMouseOver={(e) => (e.currentTarget.style.color = "#995f20")}
+          onMouseOut={(e) => (e.currentTarget.style.color = "#000")}
+          onMouseDown={(e) => (e.currentTarget.style.color = "#d0a97b")}
+        >
+          Orders
+        </Link>
+      ),
       role: ["admin", "producer"],
     },
     {
       key: "/producttag",
       icon: <AppstoreOutlined style={{ fontSize: "20px" }} type="setting" />,
-      label: "Product Management",
+      label: <span style={{ fontSize: "16px" }}>Product Management</span>,
       children: [
         {
           key: "/product",
-          label: <Link to="/product">Products</Link>,
+          label: (
+            <Link
+              to="/product"
+              style={{ color: "#000", fontSize: "16px" }}
+              onMouseOver={(e) => (e.currentTarget.style.color = "#995f20")}
+              onMouseOut={(e) => (e.currentTarget.style.color = "#000")}
+              onMouseDown={(e) => (e.currentTarget.style.color = "#d0a97b")}
+            >
+              Products
+            </Link>
+          ),
         },
         {
           key: "/product/create",
-          label: <Link to="/product/create">Create</Link>,
+          label: (
+            <Link
+              to="/product/create"
+              style={{ color: "#000", fontSize: "16px" }}
+              onMouseOver={(e) => (e.currentTarget.style.color = "#995f20")}
+              onMouseOut={(e) => (e.currentTarget.style.color = "#000")}
+              onMouseDown={(e) => (e.currentTarget.style.color = "#d0a97b")}
+            >
+              Create
+            </Link>
+          ),
         },
       ],
       role: ["admin", "producer"],
@@ -52,15 +94,35 @@ export default function Sidebar({ collapsed }) {
     {
       key: "/usertag",
       icon: <UserAddOutlined style={{ fontSize: "20px" }} type="setting" />,
-      label: "User Management",
+      label: <span style={{ fontSize: "16px" }}>User Management</span>,
       children: [
         {
           key: "/user",
-          label: <Link to="/user">Users</Link>,
+          label: (
+            <Link
+              to="/user"
+              style={{ color: "#000", fontSize: "16px" }}
+              onMouseOver={(e) => (e.currentTarget.style.color = "#995f20")}
+              onMouseOut={(e) => (e.currentTarget.style.color = "#000")}
+              onMouseDown={(e) => (e.currentTarget.style.color = "#d0a97b")}
+            >
+              Users
+            </Link>
+          ),
         },
         {
           key: "/user/create",
-          label: <Link to="/user/create">Create</Link>,
+          label: (
+            <Link
+              to="/user/create"
+              style={{ color: "#000", fontSize: "16px" }}
+              onMouseOver={(e) => (e.currentTarget.style.color = "#995f20")}
+              onMouseOut={(e) => (e.currentTarget.style.color = "#000")}
+              onMouseDown={(e) => (e.currentTarget.style.color = "#d0a97b")}
+            >
+              Create
+            </Link>
+          ),
         },
       ],
       role: ["admin"],
@@ -72,9 +134,9 @@ export default function Sidebar({ collapsed }) {
   return (
     <Sider
       breakpoint="lg"
-      width={255}
+      width={270}
       collapsed={collapsed}
-      style={{ background: "white" }}
+      style={{ background: "#f0dbc7" }}
     >
       <div
         className="logo"
@@ -87,7 +149,7 @@ export default function Sidebar({ collapsed }) {
         <img src={logoImg} width={collapsed ? "50px" : "80px"} />
       </div>
       <Menu
-        theme="light"
+        theme="#f0dbc7"
         defaultOpenKeys={[openkeys]}
         defaultSelectedKeys={[pathname]}
         mode="inline"
