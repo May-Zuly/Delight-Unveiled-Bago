@@ -240,6 +240,7 @@ body {
     aspect-ratio: auto;
     grid-column-start: 1;
     grid-column-end: span 13;
+    z-index: 10;
   }
 
   .entry-lede .entry-content {

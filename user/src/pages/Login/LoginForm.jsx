@@ -2,6 +2,7 @@ import "./LoginForm.css";
 
 import { Button, Form, Input, Typography, message } from "antd";
 import { LockOutlined, LoginOutlined, MailOutlined } from "@ant-design/icons";
+import logoImg from "../../assets/images/logo11.png";
 
 import api from "../../api/helper";
 import { useNavigate } from "react-router-dom";
@@ -38,9 +39,15 @@ function LoginFormApp() {
     <div className="formBg">
       <>{contextHolder}</>
       <Form className="loginForm" onFinish={onFinish}>
-        <Typography.Title style={{ textAlign: "center" }}>
+        <div className="logo-container">
+          <img src={logoImg} className="logo" alt="Logo" />
+        </div>
+        <Typography.Title level={3} style={{ textAlign: "center" }}>
           Sign In
         </Typography.Title>
+        <Typography.Paragraph style={{ textAlign: "center", marginBottom: '20px' }}>
+          Welcome !! Please enter your details below to sign in.
+        </Typography.Paragraph>
         <Form.Item
           name="identifier"
           rules={[
@@ -80,12 +87,12 @@ function LoginFormApp() {
             block
             style={{ borderRadius: "40px" }}
           >
-            Sign In
+            Login
           </Button>
           <p>
             {" "}
             {"Don't have an account? "}
-            <a onClick={() => navigate("/register")}>Sign Up</a>
+            <a onClick={() => navigate("/register")} className="singup">Sign Up</a>
           </p>
         </Form.Item>
       </Form>

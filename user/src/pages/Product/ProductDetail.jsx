@@ -95,10 +95,14 @@ const ProductDetailPage = () => {
       const productIndex = cartList.findIndex((d) => d.id === product.id);
 
       if (productIndex > -1) {
-        cartList[productIndex] = {
-          ...cartList[productIndex],
-          quantity: cartList[productIndex].quantity + 1,
-        };
+        if (cartList[productIndex].quantity < product.attributes.stock) {
+          cartList[productIndex] = {
+            ...cartList[productIndex],
+            quantity: cartList[productIndex].quantity + 1,
+          };
+        } else {
+          message.error("Out Of Stock");
+        }
       } else {
         const newProduct = { ...product, quantity: 1 };
         cartList.push(newProduct);

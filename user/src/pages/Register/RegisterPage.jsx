@@ -9,6 +9,7 @@ import {
   PhoneOutlined,
   UserOutlined,
 } from "@ant-design/icons";
+import logoImg from "../../assets/images/logo11.png";
 
 import api from "../../api/helper";
 import { useNavigate } from "react-router-dom";
@@ -57,9 +58,15 @@ function Register() {
     <div className="registerBg">
       <>{contextHolder}</>
       <Form className="registerForm" onFinish={onFinish}>
-        <Typography.Title style={{ textAlign: "center" }}>
+        <div className="logo-container">
+          <img src={logoImg} className="logo" alt="Logo" />
+        </div>
+        <Typography.Title level={3} style={{ textAlign: "center" }}>
           Sign Up
         </Typography.Title>
+        <Typography.Paragraph style={{ textAlign: "center", marginBottom: '20px' }}>
+          Welcome !! Please enter your details below to sign up.
+        </Typography.Paragraph>
         <Form.Item
           name="name"
           rules={[
@@ -144,12 +151,12 @@ function Register() {
             block
             style={{ borderRadius: "40px" }}
           >
-            Sign Up
+            Register
           </Button>
           <p>
             {" "}
             {"Already have an account? "}
-            <a onClick={() => navigate("/login")}>Sign In</a>
+            <a onClick={() => navigate("/login")} className="signin">Sign In</a>
           </p>
         </Form.Item>
       </Form>

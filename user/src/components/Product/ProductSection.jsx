@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Tabs, Button, Row, Col, Card, Tag, Typography } from "antd";
+import { Button, Row, Col, Card, Tag, Typography, message } from "antd";
 import { EyeOutlined, ShoppingCartOutlined } from "@ant-design/icons";
 import qs from "qs";
 import { useNavigate } from "react-router-dom";
@@ -11,7 +11,6 @@ import "antd/dist/reset.css"; // Optional: reset Ant Design styles to remove any
 import "./ProductSection.css";
 
 const { Title, Paragraph } = Typography;
-const { TabPane } = Tabs;
 
 const fetchProducts = async () => {
   try {
@@ -46,7 +45,6 @@ const fetchProducts = async () => {
 const ProductSection = () => {
   const [cartData, setCartData] = useRecoilState(cart);
   const navigate = useNavigate();
-  const [activeTab, setActiveTab] = useState("1");
   const [products, setProducts] = useState(null);
 
   useEffect(() => {
@@ -63,10 +61,14 @@ const ProductSection = () => {
       const productIndex = cartList.findIndex((d) => d.id === product.id);
 
       if (productIndex > -1) {
-        cartList[productIndex] = {
-          ...cartList[productIndex],
-          quantity: cartList[productIndex].quantity + 1,
-        };
+        if (cartList[productIndex].quantity < product.attributes.stock) {
+          cartList[productIndex] = {
+            ...cartList[productIndex],
+            quantity: cartList[productIndex].quantity + 1,
+          };
+        } else {
+          message.error("Out Of Stock");
+        }
       } else {
         const newProduct = { ...product, quantity: 1 };
         cartList.push(newProduct);

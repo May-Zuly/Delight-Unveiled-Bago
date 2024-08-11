@@ -19,19 +19,24 @@
   margin: 10px;
   width: 450px;
 }
+.logo-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.logo {
+  max-width: 200px; /* Adjust the size as needed */
+  height: auto;
+  display: block;
+}
 /* .loginForm a {
   color: white;
 } */
 .loginForm a:hover {
-  color: aqua;
+  color: #995f20;
 }
-.socialLogin {
-  display: flex;
-  justify-content: center;
-  gap: 24px;
-  color: white;
-  font-size: 24px;
-}
-.socialIcon {
-  cursor: pointer;
+
+.singup{
+  text-decoration: underline;
 }
