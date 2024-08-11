@@ -88,6 +88,12 @@ export default function ProductForm({
       wrapperCol={{ span: wrapperCol }}
       layout="horizontal"
       onFinish={handleSubmit}
+      style={{
+        background: "#e1e1e1",
+        padding: "2rem",
+        borderRadius: "6px",
+        paddingTop: "4rem",
+      }}
     >
       <Form.Item name="id" hidden>
         <Input />
@@ -95,7 +101,11 @@ export default function ProductForm({
       {intitalData.image && (
         <Form.Item label="Old Image">{intitalData.image}</Form.Item>
       )}
-      <Form.Item label="Image" name="image" valuePropName="fileList">
+      <Form.Item
+        label="Image"
+        name="image"
+        valuePropName="fileList"
+      >
         <ImgCrop rotationSlider>
           <Upload
             listType="picture-card"

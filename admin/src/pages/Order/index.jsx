@@ -96,7 +96,7 @@ export default function Order() {
               Change Status
             </Button>
           )}
-          <Button onClick={() => onDetailFunc(record.id)}>Detail</Button>
+          <Button type="primary" onClick={() => onDetailFunc(record.id)}>Detail</Button>
         </Space>
       ),
     },

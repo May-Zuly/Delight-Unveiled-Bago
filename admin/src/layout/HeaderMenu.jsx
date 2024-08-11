@@ -40,7 +40,7 @@ export default function HeaderMenu({ collapsed, setCollapsed }) {
 
   return (
     <>
-      <Row style={{ padding: "20px", background: "#f0dbc7" }}>
+      <Row style={{ padding: "20px", background: "#e1e1e1" }}>
         <Col span={10}>
           <Button
             type="text"

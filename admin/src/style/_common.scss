@@ -54,6 +54,9 @@
   text-decoration: underline;
   color: #1677ff;
 }
+.signup:hover{
+  color: #995f20;
+}
 // end button
 
 // // side bar icon design
@@ -161,4 +164,9 @@ h3.total-amt {
   border-radius: 0.5rem;
   margin-left: auto;
   line-height: 55px;
+}
+
+.ant-upload{
+  background-color: #fff;
+  border-radius: 7px;
 }

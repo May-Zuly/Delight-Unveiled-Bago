@@ -1,4 +1,5 @@
 import { Row, Col, Input, Select, Button } from "antd";
+import {SearchOutlined} from "@ant-design/icons";
 
 const { Option } = Select;
 
@@ -54,7 +55,11 @@ export default function ProductSearch({
 
   return (
     <>
-      <Row gutter={[16, 16]} justify={"center"}>
+      <Row
+        gutter={[16, 16]}
+        justify={"center"}
+        style={{ background: "#9a5e0f", padding: "1rem", borderRadius: "4px" }}
+      >
         <Col xs={24} sm={12} md={8} lg={4}>
           <Select
             showSearch
@@ -119,25 +124,42 @@ export default function ProductSearch({
           />
         </Col>
         <Col>
-          <Button
+        <Button type="primary" icon={<SearchOutlined />}>
+        Search
+        </Button>
+          {/* <Button
             type="primary"
             disabled={btnDisabled()}
             onClick={() => searchProduct(searchData)}
             style={{
-              backgroundColor: "#995f20",
-              borderColor: "#aa620f",
+              backgroundColor: "#f1f1f1",
+              borderColor: "#fff",
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = "#dda15e";
+              e.currentTarget.style.backgroundColor = "#f1f1f1";
               e.currentTarget.style.borderColor = "#995f20";
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = "#995f20";
-              e.currentTarget.style.borderColor = "#aa620f";
+              e.currentTarget.style.backgroundColor = "#f1f1f1";
+              e.currentTarget.style.borderColor = "#fff";
             }}
           >
-            Search
-          </Button>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#000"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-search"
+            >
+              <circle cx="11" cy="11" r="8" />
+              <path d="m21 21-4.3-4.3" />
+            </svg>
+          </Button> */}
         </Col>
       </Row>
     </>

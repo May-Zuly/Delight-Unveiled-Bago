@@ -27,6 +27,12 @@ export default function UserForm({
       wrapperCol={{ span: wrapperCol }}
       layout="horizontal"
       onFinish={onFinish}
+      style={{
+        background: "#e1e1e1",
+        padding: "2rem",
+        borderRadius: "6px",
+        paddingTop: "4rem",
+      }}
     >
       <Form.Item name="id" hidden>
         <Input />

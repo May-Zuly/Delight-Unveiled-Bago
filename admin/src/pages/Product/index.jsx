@@ -120,8 +120,8 @@ export default function App() {
       key: "action",
       render: (record) => (
         <Space size="middle">
-          <Button onClick={() => onEditFun(record.id)}>Edit</Button>
-          <Button danger onClick={() => confirm(record.id)}>
+          <Button type="primary" onClick={() => onEditFun(record.id)}>Edit</Button>
+          <Button type="primary" danger onClick={() => confirm(record.id)}>
             Delete
           </Button>
         </Space>

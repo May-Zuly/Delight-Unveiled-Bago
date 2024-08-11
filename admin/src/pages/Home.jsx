@@ -60,7 +60,7 @@ export default function Home() {
   return (
     <>
       <Spin spinning={loading}>
-        <Row gutter={[24, 0]}>
+        <Row gutter={[24, 0]} style={{marginBottom:"2rem"}}>
           {count.map((c, index) => (
             <Col
               key={index}

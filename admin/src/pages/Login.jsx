@@ -1,5 +1,5 @@
 import { Button, Form, Input, message } from "antd";
-import { LockOutlined, UserOutlined } from "@ant-design/icons";
+import { LockOutlined, UserOutlined ,LoginOutlined} from "@ant-design/icons";
 import { token, userData } from "../store";
 
 import api from "../api/helper";
@@ -47,9 +47,9 @@ export default function Login() {
   return (
     <div className="login-container">
       <div>
-        <img src={logoImg} />
-        <h2>Sign In</h2>
-        <p>Welcome !! Please enter your details below to sign in.</p>
+        <img src={logoImg} style={{marginBottom:'10px'}}/>
+        <h2 style={{paddingBottom:'10px'}}>Sign In</h2>
+        <p style={{paddingBottom:'5px'}}>Welcome !! Please enter your details below to sign in.</p>
       </div>
       <Form
         name="normal_login"
@@ -78,6 +78,7 @@ export default function Login() {
         <Form.Item>
           <Button
             htmlType="submit"
+            icon={<LoginOutlined />}
             className="button-container"
             type="primary"
             disabled={loading}
@@ -87,7 +88,7 @@ export default function Login() {
         </Form.Item>
         <p>
           Don't have an account?
-          <a href="/register" className="signup">
+          <a onClick={() => navigate("/register")} className="signup">
             Sign Up
           </a>
         </p>

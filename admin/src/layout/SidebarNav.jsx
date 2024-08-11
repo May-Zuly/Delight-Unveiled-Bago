@@ -7,7 +7,7 @@ import {
 import { Layout, Menu } from "antd";
 import { Link, useLocation } from "react-router-dom";
 
-import logoImg from "../assets/images/logo.png";
+import logoImg from "../assets/images/white-logo1.png";
 import { useRecoilValue } from "recoil";
 import { userData } from "../store";
 
@@ -23,15 +23,15 @@ export default function Sidebar({ collapsed }) {
   const menuItems = [
     {
       key: "/home",
-      icon: <HomeOutlined style={{ fontSize: "20px" }} type="setting" />,
+      icon: <HomeOutlined style={{ fontSize: "20px", color:"#fff" }} type="setting" />,
       label: <Link to="/home">Home</Link>,
       role: ["admin"],
       label: (
         <Link
           to="/home"
-          style={{ color: "#000", fontSize: "16px" }}
-          onMouseOver={(e) => (e.currentTarget.style.color = "#995f20")}
-          onMouseOut={(e) => (e.currentTarget.style.color = "#000")}
+          style={{ color: "#fff", fontSize: "16px" }}
+          onMouseOver={(e) => (e.currentTarget.style.color = "#000")}
+          onMouseOut={(e) => (e.currentTarget.style.color = "#fff")}
           onMouseDown={(e) => (e.currentTarget.style.color = "#d0a97b")}
         >
           Home
@@ -41,13 +41,13 @@ export default function Sidebar({ collapsed }) {
     },
     {
       key: "/order",
-      icon: <FileDoneOutlined style={{ fontSize: "20px" }} type="setting" />,
+      icon: <FileDoneOutlined style={{ fontSize: "20px", color:"#fff" }} type="setting" />,
       label: (
         <Link
           to="/order"
-          style={{ color: "#000", fontSize: "16px" }}
-          onMouseOver={(e) => (e.currentTarget.style.color = "#995f20")}
-          onMouseOut={(e) => (e.currentTarget.style.color = "#000")}
+          style={{ color: "#fff", fontSize: "16px" }}
+          onMouseOver={(e) => (e.currentTarget.style.color = "#000")}
+          onMouseOut={(e) => (e.currentTarget.style.color = "#fff")}
           onMouseDown={(e) => (e.currentTarget.style.color = "#d0a97b")}
         >
           Orders
@@ -57,17 +57,17 @@ export default function Sidebar({ collapsed }) {
     },
     {
       key: "/producttag",
-      icon: <AppstoreOutlined style={{ fontSize: "20px" }} type="setting" />,
-      label: <span style={{ fontSize: "16px" }}>Product Management</span>,
+      icon: <AppstoreOutlined style={{ fontSize: "20px",color:"#fff" }} type="setting" />,
+      label: <span style={{ fontSize: "16px" ,color:"#fff"}}>Product Management</span>,
       children: [
         {
           key: "/product",
           label: (
             <Link
               to="/product"
-              style={{ color: "#000", fontSize: "16px" }}
-              onMouseOver={(e) => (e.currentTarget.style.color = "#995f20")}
-              onMouseOut={(e) => (e.currentTarget.style.color = "#000")}
+              style={{ color: "#fff", fontSize: "16px" }}
+              onMouseOver={(e) => (e.currentTarget.style.color = "#000")}
+              onMouseOut={(e) => (e.currentTarget.style.color = "#fff")}
               onMouseDown={(e) => (e.currentTarget.style.color = "#d0a97b")}
             >
               Products
@@ -79,9 +79,9 @@ export default function Sidebar({ collapsed }) {
           label: (
             <Link
               to="/product/create"
-              style={{ color: "#000", fontSize: "16px" }}
-              onMouseOver={(e) => (e.currentTarget.style.color = "#995f20")}
-              onMouseOut={(e) => (e.currentTarget.style.color = "#000")}
+              style={{ color: "#fff", fontSize: "16px" }}
+              onMouseOver={(e) => (e.currentTarget.style.color = "#000")}
+              onMouseOut={(e) => (e.currentTarget.style.color = "#fff")}
               onMouseDown={(e) => (e.currentTarget.style.color = "#d0a97b")}
             >
               Create
@@ -93,17 +93,17 @@ export default function Sidebar({ collapsed }) {
     },
     {
       key: "/usertag",
-      icon: <UserAddOutlined style={{ fontSize: "20px" }} type="setting" />,
-      label: <span style={{ fontSize: "16px" }}>User Management</span>,
+      icon: <UserAddOutlined style={{ fontSize: "20px" ,color:"#fff"}} type="setting" />,
+      label: <span style={{ fontSize: "16px",color:"#fff" }}>User Management</span>,
       children: [
         {
           key: "/user",
           label: (
             <Link
               to="/user"
-              style={{ color: "#000", fontSize: "16px" }}
-              onMouseOver={(e) => (e.currentTarget.style.color = "#995f20")}
-              onMouseOut={(e) => (e.currentTarget.style.color = "#000")}
+              style={{ color: "#fff", fontSize: "16px" }}
+              onMouseOver={(e) => (e.currentTarget.style.color = "#000")}
+              onMouseOut={(e) => (e.currentTarget.style.color = "#fff")}
               onMouseDown={(e) => (e.currentTarget.style.color = "#d0a97b")}
             >
               Users
@@ -115,9 +115,9 @@ export default function Sidebar({ collapsed }) {
           label: (
             <Link
               to="/user/create"
-              style={{ color: "#000", fontSize: "16px" }}
-              onMouseOver={(e) => (e.currentTarget.style.color = "#995f20")}
-              onMouseOut={(e) => (e.currentTarget.style.color = "#000")}
+              style={{ color: "#fff", fontSize: "16px" }}
+              onMouseOver={(e) => (e.currentTarget.style.color = "#000")}
+              onMouseOut={(e) => (e.currentTarget.style.color = "#fff")}
               onMouseDown={(e) => (e.currentTarget.style.color = "#d0a97b")}
             >
               Create
@@ -136,7 +136,7 @@ export default function Sidebar({ collapsed }) {
       breakpoint="lg"
       width={270}
       collapsed={collapsed}
-      style={{ background: "#f0dbc7" }}
+      style={{ background: "#9a5e0f" }}
     >
       <div
         className="logo"
@@ -146,7 +146,7 @@ export default function Sidebar({ collapsed }) {
           padding: "20px",
         }}
       >
-        <img src={logoImg} width={collapsed ? "50px" : "80px"} />
+        <img src={logoImg} width={collapsed ? "50px" : "100px"} />
       </div>
       <Menu
         theme="#f0dbc7"

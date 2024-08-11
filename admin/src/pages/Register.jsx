@@ -1,5 +1,5 @@
 import { Button, Checkbox, Form, Input } from "antd";
-import { LockOutlined, MessageOutlined, UserOutlined } from "@ant-design/icons";
+import { LockOutlined, MessageOutlined, UserOutlined ,LoginOutlined} from "@ant-design/icons";
 
 import logoImg from "../assets/images/logo.png";
 import { useNavigate } from "react-router-dom";
@@ -90,13 +90,18 @@ export default function Login() {
           </Checkbox>
         </Form.Item>
         <Form.Item>
-          <Button htmlType="submit" className="button-container" type="primary">
+          <Button
+            icon={<LoginOutlined />}
+            htmlType="submit"
+            className="button-container"
+            type="primary"
+          >
             Register
           </Button>
         </Form.Item>
         <p>
           Already have an account?
-          <a href="/login" className="signup">
+          <a onClick={() => navigate("/login")} className="signup">
             Sign In
           </a>
         </p>
