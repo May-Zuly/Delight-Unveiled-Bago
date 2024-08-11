@@ -71,8 +71,20 @@ export default function Order() {
       key: "status",
     },
     {
+      title: "Order Phone ",
+      dataIndex: "order_phone",
+      key: "order_phone",
+    },
+    {
+      title: "Order Address",
+      dataIndex: "order_address",
+      key: "order_address",
+    },
+    {
       title: "Action",
       key: "action",
+      // fixed: "right",
+      // width: 200,
       render: (record) => (
         <Space size="middle">
           {loginUser.type === "admin" && (
@@ -111,7 +123,9 @@ export default function Order() {
   const fetchOrders = async () => {
     setLoading(true);
     try {
-      const res = await api.get(`order/list`, {
+      let query = "";
+      if (loginUser.type === "producer") query = `seller_id=${loginUser.id}`;
+      const res = await api.get(`order/list?${query}`, {
         headers: { requireToken: true },
       });
       setData(res.data);
@@ -199,7 +213,12 @@ export default function Order() {
 
   return (
     <>
-      <Table columns={columns} dataSource={data} pagination={false} />
+      <Table
+        columns={columns}
+        dataSource={data}
+        pagination={false}
+        scroll={{ x: 1000, y: 450 }}
+      />
       <Modal
         width={1000}
         title="Order Detail"

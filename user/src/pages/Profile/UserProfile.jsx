@@ -27,8 +27,7 @@ const UserProfile = () => {
 
   const fetchOrders = async () => {
     try {
-      let filter = "";
-      const res = await api.get(`order/list?${filter}`, {
+      const res = await api.get(`order/list?user_id=${loginUser.user.id}`, {
         headers: { requireToken: true },
       });
       setOrderHistory(res.data);

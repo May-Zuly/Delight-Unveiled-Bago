@@ -37,10 +37,14 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
     try {
       const query = ctx.request.query;
       const userId = query.user_id;
+      const sellerId = query.seller_id;
       const fromDate = query.from;
       const toDate = query.to;
 
       const conditions = {};
+      if (sellerId) {
+        conditions.purchases = { product: { seller: sellerId } };
+      }
       if (userId) {
         conditions.customer = { id: userId };
       }
@@ -230,6 +234,8 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
           status: "order",
           purchases: purchaseIds,
           customer: data.user_id,
+          order_phone: data.order_phone,
+          order_address: data.order_address,
           image: createdFiles ? createdFiles[0].id : null,
         },
       });
