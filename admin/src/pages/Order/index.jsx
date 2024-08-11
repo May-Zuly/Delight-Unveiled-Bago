@@ -53,6 +53,14 @@ export default function Order() {
       title: "Total Amount",
       dataIndex: "total",
       key: "total",
+      render: (_, record) => (
+        <span>
+          {record.purchases.reduce(
+            (total, item) => total + item.product_price * item.quantity,
+            0
+          )}
+        </span>
+      ),
     },
     {
       title: "Payment Type",
@@ -96,7 +104,9 @@ export default function Order() {
               Change Status
             </Button>
           )}
-          <Button type="primary" onClick={() => onDetailFunc(record.id)}>Detail</Button>
+          <Button type="primary" onClick={() => onDetailFunc(record.id)}>
+            Detail
+          </Button>
         </Space>
       ),
     },
@@ -105,7 +115,9 @@ export default function Order() {
   const onDetailFunc = async (id) => {
     setLoading(true);
     try {
-      const res = await api.get(`order/detail/${id}`, {
+      let query = "";
+      if (loginUser.type === "producer") query = `seller_id=${loginUser.id}`;
+      const res = await api.get(`order/detail/${id}?${query}`, {
         headers: { requireToken: true },
       });
       setOrderDetail(res.data);

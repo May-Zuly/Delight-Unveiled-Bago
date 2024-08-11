@@ -3,6 +3,9 @@ import React, { useEffect, useState } from "react";
 
 import ImgCrop from "antd-img-crop";
 import { PlusOutlined } from "@ant-design/icons";
+import { userData } from "../store";
+
+import { useRecoilValue } from "recoil";
 
 export default function ProductForm({
   labelCol,
@@ -11,6 +14,7 @@ export default function ProductForm({
   btnText = "create",
   intitalData,
 }) {
+  const loginUser = useRecoilValue(userData);
   const [townshipList, setTownshipList] = useState([]);
   const optionList = [
     { label: "Furniture", value: "furniture" },
@@ -40,6 +44,7 @@ export default function ProductForm({
       stock: values.stock,
       township: values.township,
       district: values.district,
+      seller: loginUser.id,
     };
     const formData = new FormData();
     if (fileList.length > 0) {
@@ -101,11 +106,7 @@ export default function ProductForm({
       {intitalData.image && (
         <Form.Item label="Old Image">{intitalData.image}</Form.Item>
       )}
-      <Form.Item
-        label="Image"
-        name="image"
-        valuePropName="fileList"
-      >
+      <Form.Item label="Image" name="image" valuePropName="fileList">
         <ImgCrop rotationSlider>
           <Upload
             listType="picture-card"

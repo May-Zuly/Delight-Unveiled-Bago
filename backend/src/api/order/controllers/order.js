@@ -69,11 +69,13 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
           image: true,
           payment: true,
           customer: true,
-          purchases: { populate: { product: { populate: { image: true } } } },
+          purchases: {
+            populate: { product: { populate: { image: true, seller: true } } },
+          },
         },
         limit,
       });
-      return entries.map((entry) => ({
+      let response = entries.map((entry) => ({
         ...entry,
         payment: entry?.payment?.type,
         customer: entry?.customer?.username,
@@ -87,9 +89,17 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
                 product_image: p.product?.image?.url,
                 product_price: p.product?.price,
                 quantity: p?.quantity,
+                seller: p?.product?.seller.id,
               }))
             : [],
       }));
+      if (sellerId) {
+        response = response.map((res) => ({
+          ...res,
+          purchases: res.purchases.filter((p) => p.seller == sellerId),
+        }));
+      }
+      return response;
     } catch (error) {
       ctx.badRequest(error, "Error in fetch order list");
     }
@@ -155,13 +165,18 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
   async orderDetail(ctx) {
     try {
       const id = ctx.request.params.id;
-
       if (!id) {
         ctx.badRequest("ID is required");
       }
+      const query = ctx.request.query;
+      const conditions = { id: id };
+      const sellerId = query.seller_id;
+      if (sellerId) {
+        conditions.purchases = { product: { seller: sellerId } };
+      }
 
       const entry = await strapi.db.query("api::order.order").findOne({
-        where: { id },
+        where: conditions,
         populate: {
           image: true,
           payment: true,
