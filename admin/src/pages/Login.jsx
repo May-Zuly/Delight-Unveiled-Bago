@@ -1,5 +1,5 @@
 import { Button, Form, Input, message } from "antd";
-import { LockOutlined, UserOutlined ,LoginOutlined} from "@ant-design/icons";
+import { LockOutlined, LoginOutlined, UserOutlined } from "@ant-design/icons";
 import { token, userData } from "../store";
 
 import api from "../api/helper";
@@ -31,10 +31,18 @@ export default function Login() {
             "/product/create",
             "/user",
             "/user/create",
+            "/profile",
+            "/change_password",
           ];
         }
         if (userData.type === "producer") {
-          userData.permissions = ["/order", "/product", "/product/create"];
+          userData.permissions = [
+            "/order",
+            "/product",
+            "/product/create",
+            "/profile",
+            "/change_password",
+          ];
         }
         setUserData(userData);
         navigate(userData.permissions[0]);
@@ -47,9 +55,11 @@ export default function Login() {
   return (
     <div className="login-container">
       <div>
-        <img src={logoImg} style={{marginBottom:'10px'}}/>
-        <h2 style={{paddingBottom:'10px'}}>Sign In</h2>
-        <p style={{paddingBottom:'5px'}}>Welcome !! Please enter your details below to sign in.</p>
+        <img src={logoImg} style={{ marginBottom: "10px" }} />
+        <h2 style={{ paddingBottom: "10px" }}>Sign In</h2>
+        <p style={{ paddingBottom: "5px" }}>
+          Welcome !! Please enter your details below to sign in.
+        </p>
       </div>
       <Form
         name="normal_login"
