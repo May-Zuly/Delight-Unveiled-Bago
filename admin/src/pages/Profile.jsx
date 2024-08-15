@@ -1,62 +1,77 @@
-import { Col, Modal, Row } from "antd";
-
+import { Card, Col, Modal, Row, Button } from "antd";
 import ChangePassword from "../components/ChangePassword";
 import { dateFormat } from "../utils/constant";
 import dayjs from "dayjs";
 import { useRecoilValue } from "recoil";
 import { useState } from "react";
 import { userData } from "../store";
+import "./Profile.css"; // Import the CSS file
 
-export default function App() {
+export default function Profile() {
   const user = useRecoilValue(userData);
   const [showChangePassword, setShowChangePassword] = useState(false);
 
   return (
-    <>
-      <h2 className="title">Profile</h2>
-      <Row gutter={[16, 16]}>
-        <Col xs={24} md={3}>
-          <label>User Name : </label>
-        </Col>
-        <Col xs={24} md={21}>
-          <label>{user.username}</label>
-        </Col>
-        <Col xs={24} md={3}>
-          <label>Email : </label>
-        </Col>
-        <Col xs={24} md={21}>
-          <label>{user.email}</label>
-        </Col>
-        <Col xs={24} md={3}>
-          <label>Address : </label>
-        </Col>
-        <Col xs={24} md={21}>
-          <label>{user.address}</label>
-        </Col>
-        <Col xs={24} md={3}>
-          <label>Phone Number : </label>
-        </Col>
-        <Col xs={24} md={21}>
-          <label>{user.phoneNumber}</label>
-        </Col>
-        <Col xs={24} md={3}>
-          <label>Type : </label>
-        </Col>
-        <Col xs={24} md={21}>
-          <label>{user.type}</label>
-        </Col>
-        <Col xs={24} md={3}>
-          <label>Created Date : </label>
-        </Col>
-        <Col xs={24} md={21}>
-          <label>{dayjs(user.createdDate).format(dateFormat)}</label>
+    <div className="profile-container">
+      <Row justify="center">
+        <Col xs={24} md={12}>
+          <Card
+            title="User Profile"
+            bordered={false}
+            className="profile-card"
+          >
+            <Row gutter={[16, 16]}>
+              <Col xs={24} md={8}>
+                <strong>User Name:</strong>
+              </Col>
+              <Col xs={24} md={16}>
+                <span>{user.username}</span>
+              </Col>
+
+              <Col xs={24} md={8}>
+                <strong>Email:</strong>
+              </Col>
+              <Col xs={24} md={16}>
+                <span>{user.email}</span>
+              </Col>
+
+              <Col xs={24} md={8}>
+                <strong>Address:</strong>
+              </Col>
+              <Col xs={24} md={16}>
+                <span>{user.address}</span>
+              </Col>
+
+              <Col xs={24} md={8}>
+                <strong>Phone Number:</strong>
+              </Col>
+              <Col xs={24} md={16}>
+                <span>{user.phoneNumber}</span>
+              </Col>
+
+              <Col xs={24} md={8}>
+                <strong>Type:</strong>
+              </Col>
+              <Col xs={24} md={16}>
+                <span>{user.type}</span>
+              </Col>
+
+              <Col xs={24} md={8}>
+                <strong>Created Date:</strong>
+              </Col>
+              <Col xs={24} md={16}>
+                <span>{dayjs(user.createdDate).format(dateFormat)}</span>
+              </Col>
+            </Row>
+            <div className="change-password-profile-container">
+              <Button type="primary" onClick={() => setShowChangePassword(true)}>
+                Change Password
+              </Button>
+            </div>
+          </Card>
         </Col>
       </Row>
-      <br />
-      <br />
-      <a href="#" onClick={() => setShowChangePassword(true)}>
-        Change Password
-      </a>
+
       <Modal
         title="Change Password"
         open={showChangePassword}
@@ -65,6 +80,6 @@ export default function App() {
       >
         <ChangePassword />
       </Modal>
-    </>
+    </div>
   );
 }

@@ -1,5 +1,5 @@
 import { Row, Col, Input, Select, Button } from "antd";
-import {SearchOutlined} from "@ant-design/icons";
+import { SearchOutlined } from "@ant-design/icons";
 
 const { Option } = Select;
 
@@ -58,7 +58,7 @@ export default function ProductSearch({
       <Row
         gutter={[16, 16]}
         justify={"center"}
-        style={{ background: "#9a5e0f", padding: "1rem", borderRadius: "4px" }}
+        style={{ background: "#e1e1e1", padding: "1rem", borderRadius: "4px" }}
       >
         <Col xs={24} sm={12} md={8} lg={4}>
           <Select
@@ -124,9 +124,13 @@ export default function ProductSearch({
           />
         </Col>
         <Col>
-        <Button type="primary" icon={<SearchOutlined />}>
-        Search
-        </Button>
+          <Button
+            type="primary"
+            onClick={() => searchProduct(searchData)}
+            icon={<SearchOutlined />}
+          >
+            Search
+          </Button>
           {/* <Button
             type="primary"
             disabled={btnDisabled()}

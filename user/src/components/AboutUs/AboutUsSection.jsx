@@ -57,7 +57,7 @@ const AboutUsSection = () => {
                 e.currentTarget.style.borderColor = "#aa620f";
               }}
             >
-              <Link to="/about-us-page">Read More</Link>
+              <Link to="/about-us">Read More</Link>
             </Button>
           </div>
         </Col>

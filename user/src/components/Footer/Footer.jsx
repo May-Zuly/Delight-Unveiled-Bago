@@ -1,6 +1,4 @@
 import "./Footer.css";
-import "./Footer.css";
-
 import {
   BorderBottomOutlined,
   EnvironmentOutlined,
@@ -15,7 +13,7 @@ import {
 import { Button, Col, Layout, List, Row, Typography } from "antd";
 
 import React from "react";
-
+import { Link } from "react-router-dom";
 // const { Footer } = Layout;
 
 // const AppFooter = () => (
@@ -29,13 +27,8 @@ import React from "react";
 
 // export default AppFooter;
 
-
-
-
-
-
 const { Footer } = Layout;
-const { Title, Text, Paragraph, Link } = Typography;
+const { Title, Text, Paragraph } = Typography;
 
 const FooterComponent = () => (
   <Footer className="footer">
@@ -57,21 +50,25 @@ const FooterComponent = () => (
                 shape="circle"
                 icon={<TwitterOutlined />}
                 className="btn btn-square btn-outline-light me-1"
+                href="http://twitter.com/"
               />
               <Button
                 shape="circle"
                 icon={<FacebookFilled />}
                 className="btn btn-square btn-outline-light me-1"
+                href="https://www.facebook.com/"
               />
               <Button
                 shape="circle"
                 icon={<YoutubeFilled />}
                 className="btn btn-square btn-outline-light me-1"
+                href="https://www.youtube.com/"
               />
               <Button
                 shape="circle"
                 icon={<LinkedinFilled />}
                 className="btn btn-square btn-outline-light me-1"
+                href="https://www.linkedin.com/in/may-zuly-moe-emily-a7697931a/"
               />
             </div>
           </div>
@@ -89,7 +86,9 @@ const FooterComponent = () => (
                 dataSource={["Products", "Contact Us"]}
                 renderItem={(item) => (
                   <List.Item style={{ borderBlockEnd: "none" }}>
-                    <Link href="classes.html">{item}</Link>
+                    <Link to={`/${item.toLowerCase().replace(" ", "-")}`}>
+                      {item}
+                    </Link>
                   </List.Item>
                 )}
               />
@@ -109,7 +108,15 @@ const FooterComponent = () => (
                 dataSource={["Home", "About Us", "Products", "Contact Us"]}
                 renderItem={(item) => (
                   <List.Item style={{ borderBlockEnd: "none" }}>
-                    <Link href={`${item.toLowerCase()}.html`}>{item}</Link>
+                    <Link
+                      to={
+                        item === "Home"
+                          ? "/"
+                          : `/${item.toLowerCase().replace(" ", "-")}`
+                      }
+                    >
+                      {item}
+                    </Link>
                   </List.Item>
                 )}
               />
@@ -152,9 +159,7 @@ const FooterComponent = () => (
           <Text className="mb-0">
             Copyright &copy; All rights reserved | This template is made with{" "}
             <HeartFilled /> by{" "}
-            <Link href="#" target="_blank">
-              EmilyMay
-            </Link>
+            <a href="https://www.linkedin.com/in/may-zuly-moe-emily-a7697931a/" target="_blank">EmilyMay</a>
           </Text>
         </Col>
       </Row>

@@ -11,6 +11,8 @@ import {
   message,
   Modal,
   Input,
+  Typography,
+  Image,
 } from "antd";
 
 import ImgCrop from "antd-img-crop";
@@ -23,6 +25,7 @@ import { useRecoilState } from "recoil";
 import { useState } from "react";
 
 const CheckoutPage = () => {
+  const { Text } = Typography;
   const loginUser = JSON.parse(localStorage.getItem("loginUser"));
   const [imageForm] = Form.useForm();
   const navigate = useNavigate();
@@ -132,14 +135,16 @@ const CheckoutPage = () => {
     <div className="checkout-container">
       <Row>
         <Col xs={24} sm={24} md={14}>
-          <Card title="Payment Details" className="checkout-form">
+          <Card
+            title="Payment Details"
+            className="checkout-form"
+          >
             <Radio.Group onChange={onChange} value={value}>
               <Radio value={1}>Mobile Banking</Radio>
               <Radio value={2}>Cash On Delivery</Radio>
             </Radio.Group>
             {value === 1 && (
               <>
-                <div>Payment Information</div>
                 <Form
                   name="payment"
                   layout="vertical"
@@ -149,7 +154,41 @@ const CheckoutPage = () => {
                       ? setIsModalVisible(true)
                       : message.error("Please Login...");
                   }}
+                  style={{marginTop:"1rem"}}
                 >
+                  <Card
+                    title="Payment Information"
+                    bordered={false}
+                    style={{
+                      width: "300px",
+                      borderRadius: "10px",
+                      boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)",
+                      padding: "10px",
+                      margin: "0 auto",
+                    }}
+                    headStyle={{
+                      backgroundColor: "#f5f5f5",
+                      textAlign: "center",
+                      padding: "5px",
+                    }}
+                  >
+                    <Text strong>Phone Number:</Text>{" "}
+                    <Text>09-426-557-737</Text>
+                    <br />
+                    <Text strong>Account Name:</Text> <Text>May Zuly Moe</Text>
+                    <div style={{ textAlign: "center", marginTop: "20px" }}>
+                      <Image
+                        src="/src/assets/images/QR.jpg"
+                        alt="QR Code"
+                        width={150}
+                        height={150}
+                        style={{ borderRadius: "8px" }}
+                      />
+                      <p style={{ marginTop: "10px", color: "#555" }}>
+                        Scan the QR code to make a payment
+                      </p>
+                    </div>
+                  </Card>
                   <Form.Item
                     label=""
                     name="image"
@@ -207,13 +246,13 @@ const CheckoutPage = () => {
           <Card title="Order Summary" className="summary-card">
             <Row>
               <Col xs={10} sm={10} md={10} lg={10}>
-                Item Name
+               <Text strong>Item Name</Text> 
               </Col>
               <Col xs={4} sm={4} md={4} lg={4}>
-                Quantity
+                <Text strong>Quantity</Text>
               </Col>
               <Col xs={8} sm={8} md={8} lg={8}>
-                Subtotal
+                <Text strong>Subtotal</Text>
               </Col>
             </Row>
             {
@@ -223,24 +262,24 @@ const CheckoutPage = () => {
                 renderItem={(item) => (
                   <Row>
                     <Col xs={10} sm={10} md={10} lg={10}>
-                      {item.attributes.name}
+                     <Text>{item.attributes.name}</Text> 
                     </Col>
-                    <Col xs={4} sm={4} md={4} lg={4}>
-                      {item.quantity}
+                    <Col xs={4} sm={4} md={4} lg={4} style={{textAlign:"center"}}>
+                      <Text>{item.quantity}</Text>
                     </Col>
                     <Col xs={8} sm={8} md={8} lg={8}>
-                      <div>{item.attributes.price * item.quantity} MMK</div>
+                      <Text>{item.attributes.price * item.quantity} MMK</Text>
                     </Col>
                   </Row>
                 )}
               />
             }
-            <Row style={{ padding: "10px 0", fontWeight: "bold" }}>
-              <Col xs={14} sm={14} md={14} lg={14}>
-                Total Amount:
+            <Row style={{ padding: "10px 0", fontWeight: "bold"}}>
+              <Col xs={14} sm={14} md={14} lg={14} style={{textAlign:"center"}}>
+                <Text strong>Total Amount:</Text>
               </Col>
               <Col xs={8} sm={8} md={8} lg={8}>
-                {totalPrice} MMK
+                <Text strong>{totalPrice} MMK</Text>
               </Col>
             </Row>
           </Card>

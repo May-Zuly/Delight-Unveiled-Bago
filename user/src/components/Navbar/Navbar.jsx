@@ -73,7 +73,7 @@ const Navbar = () => {
               <Link to="/products">Products</Link>
             </Menu.Item>
             <Menu.Item key="aboutus">
-              <Link to="/about-us-page">About Us</Link>
+              <Link to="/about-us">About Us</Link>
             </Menu.Item>
             <Menu.Item key="blog">
               <Link to="/blog">Blogs</Link>
@@ -119,7 +119,7 @@ const Navbar = () => {
               <Link to="/products">Products</Link>
             </Menu.Item>
             <Menu.Item key="aboutus">
-              <Link to="/about-us-page">About Us</Link>
+              <Link to="/about-us">About Us</Link>
             </Menu.Item>
             <Menu.Item key="blog">
               <Link to="/blog">Blogs</Link>

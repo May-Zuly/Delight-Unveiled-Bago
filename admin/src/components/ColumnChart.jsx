@@ -25,6 +25,12 @@ export default function ColumnChart({ data }) {
         alias: "销售额",
       },
     },
+    animation: {
+      appear: {
+        duration: 4000, // 4 seconds
+        easing: 'easeInOut', // Smoother easing effect
+      },
+    },
   };
   return <Column {...config} />;
 }

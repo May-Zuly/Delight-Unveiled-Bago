@@ -65,21 +65,25 @@ const ContactUsSection = () => {
                 shape="circle"
                 icon={<TwitterOutlined />}
                 className="btn-square"
+                href="https://www.twitter.com/"
               />
               <Button
                 shape="circle"
                 icon={<FacebookOutlined />}
                 className="btn-square"
+                href="https://www.facebook.com/"
               />
               <Button
                 shape="circle"
                 icon={<YoutubeOutlined />}
                 className="btn-square"
+                href="https://www.youtube.com/"
               />
               <Button
                 shape="circle"
                 icon={<LinkedinOutlined />}
                 className="btn-square"
+                href="https://www.linkedin.com/in/may-zuly-moe-emily-a7697931a/"
               />
             </div>
           </div>

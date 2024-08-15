@@ -5,7 +5,7 @@ import { useRecoilState } from "recoil";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-const { Title } = Typography;
+const { Title,Text } = Typography;
 
 const CartPage = () => {
   const navigate = useNavigate();
@@ -50,16 +50,16 @@ const CartPage = () => {
       <Row gutter={16} style={{ padding: "10px 0", fontWeight: "bold" }}>
         <Col xs={2} sm={2} md={2} lg={3}></Col>
         <Col xs={4} sm={4} md={4} lg={7}>
-          Item Name
+          <Text strong>Item Name</Text>
         </Col>
         <Col xs={2} sm={2} md={2} lg={2}>
-          Item Price
+          <Text strong>Item Price</Text>
         </Col>
         <Col xs={10} sm={10} md={10} lg={4}>
-          Quantity
+         <Text strong>Quantity</Text>
         </Col>
         <Col xs={4} sm={4} md={4} lg={4}>
-          Subtotal
+          <Text strong>Subtotal</Text>
         </Col>
         <Col xs={2} sm={2} md={2} lg={4}></Col>
       </Row>
@@ -77,10 +77,10 @@ const CartPage = () => {
       <Row style={{ padding: "10px 0", fontWeight: "bold" }}>
         <Col xs={8} sm={8} md={8} lg={12}></Col>
         <Col xs={10} sm={10} md={10} lg={4}>
-          Total Amount:{" "}
+          <Text strong>Total Amount:{" "}</Text>
         </Col>
         <Col xs={4} sm={4} md={4} lg={4}>
-          {totalPrice} MMK
+          <Text strong>{totalPrice} MMK</Text>
         </Col>
         <Col xs={2} sm={2} md={2} lg={4}></Col>
       </Row>

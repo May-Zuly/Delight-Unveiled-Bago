@@ -106,11 +106,12 @@
 }
 .footer .ant-list .ant-list-item {
   justify-content:unset;
+  padding:5px 0;
 
 }
-.text{
+/* .text{
   padding:0 10px;
-}
+} */
 .footer .ant-list-item a {
   color: #212529; /* default link color */
   text-decoration: none;
@@ -120,17 +121,17 @@
   text-decoration: underline;
 }
 
-.footer .ant-row {
+/* .footer .ant-row {
   margin-bottom: 16px;
-}
+} */
 
 .footer .ant-row:last-child {
   margin-bottom: 0;
 }
 
-.footer .ant-col {
+/* .footer .ant-col {
   padding: 8px;
-}
+} */
 
 .footer .ant-col h2 {
   color: #343a40; /* heading color */
@@ -143,7 +144,7 @@
 }
 
 .footer .ant-typography .anticon-heart {
-  color: rgb(32, 66, 15);
+  color: rgb(84, 53, 5);
 }
 
 .footer .ant-col .ant-typography .anticon-phone,
