@@ -1,9 +1,10 @@
-import { List, Card, Typography, Row, Col, Modal, Button } from "antd";
+import { Button, Card, Col, List, Modal, Row, Typography, message } from "antd";
+
 import CartItem from "../../components/Cart/CartItem";
 import { cart } from "../../store";
-import { useRecoilState } from "recoil";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useRecoilState } from "recoil";
 
 const { Title } = Typography;
 
@@ -11,10 +12,32 @@ const CartPage = () => {
   const navigate = useNavigate();
   const [cartData, setCartData] = useRecoilState(cart);
 
-  const handleQuantityChange = (id, quantity) => {
-    setCartData(
-      cartData.map((item) => (item.id === id ? { ...item, quantity } : item))
-    );
+  const handleQuantityChange = (id, quantity, type) => {
+    if (type === "minus") {
+      setCartData(
+        cartData.map((item) => (item.id === id ? { ...item, quantity } : item))
+      );
+    } else {
+      setCartData((prevCartData) => {
+        let cartList = prevCartData.map((item) => ({ ...item }));
+        const productIndex = cartList.findIndex((d) => d.id === id);
+        if (productIndex > -1) {
+          if (
+            cartList[productIndex].quantity <
+            cartList[productIndex].attributes.stock
+          ) {
+            cartList[productIndex] = {
+              ...cartList[productIndex],
+              quantity: quantity,
+            };
+          } else {
+            message.error("Out Of Stock");
+          }
+        }
+
+        return cartList;
+      });
+    }
   };
 
   const handleRemove = (id) => {

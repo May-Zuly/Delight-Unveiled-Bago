@@ -5,12 +5,12 @@ import {
   Card,
   Col,
   Form,
+  Input,
   List,
+  Modal,
   Row,
   Upload,
   message,
-  Modal,
-  Input,
 } from "antd";
 
 import ImgCrop from "antd-img-crop";
@@ -65,7 +65,10 @@ const CheckoutPage = () => {
           navigate("/products");
         }
       } catch (error) {
-        message.error("Error");
+        const errors = [...error.response.data.error.details];
+        errors.map((text) => {
+          message.error(text);
+        });
       }
     } else {
       message.error("Please login in");
@@ -104,7 +107,10 @@ const CheckoutPage = () => {
           navigate("/products");
         }
       } catch (error) {
-        message.error("Error");
+        const errors = [...error.response.data.error.details];
+        errors.map((text) => {
+          message.error(text);
+        });
       }
     } else {
       message.error("Please login in");
