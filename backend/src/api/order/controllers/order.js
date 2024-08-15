@@ -215,6 +215,48 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
       if (body.data) {
         data = JSON.parse(body.data);
       }
+      const errorMessages = [];
+      await Promise.all(
+        data.products.map(async (p) => {
+          const product = await strapi.db
+            .query("api::product.product")
+            .findOne({
+              where: { id: p.id },
+            });
+          const stock = product.stock;
+          const remainStock = stock - p.quantity;
+          if (remainStock < 0) {
+            errorMessages.push(
+              `You can't buy ${product.name}, your purchase amount exceed current stock`
+            );
+          }
+          return product;
+        })
+      );
+      if (errorMessages.length > 0) {
+        return ctx.badRequest("error", errorMessages);
+      }
+      await Promise.all(
+        data.products.map(async (p) => {
+          const product = await strapi.db
+            .query("api::product.product")
+            .findOne({
+              where: { id: p.id },
+            });
+          const stock = product.stock;
+          const remainStock = stock - p.quantity;
+          const updatedProduct = await strapi.db
+            .query("api::product.product")
+            .update({
+              where: { id: p.id },
+              data: {
+                stock: remainStock,
+              },
+            });
+          return updatedProduct;
+        })
+      );
+
       if (ctx.request.files) {
         file = ctx.request.files["files.image"];
         createdFiles = await strapi.plugins.upload.services.upload.upload({

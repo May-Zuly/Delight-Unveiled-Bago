@@ -5,12 +5,12 @@ import {
   Card,
   Col,
   Form,
+  Input,
   List,
+  Modal,
   Row,
   Upload,
   message,
-  Modal,
-  Input,
   Typography,
   Image,
 } from "antd";
@@ -68,7 +68,10 @@ const CheckoutPage = () => {
           navigate("/products");
         }
       } catch (error) {
-        message.error("Error");
+        const errors = [...error.response.data.error.details];
+        errors.map((text) => {
+          message.error(text);
+        });
       }
     } else {
       message.error("Please login in");
@@ -107,7 +110,10 @@ const CheckoutPage = () => {
           navigate("/products");
         }
       } catch (error) {
-        message.error("Error");
+        const errors = [...error.response.data.error.details];
+        errors.map((text) => {
+          message.error(text);
+        });
       }
     } else {
       message.error("Please login in");

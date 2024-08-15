@@ -1,10 +1,13 @@
-import React from "react";
-import { List, Button, Row, Col } from "antd";
+import { Button, Col, List, Row } from "antd";
+
 import { DeleteOutlined } from "@ant-design/icons";
+import React from "react";
 
 const CartItem = ({ item, onQuantityChange, onRemove }) => {
-  const incrementQuantity = () => onQuantityChange(item.id, item.quantity + 1);
-  const decrementQuantity = () => onQuantityChange(item.id, item.quantity - 1);
+  const incrementQuantity = () =>
+    onQuantityChange(item.id, item.quantity + 1, "add");
+  const decrementQuantity = () =>
+    onQuantityChange(item.id, item.quantity - 1, "minus");
 
   return (
     <List.Item>
