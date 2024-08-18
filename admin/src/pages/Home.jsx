@@ -156,9 +156,11 @@ export default function Home() {
         <Row gutter={[16, 16]}>
           <Col span={10}>
             <ColumnChart data={data.barChart} />
+          <h1 style={{textAlign:'center'}}>Daily Reports per week</h1>
           </Col>
           <Col>
             <PieChart data={data.pieChart} />
+            <h1 style={{textAlign:'center'}}>Product Reports by townships</h1>
           </Col>
         </Row>
       </Spin>

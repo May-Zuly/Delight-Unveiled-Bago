@@ -24,8 +24,6 @@ export default function Sidebar({ collapsed }) {
     {
       key: "/home",
       icon: <HomeOutlined style={{ fontSize: "20px", color:"#fff" }} type="setting" />,
-      label: <Link to="/home">Home</Link>,
-      role: ["admin"],
       label: (
         <Link
           to="/home"
