@@ -5,6 +5,7 @@ import Features from "../../components/Features/FeatureSection";
 import ProductSection from "../../components/Product/ProductSection";
 import AboutUsSection from "../../components/AboutUs/AboutUsSection";
 import ContactUsSection from "../../components/ContactUs/ContactUsSection";
+import BagoMap from "../../components/BagoMap/BagoMap";
 const HomePage = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -14,10 +15,11 @@ const HomePage = () => {
       <CarouselSection />
       <GroceriesSection />
       {/* <FeatureSection /> */}
-      <Features/>
+      <Features />
       <AboutUsSection />
       <ProductSection />
       <ContactUsSection />
+      <BagoMap/>
     </>
   );
 };
