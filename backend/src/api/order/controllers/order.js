@@ -9,6 +9,28 @@ const { createCoreController } = require("@strapi/strapi").factories;
 
 const limit = 999999;
 
+const townships = [
+  "Paukkaung",
+  "Pyay",
+  "Shwedaung",
+  "Padaung",
+  "Nattalin",
+  "Zigon",
+  "Thegon",
+  "Paungde",
+  "Gyobingauk",
+  "Okpho",
+  "Minhla",
+  "Monyo",
+  "Letpandan",
+  "Tharrawaddy",
+  "Bago",
+  "Taungoo",
+  "Shwegyin",
+  "Nyaunglebin",
+  "Daik-U",
+];
+
 const getDataByDateRange = (data) => {
   const today = new Date();
   const startDate = subDays(today, 6);
@@ -30,6 +52,17 @@ const getDataByDateRange = (data) => {
     });
   });
   return result;
+};
+
+const getTownshipWithProduct = (productWithTownShip) => {
+  let data = [];
+  for (let i = 0; i < townships.length; i++) {
+    data.push({
+      date: townships[i],
+      value: productWithTownShip[i] ? productWithTownShip[i].length : 0,
+    });
+  }
+  return data;
 };
 
 module.exports = createCoreController("api::order.order", ({ strapi }) => ({
@@ -125,18 +158,18 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
         limit,
       });
       const barChart = getDataByDateRange(weekOrders);
-      const weekProducts = await strapi.db
-        .query("api::product.product")
-        .findMany({
-          where: {
-            createdAt: {
-              $gt: formattedStartOfWeek,
-              $lt: formattedEndOfWeek,
-            },
-          },
+      const townshipPromise = [];
+      for (let i = 0; i < townships.length; i++) {
+        const fetchProduct = strapi.db.query("api::product.product").findMany({
           limit,
+          where: {
+            township: townships[i],
+          },
         });
-      const pieChart = getDataByDateRange(weekProducts);
+        townshipPromise.push(fetchProduct);
+      }
+      const productWithTownShip = await Promise.all(townshipPromise);
+      const pieChart = getTownshipWithProduct(productWithTownShip);
       const products = await strapi.db.query("api::product.product").findMany({
         limit,
       });
