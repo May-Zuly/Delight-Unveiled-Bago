@@ -3,7 +3,8 @@
   width: 100%;
   z-index: 1000;
   justify-content: space-between;
-  background: #ffff;
+  /* background: #ffff; */
+  background: #995f20;
   top: 0;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   padding: 0 10px;
@@ -30,7 +31,8 @@
 .brand .brand-name {
   font-size: 20px;
   font-weight: bold;
-  color: #333;
+  /* color: #333; */
+  color: #fff;
 }
 
 .menu-container {
@@ -47,7 +49,8 @@
   justify-content: flex-end;
   font-size: 18px;
   font-weight: 500;
-  background: #ffff;
+  /* background: #ffff; */
+  background: #995f20;
   align-items: center;
   height: 100%;
   border: none;
@@ -64,7 +67,8 @@
 }
 
 .menu .ant-menu-item a {
-  color: #333;
+  /* color: #333; */
+  color: #fff;
   transition: color 0.3s;
   /* text-decoration: none; */
   height: 100%;
@@ -72,11 +76,11 @@
   align-items: center;
 }
 .ant-menu-light.ant-menu-horizontal >.ant-menu-item-selected::after{
-  border-bottom-color: #995f20;
+  border-bottom-color: #f0dbc7;
 }
 
 .menu .ant-menu-item a:hover {
-  color: #995f20 !important;
+  color: #333 !important;
 }
 
 .icons {
@@ -89,7 +93,7 @@
   margin-right: 10px;
   border: none;
   background: none;
-  color: #333;
+  color: #cec6c1;
   transition: color 0.3s;
   border: 1px solid darkgray;
   /* background-color: darkgray; */

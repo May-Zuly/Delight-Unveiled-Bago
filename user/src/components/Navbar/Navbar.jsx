@@ -60,10 +60,10 @@ const Navbar = () => {
   return (
     <Header className="container">
       <div className="navbar">
-        <a href="index.html" className="brand">
-          <img src="/src/assets/images/logo1.png" alt="" />
+        <Link to="/" className="brand">
+          <img src="/src/assets/images/white-logo1.png" alt="" />
           <span className="brand-name">Delight Unveiled Bago Region</span>
-        </a>
+        </Link>
         <div className="menu-container">
           <Menu mode="horizontal " className="menu">
             <Menu.Item key="home">

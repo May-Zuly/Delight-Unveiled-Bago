@@ -145,8 +145,8 @@ const FooterComponent = () => (
                 </List.Item>
                 <List.Item>
                   <MailOutlined className="icon" />
-                  <Link href="mailto:info@delightunveiled.com" className="text">
-                    info@delightunveiled.com
+                  <Link href="mailto:delightunveiledbago@gmail.com" className="text">
+                    delightunveiledbago@gmail.com
                   </Link>
                 </List.Item>
               </List>
@@ -159,7 +159,7 @@ const FooterComponent = () => (
           <Text className="mb-0">
             Copyright &copy; All rights reserved | This template is made with{" "}
             <HeartFilled /> by{" "}
-            <a href="https://www.linkedin.com/in/may-zuly-moe-emily-a7697931a/" target="_blank">EmilyMay</a>
+            <a href="https://www.linkedin.com/in/may-zuly-moe-emily-a7697931a/" target="_blank">MayZulyMoe</a>
           </Text>
         </Col>
       </Row>

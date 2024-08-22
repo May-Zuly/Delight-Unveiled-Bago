@@ -18,19 +18,19 @@ const { Title, Paragraph } = Typography;
 
 const testimonies = [
   {
-    image: "/src/assets/images/grocery.jpg",
+    image: "/src/assets/images/testimonial-4.jpg",
     text: "Delight Unveiled Bago has the best products I have ever used!",
-    name: "Customer 1",
+    name: "Phyu Phyu",
   },
   {
-    image: "/src/assets/images/grocery.jpg",
+    image: "/src/assets/images/testimonial-2.jpg",
     text: "Amazing service and high-quality products.",
-    name: "Customer 2",
+    name: "Lin Khant",
   },
   {
-    image: "/src/assets/images/grocery.jpg",
+    image: "/src/assets/images/testimonial-3.jpg",
     text: "I am extremely satisfied with my purchases.",
-    name: "Customer 3",
+    name: "Yoon Myat",
   },
 ];
 
@@ -62,11 +62,11 @@ const AboutUsPage = () => {
             </div>
           </Col>
           <Col xs={24} md={16} className="about-text">
-            <h2 style={{ textAlign: "center" }}>About Us</h2>
-            <h3 style={{ textAlign: "center" }}>
+            <h2 style={{ textAlign: "center", color: "#1e1e1e" }}>About Us</h2>
+            <h3 style={{ textAlign: "center", color: "#1e1e1e" }}>
               Groceries and Artifacts of Bago Region
             </h3>
-            <p>
+            <p style={{ color: "#1e1e1e", textAlign: "justify" }}>
               At Delight Unveiled, we believe in the power of community and the
               importance of supporting local producers. Our platform connects
               you directly with farmers, artisans, and craftsmen, ensuring that
@@ -77,7 +77,7 @@ const AboutUsPage = () => {
               <br />
               <span>Our product range includes:</span>
             </p>
-            <ul className="about-us-list">
+            <ul className="about-us-list" style={{ color: "#1e1e1e" }}>
               <li>
                 <span className="icon">✔</span>Fresh and organic produce
               </li>
@@ -94,7 +94,7 @@ const AboutUsPage = () => {
       </div>
 
       <div className="values-section">
-        <h2>My Values</h2>
+        <h2 style={{ color: "#1e1e1e" }}>Our Values</h2>
         <Row gutter={16}>
           <Col xs={24} md={8}>
             <Card hoverable className="value-card">

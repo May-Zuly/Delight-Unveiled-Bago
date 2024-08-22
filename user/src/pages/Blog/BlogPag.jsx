@@ -60,6 +60,7 @@ const BlogPage = () => {
                       </div>
                     </div>
                   }
+                  style={{textAlign:"justify"}}
                   description={blog.description}
                 />
               </Card>

@@ -90,7 +90,7 @@ const ProductSection = () => {
           <Col lg={24}>
             <div className="section-header">
               <Title level={2} className="product-title">
-                Our Products
+                Latest Products
               </Title>
               <Paragraph className="product-description">
                 Discover an exquisite selection of groceries and artifacts from

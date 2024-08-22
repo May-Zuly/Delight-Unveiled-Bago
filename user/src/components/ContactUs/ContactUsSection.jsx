@@ -18,7 +18,7 @@ const ContactUsSection = () => {
     const sendData = {
       name: value.name,
       from: value.email,
-      to: "mayzulymoe56@gmail.com",
+      to: "delightunveiledbago@gmail.com",
       subject: value.subject,
       message: value.message,
     };
@@ -53,7 +53,7 @@ const ContactUsSection = () => {
             </p>
             <h3>Email Us</h3>
             <p>
-              <MailOutlined /> info@delightunveiled.com
+              <MailOutlined /> delightunveiledbago@gmail.com
             </p>
             <h3>Office Address</h3>
             <p>

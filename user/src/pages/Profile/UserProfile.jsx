@@ -13,7 +13,7 @@ const UserProfile = () => {
     id: loginUser.user.id,
     username: loginUser.user.username,
     email: loginUser.user.email,
-    avatar: "https://randomuser.me/api/portraits/men/1.jpg",
+    // avatar: "https://randomuser.me/api/portraits/men/1.jpg",
     password: loginUser.user.password,
     phoneNumber: loginUser.user.phoneNumber,
     address: loginUser.user.address,

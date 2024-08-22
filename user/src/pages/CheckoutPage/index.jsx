@@ -64,7 +64,7 @@ const CheckoutPage = () => {
         });
         if (res.data) {
           setCartData([]);
-          message.success("Payment Successfully");
+          message.success("Payment Successfully!");
           navigate("/products");
         }
       } catch (error) {
@@ -106,7 +106,7 @@ const CheckoutPage = () => {
         });
         if (res.data) {
           setCartData([]);
-          message.success("Payment Successfully");
+          message.success("Your Orders Confirm!");
           navigate("/products");
         }
       } catch (error) {
@@ -220,7 +220,7 @@ const CheckoutPage = () => {
                             type="button"
                           >
                             <PlusOutlined />
-                            <div style={{ marginTop: 8 }}>Upload</div>
+                            <div style={{ marginTop: 8 }}>Receipt Upload</div>
                           </button>
                         )}
                       </Upload>

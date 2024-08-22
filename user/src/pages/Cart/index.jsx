@@ -68,7 +68,7 @@ const CartPage = () => {
   }, []);
 
   return (
-    <Card style={{ width: "90%", margin: "0 auto" }}>
+    <Card style={{ width: "90%", margin: "20px auto" }}>
       <Title level={2}>Shopping Cart</Title>
       <Row gutter={16} style={{ padding: "10px 0", fontWeight: "bold" }}>
         <Col xs={2} sm={2} md={2} lg={3}></Col>
