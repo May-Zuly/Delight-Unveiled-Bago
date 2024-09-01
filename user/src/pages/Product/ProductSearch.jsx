@@ -28,25 +28,25 @@ export default function ProductSearch({
   };
 
   const townshipList = [
-    { label: "Paukkaung", value: "Paukkaung" },
-    { label: "Pyay", value: "Pyay" },
-    { label: "Shwedaung", value: "Shwedaung" },
-    { label: "Padaung", value: "Padaung" },
-    { label: "Nattalin", value: "Nattalin" },
-    { label: "Zigon", value: "Zigon" },
-    { label: "Thegon", value: "Thegon" },
-    { label: "Paungde", value: "Paungde" },
-    { label: "Gyobingauk", value: "Gyobingauk" },
-    { label: "Okpho", value: "Okpho" },
-    { label: "Minhla", value: "Minhla" },
-    { label: "Monyo", value: "Monyo" },
-    { label: "Letpandan", value: "Letpandan" },
-    { label: "Tharrawaddy", value: "Tharrawaddy" },
-    { label: "Bago", value: "Bago" },
-    { label: "Taungoo", value: "Taungoo" },
-    { label: "Shwegyin", value: "Shwegyin" },
-    { label: "Nyaunglebin", value: "Nyaunglebin" },
-    { label: "Daik-U", value: "Daik-U" },
+    { label: "ပေါက်ခေါင်း", value: "Paukkaung" },
+    { label: "ပြည်မြို့", value: "Pyay" },
+    { label: "ရွှေတောင်မြို့", value: "Shwedaung" },
+    { label: "ပန်းဒေါင်းမြို့", value: "Padaung" },
+    { label: "နတ်တလင်းမြို့", value: "Nattalin" },
+    { label: "ဇီးကုန်းမြို့", value: "Zigon" },
+    { label: "သဲကုန်းမြို့", value: "Thegon" },
+    { label: "ပေါင်းတည်မြို့", value: "Paungde" },
+    { label: "ကြို့ပင်ကောက်မြို့", value: "Gyobingauk" },
+    { label: "အုတ်ဖိုမြို့", value: "Okpho" },
+    { label: "မင်းလှမြို့", value: "Minhla" },
+    { label: "မိုးညိုမြို့", value: "Monyo" },
+    { label: "လက်ပန်တန်းမြို့", value: "Letpandan" },
+    { label: "သာယာဝတီမြို့", value: "Tharrawaddy" },
+    { label: "ပဲခူးမြို့", value: "Bago" },
+    { label: "တောင်ငူမြို့", value: "Taungoo" },
+    { label: "ရွှေကျင်မြို့", value: "Shwegyin" },
+    { label: "ညောင်လေးပင်မြို့", value: "Nyaunglebin" },
+    { label: "ဒိုက်ဦးမြို့", value: "Daik-U" },
   ];
 
   return (
@@ -76,8 +76,9 @@ export default function ProductSearch({
             onChange={(value) => handleDropdownChange(value, "category")}
             value={searchData.category}
           >
-            <Option value="food">Food</Option>
-            <Option value="furniture">Furniture</Option>
+            <Option value="food">စားသောက်ကုန်များ</Option>
+            <Option value="clothes">အဝတ်အထည်များ</Option>
+            <Option value="artifacts">လူသုံးကုန်ပစ္စည်းများ</Option>
           </Select>
         </Col>
         <Col xs={24} sm={12} md={8} lg={4}>
@@ -88,7 +89,7 @@ export default function ProductSearch({
             onChange={handleChange}
           />
         </Col>
-        <Col xs={24} sm={12} md={8} lg={4}>
+        {/* <Col xs={24} sm={12} md={8} lg={4}>
           <Input
             type="number"
             placeholder="Min Price"
@@ -105,7 +106,7 @@ export default function ProductSearch({
             value={searchData.maxPrice}
             onChange={handleChange}
           />
-        </Col>
+        </Col> */}
         <Col>
           <Button
             type="primary"

@@ -144,10 +144,10 @@
 }
 
 .aboutus-carousel-image {
-  border-radius: 50% !important;
-  border: 10px solid #dc8623;
+  border-radius: 20% !important;
+  border: 5px solid #dc8623;
   margin-bottom: 20px;
-  width: 180px;
+  width: 200px;
   height: 180px;
   object-fit: cover;
   /* text-align: end; */

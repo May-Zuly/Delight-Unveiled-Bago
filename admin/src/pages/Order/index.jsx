@@ -255,9 +255,9 @@ export default function Order() {
       >
         <Radio.Group onChange={onChange} value={value}>
           <Space direction="vertical">
-            <Radio value="order">Order</Radio>
-            <Radio value="delivering">Delivering</Radio>
-            <Radio value="delivered">Completed</Radio>
+            <Radio value="order">Order Confirmed</Radio>
+            <Radio value="delivering">Delivering (Royal Express)</Radio>
+            <Radio value="delivered">Deliver Completed</Radio>
             <Radio value="cancelled">Cancelled</Radio>
           </Space>
         </Radio.Group>

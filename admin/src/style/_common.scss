@@ -20,7 +20,7 @@
   padding: 2vw;
   text-align: center;
   border: 1px solid transparent;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  box-shadow: rgba(100, 100, 111, 0.8) 0px 7px 29px 0px;
   img {
     width: 12vw;
     margin: 0 auto;
@@ -54,7 +54,7 @@
   text-decoration: underline;
   color: #1677ff;
 }
-.signup:hover{
+.signup:hover {
   color: #995f20;
 }
 // end button
@@ -166,7 +166,7 @@ h3.total-amt {
   line-height: 55px;
 }
 
-.ant-upload{
+.ant-upload {
   background-color: #fff;
   border-radius: 7px;
 }

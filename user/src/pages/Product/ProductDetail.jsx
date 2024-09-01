@@ -162,7 +162,7 @@ const ProductDetailPage = () => {
                 onClick={() => addProductToCart(product)}
                 disabled={product.attributes.stock === 0}
               >
-                Add to Cart
+                ဝယ်ယူရန်
               </Button>
             </>,
           ]}

@@ -922,7 +922,8 @@ export interface ApiProductProduct extends Schema.CollectionType {
   };
   attributes: {
     name: Attribute.String & Attribute.Required;
-    type: Attribute.Enumeration<['food', 'furniture']> & Attribute.Required;
+    type: Attribute.Enumeration<['food', 'clothes', 'artifacts']> &
+      Attribute.Required;
     description: Attribute.Text & Attribute.Required;
     price: Attribute.BigInteger & Attribute.Required;
     stock: Attribute.Integer;

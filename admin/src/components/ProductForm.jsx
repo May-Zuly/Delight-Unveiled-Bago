@@ -17,7 +17,8 @@ export default function ProductForm({
   const loginUser = useRecoilValue(userData);
   const [townshipList, setTownshipList] = useState([]);
   const optionList = [
-    { label: "Furniture", value: "furniture" },
+    { label: "Artifacts", value: "artifacts" },
+    { label: "Clothes", value: "clothes" },
     { label: "Food", value: "food" },
   ];
   const districtList = [

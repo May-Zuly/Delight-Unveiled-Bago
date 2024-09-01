@@ -72,6 +72,7 @@ export default function App() {
     {
       title: "",
       dataIndex: "image",
+      width:100,
       key: "image",
     },
     {
@@ -268,7 +269,7 @@ export default function App() {
         searchData={searchData}
         setSearchData={setSearchData}
       />
-      <Table columns={columns} dataSource={data.data} pagination={false} />
+      <Table columns={columns} dataSource={data.data} pagination={false} scroll={{ x: 1200 }} />
       <Pagination
         showSizeChanger={false}
         current={currentPage}

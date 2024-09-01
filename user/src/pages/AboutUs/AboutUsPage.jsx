@@ -18,19 +18,69 @@ const { Title, Paragraph } = Typography;
 
 const testimonies = [
   {
-    image: "/src/assets/images/testimonial-4.jpg",
-    text: "Delight Unveiled Bago has the best products I have ever used!",
-    name: "Phyu Phyu",
+    image: "/src/assets/images/yoyarmaung6.jpg",
+    text: "ချည်ထည်သည် မြန်မာနိုင်ငံတွင် ကျယ်ပြန့်စွာ အသုံးပြုလာကြတဲ့ အဝတ်အထည်တစ်မျိုး ဖြစ်ပြီး မြန်မာ့ရိုးရာယဉ်ကျေးမှုပစ္စည်းတစ်ခုအဖြစ် ပိုမိုအောင်မြင်လာသည်။ရိုးရာမောင်မှထုတ်လုပ်သောချည်ထည်များသည် ဒီးဇိုင်းဆန်းသစ်လှပသည့်အပြင် အရည်အသွေးကောင်းသောကြောင့် လူကြိုက်များပါသည်။ထိုချည်ထည်များကို နိုင်ငံခြားတွေကလည်း ကြိုက်နှစ်သက်ကြပါသည်။ ",
+    name: "ရိုးရာမောင်ချည်ထည်လုပ်ငန်း(စည်းလုံချည်း)",
   },
   {
-    image: "/src/assets/images/testimonial-2.jpg",
-    text: "Amazing service and high-quality products.",
-    name: "Lin Khant",
+    image: "/src/assets/images/yoyarmaung5.jpg",
+    text: "ချည်ထည်သည် မြန်မာနိုင်ငံတွင် ကျယ်ပြန့်စွာ အသုံးပြုလာကြတဲ့ အဝတ်အထည်တစ်မျိုး ဖြစ်ပြီး မြန်မာ့ရိုးရာယဉ်ကျေးမှုပစ္စည်းတစ်ခုအဖြစ် ပိုမိုအောင်မြင်လာသည်။ရိုးရာမောင်မှထုတ်လုပ်သောချည်ထည်များသည် ဒီးဇိုင်းဆန်းသစ်လှပသည့်အပြင် အရည်အသွေးကောင်းသောကြောင့် လူကြိုက်များပါသည်။ထိုချည်ထည်များကို နိုင်ငံခြားတွေကလည်း ကြိုက်နှစ်သက်ကြပါသည်။ ",
+    name: "ရိုးရာမောင်ချည်ထည်လုပ်ငန်း",
   },
   {
-    image: "/src/assets/images/testimonial-3.jpg",
-    text: "I am extremely satisfied with my purchases.",
-    name: "Yoon Myat",
+    image: "/src/assets/images/yoyarmaung4.jpg",
+    text: "ချည်ထည်သည် မြန်မာနိုင်ငံတွင် ကျယ်ပြန့်စွာ အသုံးပြုလာကြတဲ့ အဝတ်အထည်တစ်မျိုး ဖြစ်ပြီး မြန်မာ့ရိုးရာယဉ်ကျေးမှုပစ္စည်းတစ်ခုအဖြစ် ပိုမိုအောင်မြင်လာသည်။ရိုးရာမောင်မှထုတ်လုပ်သောချည်ထည်များသည် ဒီးဇိုင်းဆန်းသစ်လှပသည့်အပြင် အရည်အသွေးကောင်းသောကြောင့် လူကြိုက်များပါသည်။ထိုချည်ထည်များကို နိုင်ငံခြားတွေကလည်း ကြိုက်နှစ်သက်ကြပါသည်။ ",
+    name: "ရိုးရာမောင်ချည်ထည်လုပ်ငန်း(ပိုးချည်)",
+  },
+  {
+    image: "/src/assets/images/yoyarmaung7.jpg",
+    text: "ချည်ထည်သည် မြန်မာနိုင်ငံတွင် ကျယ်ပြန့်စွာ အသုံးပြုလာကြတဲ့ အဝတ်အထည်တစ်မျိုး ဖြစ်ပြီး မြန်မာ့ရိုးရာယဉ်ကျေးမှုပစ္စည်းတစ်ခုအဖြစ် ပိုမိုအောင်မြင်လာသည်။ရိုးရာမောင်မှထုတ်လုပ်သောချည်ထည်များသည် ဒီးဇိုင်းဆန်းသစ်လှပသည့်အပြင် အရည်အသွေးကောင်းသောကြောင့် လူကြိုက်များပါသည်။ထိုချည်ထည်များကို နိုင်ငံခြားတွေကလည်း ကြိုက်နှစ်သက်ကြပါသည်။ ",
+    name: "ရိုးရာမောင်ချည်ထည်လုပ်ငန်း(ပုဆိုး)",
+  },
+  {
+    image: "/src/assets/images/yoyarmaung9.jpg",
+    text: "ချည်ထည်သည် မြန်မာနိုင်ငံတွင် ကျယ်ပြန့်စွာ အသုံးပြုလာကြတဲ့ အဝတ်အထည်တစ်မျိုး ဖြစ်ပြီး မြန်မာ့ရိုးရာယဉ်ကျေးမှုပစ္စည်းတစ်ခုအဖြစ် ပိုမိုအောင်မြင်လာသည်။ရိုးရာမောင်မှထုတ်လုပ်သောချည်ထည်များသည် ဒီးဇိုင်းဆန်းသစ်လှပသည့်အပြင် အရည်အသွေးကောင်းသောကြောင့် လူကြိုက်များပါသည်။ထိုချည်ထည်များကို နိုင်ငံခြားတွေကလည်း ကြိုက်နှစ်သက်ကြပါသည်။ ",
+    name: "ရိုးရာမောင်ချည်ထည်လုပ်ငန်း(ရှပ်အင်္ကျီ)",
+  },
+  {
+    image: "/src/assets/images/yoyarmaung8.jpg",
+    text: "ချည်ထည်သည် မြန်မာနိုင်ငံတွင် ကျယ်ပြန့်စွာ အသုံးပြုလာကြတဲ့ အဝတ်အထည်တစ်မျိုး ဖြစ်ပြီး မြန်မာ့ရိုးရာယဉ်ကျေးမှုပစ္စည်းတစ်ခုအဖြစ် ပိုမိုအောင်မြင်လာသည်။ရိုးရာမောင်မှထုတ်လုပ်သောချည်ထည်များသည် ဒီးဇိုင်းဆန်းသစ်လှပသည့်အပြင် အရည်အသွေးကောင်းသောကြောင့် လူကြိုက်များပါသည်။ထိုချည်ထည်များကို နိုင်ငံခြားတွေကလည်း ကြိုက်နှစ်သက်ကြပါသည်။ ",
+    name: "ရိုးရာမောင်ချည်ထည်လုပ်ငန်း(ပန်းပုဝါ)",
+  },
+  {
+    image: "/src/assets/images/yoyarmaung11.jpg",
+    text: "ချည်ထည်သည် မြန်မာနိုင်ငံတွင် ကျယ်ပြန့်စွာ အသုံးပြုလာကြတဲ့ အဝတ်အထည်တစ်မျိုး ဖြစ်ပြီး မြန်မာ့ရိုးရာယဉ်ကျေးမှုပစ္စည်းတစ်ခုအဖြစ် ပိုမိုအောင်မြင်လာသည်။ရိုးရာမောင်မှထုတ်လုပ်သောချည်ထည်များသည် ဒီးဇိုင်းဆန်းသစ်လှပသည့်အပြင် အရည်အသွေးကောင်းသောကြောင့် လူကြိုက်များပါသည်။ထိုချည်ထည်များကို နိုင်ငံခြားတွေကလည်း ကြိုက်နှစ်သက်ကြပါသည်။ ",
+    name: "ရိုးရာမောင်ချည်ထည်လုပ်ငန်း(ချည်စောင်)",
+  },
+  {
+    image: "/src/assets/images/wooden-cap.jpg",
+    text: "သစ်သားဖြင့်ပြုလုပ်ထားသော မီးဖိုချောင်သုံးပစ္စည်းများသည် သဘာဝပစ္စည်းနှင့် ခေတ်မီဒီဇိုင်းများကိုပေါင်းစပ်ထားသော အသုံးအဆောင်ပစ္စည်းများဖြစ်ပြီး မီးဖိုချောင်တွင် လှပသပ်ရပ်စွာ အသုံးပြုနိုင်သည်။ သစ်သားဖြင့်ပြုလုပ်ထားသောကြောင့် ကျန်းမာရေးနှင့်လည်း ညီညွတ်ပါသည်။",
+    name: "သစ်သားဖြင့်ပြုလုပ်ထားသောပစ္စည်းများ",
+  },
+  {
+    image: "/src/assets/images/jam-2.jpg",
+    text: "သစ်သီးမျိုးစုံယိုမျိုးစုံစာသောက်ကုန်လုပ်ငန်းသည် သဘာဝသစ်သီးများကို အကောင်းဆုံးအသုံးပြုကာ ကျန်းမာရေးနှင့် အရသာပြည့်ဝမှုကို ပေးစွမ်းနိုင်သော စာသောက်ကုန်များကို ထုတ်လုပ်ရောင်းချသည့် အစဉ်အလာရှိသော လုပ်ငန်းတစ်ခုဖြစ်ပါသည်။",
+    name: "ပြည်မြို့မှယိုမျိုးစုံများ",
+  },
+  {
+    image: "/src/assets/images/thanakar.jpg",
+    text: "မြန်မာ့သနပ်ခါးသည် မြန်မာ့ယဉ်ကျေးမှုနှင့် သဘာဝအလှအပထိန်းသိမ်းမှုအတွက် အထူးအလေးထားရသော ထင်ရှားသော ပစ္စည်းတစ်ခု ဖြစ်သည်။ သနပ်ခါးသည် နေရောင်မှ ကာကွယ်ရန် အသုံးပြုနိုင်သည့်အပြင်အသားအရေကိုလည်းအေးမြစေပါသည်။အရေပြားရဲ့ ပျက်စီးမှုများကို သနပ်ခါးသည် ကုသပေးပြီး အသားအရေကို သန့်စင်စေသည်။",
+    name: "မြန်မာ့သနပ်ခါး",
+  },
+  {
+    image: "/src/assets/images/picke-fish.jpg",
+    text: "ငါးပိဟာ ငါးကို အဓိကထားလုပ်တဲ့အတွက် ပရိုတင်းနဲ့ သတ္တုဓာတ်တွေအများအပြားပါဝင်ပါသည်။ ကယ်လ်ဆီယမ်နဲ့ ဖော့စဖောရပ်တို့လည်းပါဝင်ပြီး သံဓာတ်လည်းပါဝင်ပါသည်။ဆားဖြင့်အဓိကပြုလုပ်သောကြောင်သွေးတိုးရောဂါရှိသူများသတိထားစားသုံးသင့်ပါသည်။ငါးပိကောင်းများပြုလုပ်ရာမှ ငံပြာရည်ကိုရရှိပြီး မြန်မာဟင်းလျားများတွင် အရသာဖြည့်စွက်ပစ္စည်းအဖြစ် အသုံးပြုကြသည်။",
+    name: "ရှင်မ၊ ရွှေဥဒေါင်း ငါးပိနှင့်ငံပြာရည်လုပ်ငန်း",
+  },
+  {
+    image: "/src/assets/images/ohmar-kaw.jpg",
+    text: "'ဥမ္မာကျော်'စာသောက်ကုန်လုပ်ငန်းမှ ရွှေတောင်ထမင်းသုပ်၊ ထမင်းအရောသုပ်၊ ရွှေတောင်အုန်းနို့ခေါက်ဆွဲ၊ ရွှေတောင်မုန့်ဟင်းခါးနှင့် စိန်ပန်းအကြွပ်ကြော်ဆိုပြီး အမျိုးအစား (၅) မျိုး ထုတ်လုပ်ရောင်းချလျက်ရှိပြီး အရောင်းကောင်းဆုံးကတော့ ထမင်းသုပ်နှင့် ထမင်းအရောသုပ်ဖြစ်ပြီး အခုနောက်ပိုင်းတော့ ရွှေတောင်အုန်းနို့ခေါက်ဆွဲဆိုတာ လူသိများလာပြီး ပိုပြီးတော့ရောင်းရပါသည်။",
+    name: "'ဥမ္မာကျော်'စာသောက်ကုန်လုပ်ငန်း",
+  },
+  {
+    image: "/src/assets/images/coontiphat.jpg",
+    text: "ကွမ်းသီးဖတ်နဲ့ ထုတ်လုပ်ထားတဲ့ပန်းကန်၊ ဇွန်းတွေနဲ့ စားသောက်မယ်ဆိုရင် ဓာတုကင်းစင်တာကြောင့် ပြည်တွင်းက ဝယ်ယူဖို့ကမ်းလှမ်းကြသလို ပြည်ပကလည်း ဝယ်လိုသူများ ပြားနေပါသည်။ကွမ်းသီးဖတ်မှ လူသုံးကုန်ပစ္စည်း တော်တော်များများကို ထုတ်လုပ်နိုင်ပြီး ဆေးရောင်တင်၍လည်း ကြားရှည်အသုံးပြုလို့ရနိုင်ပါသည်။",
+    name: "ပဲခူးမြို့ရှိကွမ်းသီးဖတ်လုပ်ငန်း",
   },
 ];
 
@@ -62,31 +112,38 @@ const AboutUsPage = () => {
             </div>
           </Col>
           <Col xs={24} md={16} className="about-text">
-            <h2 style={{ textAlign: "center", color: "#1e1e1e" }}>About Us</h2>
+            <h2 style={{ textAlign: "center", color: "#1e1e1e" }}>
+              ကျွန်ုပ်တို့၏ အကြောင်းအရာများ
+            </h2>
             <h3 style={{ textAlign: "center", color: "#1e1e1e" }}>
-              Groceries and Artifacts of Bago Region
+              ပဲခူးတိုင်းဒေသကြီးမှ ဒေသထွက်စားသောက်ကုန်နှင့်
+              လူအသုံးအဆောင်ပစ္စည်းများ
             </h3>
             <p style={{ color: "#1e1e1e", textAlign: "justify" }}>
-              At Delight Unveiled, we believe in the power of community and the
-              importance of supporting local producers. Our platform connects
-              you directly with farmers, artisans, and craftsmen, ensuring that
-              you receive the freshest groceries and the most exquisite
-              artifacts. Every purchase you make helps sustain the livelihoods
-              of these dedicated individuals and preserves the cultural heritage
-              of Bago.
+              Delight Unveiled တွင်၊ ကျွန်ုပ်တို့သည် ဒေသတွင်းရှိလုပ်ငန်းများ၏
+              စွမ်းအားနှင့် ပြည်တွင်းထုတ်လုပ်သူများကို ပံ့ပိုးကူညီခြင်း၏
+              အရေးပါမှုကို ယုံကြည်ပါသည်။ ကျွန်ုပ်တို့၏websiteဿည် သင့်အား
+              လယ်သမားများ၊ လက်မှုပညာတတ်များ၊ လက်မှုပညာသမားများနှင့်
+              တိုက်ရိုက်ချိတ်ဆက်ပေးကာ သင်သည် အလတ်ဆတ်ဆုံးကုန်စုံနှင့်
+              အကောင်းမွန်ဆုံးသော ရှေးဟောင်းပစ္စည်းများကို
+              ရရှိကြောင်းသေချာစေပါသည်။ သင်ဝယ်ယူမှုတိုင်းသည်
+              ဤဒေသတွင်းရှိထုတ်လုပ်သူများ၏ အသက်မွေးဝမ်းကြောင်းကို တည်တံ့စေပြီး
+              ပဲခူး၏ ယဉ်ကျေးမှုအမွေအနှစ်များကို ထိန်းသိမ်းစောင့်ရှောက်ပေးသည်။
               <br />
-              <span>Our product range includes:</span>
+              <span>ကျွန်ုပ်တို့၏ ထုတ်ကုန်ပစ္စည်းများတွင် _</span>
             </p>
             <ul className="about-us-list" style={{ color: "#1e1e1e" }}>
               <li>
-                <span className="icon">✔</span>Fresh and organic produce
+                <span className="icon">✔</span>လက်ဆတ်ပြီးအရသာရှိသော
+                ထုတ်ကုန်ပစ္စည်း
               </li>
               <li>
-                <span className="icon">✔</span>Traditional handcrafted artifacts
+                <span className="icon">✔</span>
+                မြန်မာ့ရိုးရာလှပသေသတ်သောလက်မှုပစ္စည်းများ
               </li>
               <li>
-                <span className="icon">✔</span>Specialty items unique to the
-                Bago Region
+                <span className="icon">✔</span>ပဲခူးတိုင်းဒေသကြီး၏
+                လူကြိုက်များပြီး ထူးခြားသောပစ္စည်းများ
               </li>
             </ul>
           </Col>
@@ -94,23 +151,27 @@ const AboutUsPage = () => {
       </div>
 
       <div className="values-section">
-        <h2 style={{ color: "#1e1e1e" }}>Our Values</h2>
+        <h2 style={{ color: "#1e1e1e" }}>
+          "Delight Unveiled"၏ မျှော်မှန်းချက်
+        </h2>
         <Row gutter={16}>
           <Col xs={24} md={8}>
             <Card hoverable className="value-card">
               <div className="value-card-icon-title">
                 <AimOutlined className="value-card-icon" />
-                <h4>Mission</h4>
+                <h4>လုပ်ငန်းဆောင်တာ</h4>
               </div>
               <div className="value-card-title-divider" />
               <p>
-                Our mission is to connect local producers with a global
-                audience, ensuring the highest quality of products through
-                rigorous standards and fair practices. We aim to foster
-                sustainable growth and development within local communities,
-                supporting their economic well-being while educating and
-                inspiring customers about the cultural significance and origins
-                of our products.
+                ကျွန်ုပ်တို့၏တာဝန်မှာ တင်းကျပ်သောစံချိန်စံညွှန်းများနှင့်
+                မျှတသောအလေ့အကျင့်များမှတစ်ဆင့် ထုတ်ကုန်များ၏
+                အရည်အသွေးအမြင့်ဆုံးကို သေချာစေရန် ပြည်တွင်းထုတ်လုပ်သူများအား
+                ကမ္ဘာ့ပရိသတ်များနှင့် ချိတ်ဆက်ပေးရန်ဖြစ်သည်။ ကျွန်ုပ်တို့သည်
+                ကျွန်ုပ်တို့၏ထုတ်ကုန်များ၏ ယဉ်ကျေးမှုဆိုင်ရာ အရေးပါမှုနှင့်
+                ဇစ်မြစ်များအကြောင်း ဖောက်သည်များအား အသိပညာပေးခြင်းနှင့်
+                လှုံ့ဆော်ပေးနေစဉ်တွင် ဒေသခံအသိုင်းအဝိုင်းများအတွင်း
+                ရေရှည်တည်တံ့သော တိုးတက်မှုနှင့် ဖွံ့ဖြိုးတိုးတက်မှုကို
+                မြှင့်တင်ရန် ရည်ရွယ်ပါသည်။
               </p>
             </Card>
           </Col>
@@ -118,16 +179,18 @@ const AboutUsPage = () => {
             <Card hoverable className="value-card">
               <div className="value-card-icon-title">
                 <BulbOutlined className="value-card-icon" />
-                <h4>Vision</h4>
+                <h4>မျှော်မှန်းချက်</h4>
               </div>
               <div className="value-card-title-divider" />
               <p>
-                Our vision is to be the leading online marketplace for authentic
-                groceries and artifacts from the Bago Region, expanding our
-                reach globally to bring the richness of Bago’s heritage to
-                households everywhere. We strive to continuously innovate and
-                improve our platform for the benefit of both producers and
-                customers alike.
+                ကျွန်ုပ်တို့၏ မျှော်မှန်းချက်မှာ ပဲခူးတိုင်း ဒေသကြီးမှ
+                စစ်မှန်သော ထုတ်ကုန်ပစ္စည်းများနှင့် ရှေးဟောင်းပစ္စည်းများအတွက်
+                ထိပ်တန်းအွန်လိုင်းစျေးကွက်တစ်ခုဖြစ်ရန်ဖြစ်ပြီး
+                ပဲခူး၏အမွေအနှစ်များကို နေရာတိုင်းတွင် အိမ်ထောင်စုများထံသို့
+                ကမ္ဘာအနှံ့ရောက်ရှိစေရန် ချဲ့ထွင်ရန်ဖြစ်ပါသည်။
+                ထုတ်လုပ်သူများနှင့် ဖောက်သည်နှစ်ဦးစလုံး၏ အကျိုးအတွက်
+                ကျွန်ုပ်တို့၏ websiteကို စဉ်ဆက်မပြတ် ဆန်းသစ်တီထွင်ပြီး
+                မြှင့်တင်ရန် ကျွန်ုပ်တို့ ကြိုးစားနေပါသည်။
               </p>
             </Card>
           </Col>
@@ -135,15 +198,16 @@ const AboutUsPage = () => {
             <Card hoverable className="value-card">
               <div className="value-card-icon-title">
                 <HeartOutlined className="value-card-icon" />
-                <h4>Value</h4>
+                <h4>စံတန်ဖိုး</h4>
               </div>
               <div className="value-card-title-divider" />
               <p>
-                Our core values emphasize sustainability, quality, and cultural
-                appreciation. We are committed to ethical practices that support
-                local communities and ensure that our customers receive products
-                of the highest standard, enriched with the cultural heritage of
-                the Bago Region.
+                ကျွန်ုပ်တို့၏ အဓိကတန်ဖိုးများသည် ရေရှည်တည်တံ့မှု၊ အရည်အသွေးနှင့်
+                ယဉ်ကျေးမှုကို တန်ဖိုးထားလေးမြတ်မှုကို အလေးပေးပါသည်။
+                ကျွန်ုပ်တို့သည် ပဲခူးတိုင်းဒေသကြီး၏ ယဉ်ကျေးမှုအမွေအနှစ်များနှင့်
+                ကြွယ်ဝပြီး ကျွန်ုပ်တို့၏ဖောက်သည်များအား အဆင့်အတန်းမြင့်မြင့်
+                ထုတ်ကုန်များရရှိစေရန်အတွက် ဒေသခံလူထုအား ပံ့ပိုးပေးသည့်
+                ကျင့်ဝတ်အလေ့အကျင့်များကို ကတိပြုပါသည်။
               </p>
             </Card>
           </Col>
@@ -152,7 +216,7 @@ const AboutUsPage = () => {
 
       <div className="aboutus-testinomy">
         <Title level={2} className="aboutus-carousel-title">
-          Successful Stores with Testimony
+         Pyay's Harvest- ဒေသထွတ်ကုန်အရောင်းစင်တာမှဒေသတွင်းလက်မှုပစ္စည်းများစုစည်းမှု
         </Title>
 
         <div className="aboutus-carousel-container">

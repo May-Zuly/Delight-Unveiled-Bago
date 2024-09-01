@@ -28,9 +28,14 @@ export default function ColumnChart({ data }) {
     animation: {
       appear: {
         duration: 4000, // 4 seconds
-        easing: 'easeInOut', // Smoother easing effect
+        easing: "easeInOut", // Smoother easing effect
       },
     },
   };
-  return <Column {...config} />;
+  return (
+    <>
+      <Column {...config} />
+      <h3 style={{textAlign:"center"}}>Daily Sales Reprots per week</h3>
+    </>
+  );
 }

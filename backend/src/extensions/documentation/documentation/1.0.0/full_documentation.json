@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2024-08-10T10:33:27.110Z"
+    "x-generation-date": "2024-08-31T03:30:51.777Z"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -95,7 +95,9 @@
           "data": {
             "required": [
               "total",
-              "status"
+              "status",
+              "order_phone",
+              "order_address"
             ],
             "type": "object",
             "properties": {
@@ -159,6 +161,12 @@
                   }
                 ],
                 "example": "string or id"
+              },
+              "order_phone": {
+                "type": "string"
+              },
+              "order_address": {
+                "type": "string"
               }
             }
           }
@@ -214,7 +222,9 @@
         "type": "object",
         "required": [
           "total",
-          "status"
+          "status",
+          "order_phone",
+          "order_address"
         ],
         "properties": {
           "total": {
@@ -1109,7 +1119,8 @@
                                                   "type": "string",
                                                   "enum": [
                                                     "food",
-                                                    "furniture"
+                                                    "clothes",
+                                                    "artifacts"
                                                   ]
                                                 },
                                                 "description": {
@@ -1926,6 +1937,12 @@
                                                     }
                                                   }
                                                 },
+                                                "order_phone": {
+                                                  "type": "string"
+                                                },
+                                                "order_address": {
+                                                  "type": "string"
+                                                },
                                                 "createdAt": {
                                                   "type": "string",
                                                   "format": "date-time"
@@ -2306,6 +2323,12 @@
                 }
               }
             }
+          },
+          "order_phone": {
+            "type": "string"
+          },
+          "order_address": {
+            "type": "string"
           },
           "createdAt": {
             "type": "string",
@@ -3381,7 +3404,8 @@
                                                               "type": "string",
                                                               "enum": [
                                                                 "food",
-                                                                "furniture"
+                                                                "clothes",
+                                                                "artifacts"
                                                               ]
                                                             },
                                                             "description": {
@@ -4329,6 +4353,12 @@
                           }
                         }
                       },
+                      "order_phone": {
+                        "type": "string"
+                      },
+                      "order_address": {
+                        "type": "string"
+                      },
                       "createdAt": {
                         "type": "string",
                         "format": "date-time"
@@ -4607,7 +4637,8 @@
                 "type": "string",
                 "enum": [
                   "food",
-                  "furniture"
+                  "clothes",
+                  "artifacts"
                 ]
               },
               "description": {
@@ -4774,7 +4805,8 @@
             "type": "string",
             "enum": [
               "food",
-              "furniture"
+              "clothes",
+              "artifacts"
             ]
           },
           "description": {
@@ -5666,7 +5698,8 @@
                                                   "type": "string",
                                                   "enum": [
                                                     "food",
-                                                    "furniture"
+                                                    "clothes",
+                                                    "artifacts"
                                                   ]
                                                 },
                                                 "description": {
@@ -6483,6 +6516,12 @@
                                                     }
                                                   }
                                                 },
+                                                "order_phone": {
+                                                  "type": "string"
+                                                },
+                                                "order_address": {
+                                                  "type": "string"
+                                                },
                                                 "createdAt": {
                                                   "type": "string",
                                                   "format": "date-time"
@@ -7093,7 +7132,8 @@
                         "type": "string",
                         "enum": [
                           "food",
-                          "furniture"
+                          "clothes",
+                          "artifacts"
                         ]
                       },
                       "description": {
@@ -8424,6 +8464,12 @@
                                                                   }
                                                                 }
                                                               }
+                                                            },
+                                                            "order_phone": {
+                                                              "type": "string"
+                                                            },
+                                                            "order_address": {
+                                                              "type": "string"
                                                             },
                                                             "createdAt": {
                                                               "type": "string",
@@ -9192,7 +9238,8 @@
                         "type": "string",
                         "enum": [
                           "food",
-                          "furniture"
+                          "clothes",
+                          "artifacts"
                         ]
                       },
                       "description": {
@@ -10523,6 +10570,12 @@
                                                                   }
                                                                 }
                                                               }
+                                                            },
+                                                            "order_phone": {
+                                                              "type": "string"
+                                                            },
+                                                            "order_address": {
+                                                              "type": "string"
                                                             },
                                                             "createdAt": {
                                                               "type": "string",

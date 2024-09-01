@@ -37,13 +37,14 @@ const FooterComponent = () => (
         <Col xs={24} md={6}>
           <div className="footer-widget mb-4">
             <Title level={2} className="footer-heading">
-              Explore Bago Region
+              ပဲခူးတိုင်းဒေသကြီးမှလေ့လာစရာများ
             </Title>
             <Paragraph className="footer-paragraph">
-              Discover the rich heritage and vibrant culture of the Bago Region
-              through our curated collection of local products and artifacts.
+              ကျွန်ုပ်တို့၏ ဒေသထွက်ကုန်များနှင့် ရှေးဟောင်းပစ္စည်းများ
+              စုစည်းမှုဖြင့် ပဲခူးတိုင်းဒေသကြီး၏ ကြွယ်ဝသော အမွေအနှစ်များနှင့်
+              တက်ကြွသော ယဉ်ကျေးမှုကို ရှာဖွေလိုက်ပါ။
               <br />
-              <i>Follow us on social media for the latest update!</i>
+              <i>အကောင်းဆုံးပစ္စည်းများကို ကျွန်ုပ်တို့၏ ဆိုရှယ်မီဒီယာတွင် ကြည့်ရှုလိုက်ပါ</i>
             </Paragraph>
             <div className="mt-3 footer-icons">
               <Button
@@ -80,10 +81,10 @@ const FooterComponent = () => (
           >
             <div>
               <Title level={2} className="footer-heading">
-                Popular Links
+                လူကြိုက်များသော လင့်ခ်များ
               </Title>
               <List
-                dataSource={["Products", "Contact Us"]}
+                dataSource={["ထုတ်ကုန်များ", "ကျွန်ုတို့ကိုဆက်သွယ်ရန်"]}
                 renderItem={(item) => (
                   <List.Item style={{ borderBlockEnd: "none" }}>
                     <Link to={`/${item.toLowerCase().replace(" ", "-")}`}>
@@ -102,10 +103,10 @@ const FooterComponent = () => (
           >
             <div>
               <Title level={2} className="footer-heading">
-                Quick Links
+                လင့်ခ်များကို လွယ်ကူစေရန်
               </Title>
               <List
-                dataSource={["Home", "About Us", "Products", "Contact Us"]}
+                dataSource={["ပင်မစာမျက်နှာ", "အကြောင်းအရာများ", "ထုတ်ကုန်များ", "ကျွန်ုတို့ကိုဆက်သွယ်ရန်"]}
                 renderItem={(item) => (
                   <List.Item style={{ borderBlockEnd: "none" }}>
                     <Link
@@ -130,23 +131,26 @@ const FooterComponent = () => (
           >
             <div>
               <Title level={2} className="footer-heading">
-                Have a Questions?
+                စုံစမ်းမေးမြန်းနိုင်ရန်
               </Title>
               <List>
                 <List.Item style={{ borderBlockEnd: "none" }}>
                   <EnvironmentOutlined className="icon" />
-                  <Text className="text">Bogyok Road,Pyay</Text>
+                  <Text className="text">ဗိုလ်ချုပ်လမ်း ၊ ပြည်မြို့</Text>
                 </List.Item>
                 <List.Item style={{ borderBlockEnd: "none" }}>
                   <PhoneOutlined className="icon" />
                   <Link href="tel:+95-426-557-737" className="text">
-                    +959 426 557737
+                    +၉၅၉ ၄၂၆ ၅၅၇ ၇၃၇
                   </Link>
                 </List.Item>
                 <List.Item>
                   <MailOutlined className="icon" />
-                  <Link href="mailto:delightunveiledbago@gmail.com" className="text">
-                    delightunveiledbago@gmail.com
+                  <Link
+                    href="mailto:delightunveiledbagoregion@gmail.com"
+                    className="text"
+                  >
+                    delightunveiledbagoregion@gmail.com
                   </Link>
                 </List.Item>
               </List>
@@ -159,7 +163,12 @@ const FooterComponent = () => (
           <Text className="mb-0">
             Copyright &copy; All rights reserved | This template is made with{" "}
             <HeartFilled /> by{" "}
-            <a href="https://www.linkedin.com/in/may-zuly-moe-emily-a7697931a/" target="_blank">MayZulyMoe</a>
+            <a
+              href="https://www.linkedin.com/in/may-zuly-moe-emily-a7697931a/"
+              target="_blank"
+            >
+              MayZulyMoe
+            </a>
           </Text>
         </Col>
       </Row>

@@ -67,19 +67,19 @@ const Navbar = () => {
         <div className="menu-container">
           <Menu mode="horizontal " className="menu">
             <Menu.Item key="home">
-              <Link to="/">Home</Link>
+              <Link to="/">ပင်မစာမျက်နှာ</Link>
             </Menu.Item>
             <Menu.Item key="product">
-              <Link to="/products">Products</Link>
+              <Link to="/products">ထုတ်ကုန်များ</Link>
             </Menu.Item>
             <Menu.Item key="aboutus">
-              <Link to="/about-us">About Us</Link>
+              <Link to="/about-us">အကြောင်းအရာများ</Link>
             </Menu.Item>
             <Menu.Item key="blog">
-              <Link to="/blog">Blogs</Link>
+              <Link to="/blog">လေ့လာရန်ဘလော့ဂ်များ</Link>
             </Menu.Item>
             <Menu.Item key="contact">
-              <Link to="/contact-us">Contact Us</Link>
+              <Link to="/contact-us">ဆက်သွယ်ရန်</Link>
             </Menu.Item>
           </Menu>
           <div className="icons">
@@ -113,19 +113,19 @@ const Navbar = () => {
         >
           <Menu mode="vertical">
             <Menu.Item key="home">
-              <Link to="/">Home</Link>
+              <Link to="/">ပင်မစာမျက်နှာ</Link>
             </Menu.Item>
             <Menu.Item key="product">
-              <Link to="/products">Products</Link>
+              <Link to="/products">ထုတ်ကုန်များ</Link>
             </Menu.Item>
             <Menu.Item key="aboutus">
-              <Link to="/about-us">About Us</Link>
+              <Link to="/about-us">အကြောင်းအရာများ</Link>
             </Menu.Item>
             <Menu.Item key="blog">
-              <Link to="/blog">Blogs</Link>
+              <Link to="/blog">လေ့လာရန်ဘလော့ဂ်များ</Link>
             </Menu.Item>
             <Menu.Item key="contact">
-              <Link to="/contact-us">Contact Us</Link>
+              <Link to="/contact-us">ဆက်သွယ်ရန်</Link>
             </Menu.Item>
           </Menu>
         </Drawer>

@@ -8,31 +8,31 @@ import "./CarouselSection.css";
 
 const CarouselSection = () => {
   return (
-    <Carousel autoplay>
+    <Carousel  autoplay autoplaySpeed={1000} speed={500}>
       <div className="carousel-slide">
         <img src={slider1} alt="Organic Food" className="carousel-image" />
         <div className="carousel-content">
-          <h1>Handmade Artistry</h1>
+          <h1>လက်ရာမြောက်သော ဒေသထွက်ကုန်စုံများ</h1>
           <div>
-            <p>Explore the exceptional craftsmanship of Bago's artisans, where tradition meets creativity in every unique piece</p>
+            <p>ရိုးရာလက်ရာတိုင်းတွင် ထူးခြားဆန်းသစ်သော တီထွင်ဖန်တီးမှုနှင့် ကိုက်ညီသည့် ပဲခူးတိုင်းအတွင်းရှိ မြို့နယ်အသီးသီး၏ လက်မှုပညာရှင်များ၏ ထူးခြားသော လက်မှုပညာကို ကြည့်ရှုလိုက်ပါ</p>
           </div>
         </div>
       </div>
       <div className="carousel-slide">
         <img src={slider2} alt="Organic Food" className="carousel-image" />
         <div className="carousel-content">
-          <h1>Rich Cultural Artifacts</h1>
+          <h1>ကြွယ်ဝသော ယဉ်ကျေးမှု အမွေအနှစ်များ</h1>
           <div>
-            <p>Discover the timeless treasures of Bago, from intricately crafted sculptures to ancient relics that tell the story of our heritage</p>
+            <p>အနုစိတ်ဖန်တီးထားသော ပန်းပုလက်ရာများမှသည် မြန်မာ့ အမွေအနှစ်များအကြောင်းကို ပြောပြသော ရှေးဟောင်းအမွေအနှစ်များအထိ ပဲခူးတိုင်းအတွင်းရှိ ဆန်းသစ်သော လက်ရာများကို ရှာဖွေလိုက်ပါ</p>
           </div>
         </div>
       </div>
       <div className="carousel-slide">
         <img src={slider3} alt="Organic Food" className="carousel-image" />
         <div className="carousel-content">
-          <h1>Exquisite Local Groceries</h1>
+          <h1>လက်ရာမြောက်သော ဒေသထွက်ကုန်များ</h1>
           <div>
-            <p>Savor the authentic flavors of Bago with our selection of fresh, locally-sourced groceries, bringing the essence of our region to your kitchen</p>
+            <p>ကျွန်ုပ်တို့၏ ဒေသထွက်ကုန်ကြမ်းများကို ရွေးချယ်ခြင်းဖြင့် ပဲခူးတိုင်း၏ စစ်မှန်သောအရသာများကို မြည်းစမ်းရင်း ကျွန်ုပ်တို့ဒေသ၏ အနှစ်သာရကို သင့်မီးဖိုချောင်သို့ ယူဆောင်လာလိုက်ပါ။</p>
           </div>
         </div>
       </div>

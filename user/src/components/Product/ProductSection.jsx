@@ -17,7 +17,7 @@ const fetchProducts = async () => {
     const query = qs.stringify(
       {
         // sorting
-        sort: ["createdAt:desc"],
+        sort: ["type:desc"],
         // Get data from relation
         populate: {
           image: true,
@@ -90,12 +90,13 @@ const ProductSection = () => {
           <Col lg={24}>
             <div className="section-header">
               <Title level={2} className="product-title">
-                Latest Products
+                နောက်ဆုံးထွက်ကုန်ပစ္စည်းများ
               </Title>
               <Paragraph className="product-description">
-                Discover an exquisite selection of groceries and artifacts from
-                the Bago Region, meticulously curated to bring the best of our
-                heritage and quality to your doorstep!
+                ကျွန်ုပ်တို့၏အမွေအနှစ်နှင့် အရည်အသွေး၏အကောင်းဆုံးကို သင့်ဆီသို့
+                ယူဆောင်လာနိုင်ရန် ပဲခူးတိုင်းဒေသကြီးမှ လက်ရာမြောက်သော
+                ထုတ်ကုန်ပစ္စည်းများနှင့် ရှေးဟောင်းပစ္စည်းများကို
+                ရွေးချယ်ရှာဖွေလိုက်ပါ
               </Paragraph>
             </div>
           </Col>
@@ -126,7 +127,7 @@ const ProductSection = () => {
                           }
                         >
                           <Tag color="magenta" className="position-absolute">
-                            New
+                            အသစ်
                           </Tag>
                           <Card.Meta
                             title={product.attributes.name}
@@ -151,8 +152,9 @@ const ProductSection = () => {
                                 product.attributes.stock > 0 &&
                                   navigate(`/product/${product.id}`);
                               }}
+                              style={{ fontSize: "12px" }}
                             >
-                              View detail
+                              အသေးစိတ်ကြည့်ရှုရန်
                             </Button>
                             <Button
                               type="link"
@@ -184,8 +186,9 @@ const ProductSection = () => {
                               }
                               disabled={product.attributes.stock === 0}
                               onClick={() => addProductToCart(product)}
+                              style={{ fontSize: "12px", padding: "0" }}
                             >
-                              Add to Cart
+                              ဝယ်ယူရန်
                             </Button>
                           </div>
                         </Card>
@@ -214,7 +217,7 @@ const ProductSection = () => {
                   e.currentTarget.style.borderColor = "#aa620f";
                 }}
               >
-                Browse More Products
+                ပိုမိုကြည့်ရှုရန်
               </Button>
             </div>
           </div>

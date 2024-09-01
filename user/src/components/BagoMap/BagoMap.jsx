@@ -8,7 +8,7 @@ const BagoMap = () => {
     <Layout style={{background:"#f9f9f9"}}>
       <Content style={{ padding: "50px" }}>
         <Title level={2} style={{textAlign:'center',padding:"30px 0",fontSize:"36px",color:"#1e1e1e"}}>
-          Welcome to Bago Region
+          ပဲခူးတိုင်းဒေသကြီးမှ ကြိုဆိုပါ၏
         </Title>
         <div style={{ width: "100%", height: "400px" }}>
           <iframe

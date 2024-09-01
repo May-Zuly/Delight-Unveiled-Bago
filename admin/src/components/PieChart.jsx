@@ -13,5 +13,10 @@ export default function PieChart({ data }) {
       },
     ],
   };
-  return <Pie {...config} />;
+  return (
+    <>
+      <Pie {...config} />
+      <h3 style={{textAlign:"center"}}>Products Reports by Townships</h3>
+    </>
+  );
 }

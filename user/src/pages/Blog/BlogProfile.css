@@ -76,7 +76,7 @@ body {
   --tt-key: primary-headline;
   --tt-ease: cubic-bezier(1, 0, 1, 1);
   --tt-max: 585;
-  line-height: 1;
+  /* line-height: 1; */
   font-variation-settings: "SOFT" 0, "WONK" 1;
   margin: 0.5rem 0;
   font-size: 30px;

@@ -76,8 +76,8 @@ export default function ProductPage() {
       const query = qs.stringify(
         {
           filters,
-          // sorting
-          sort: ["createdAt:desc"],
+          // reversesorting
+          sort: ["type:desc"],
           // Get data from relation
           populate: {
             image: true,
@@ -180,7 +180,7 @@ export default function ProductPage() {
             {currentPage === 1 && (
               <Badge.Ribbon
                 className="itemCardBadge"
-                text={"new"}
+                text={"အသစ်"}
                 color="#aa620f"
               ></Badge.Ribbon>
             )}
@@ -210,8 +210,9 @@ export default function ProductPage() {
                         product.attributes.stock > 0 &&
                           navigate(`/product/${product.id}`);
                       }}
+                      style={{ fontSize: "13px" }}
                     >
-                      View detail
+                      အသေးစိတ်ကြည့်ရှုရန်
                     </Button>
                     <Button
                       key={product.id}
@@ -219,8 +220,9 @@ export default function ProductPage() {
                       onClick={() => addProductToCart(product)}
                       disabled={product.attributes.stock === 0} // Disable button if out of stock
                       icon={<ShoppingCartOutlined />}
+                      style={{ fontSize: "13px" }}
                     >
-                      Add to Cart{" "}
+                      ဝယ်ယူရန်{" "}
                       {getQuantity(product.id) && (
                         <div
                           style={{
@@ -239,7 +241,6 @@ export default function ProductPage() {
                         </div>
                       )}
                     </Button>
-                    ,
                   </>,
                 ]}
               >
@@ -247,10 +248,10 @@ export default function ProductPage() {
                   title={
                     <>
                       <Typography.Paragraph>
-                        Name: {product.attributes.name}
+                        အမည် : {product.attributes.name}
                       </Typography.Paragraph>
                       <Typography.Paragraph>
-                        Price: MMK {product.attributes.price}
+                        ဈေးနှုန်း : MMK {product.attributes.price}
                       </Typography.Paragraph>
                     </>
                   }
